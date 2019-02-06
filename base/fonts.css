@@ -1,0 +1,29 @@
+/* fonts
+------------------------- */
+
+@import url("https://hello.myfonts.net/count/2d333f");
+
+/* Texta Heavy */
+@font-face {
+  font-family: 'Texta';
+  font-weight: bold;
+  font-style: normal;
+  src: url('../assets/fonts/2D333F_0_0.woff2') format('woff2'),
+    url('../assets/fonts/2D333F_0_0.woff') format('woff');
+}
+
+/* Texta Italic */
+@font-face {
+  font-family: 'Texta';
+  font-weight: normal;
+  font-style: italic;
+  src: url('../assets/fonts/2D333F_1_0.woff2') format('woff2'),
+    url('../assets/fonts/2D333F_1_0.woff') format('woff');
+}
+
+/* Texta Regular */
+@font-face {
+  font-family: 'Texta';
+  src: url('../assets/fonts/2D333F_2_0.woff2') format('woff2'),
+    url('../assets/fonts/2D333F_2_0.woff') format('woff');
+}

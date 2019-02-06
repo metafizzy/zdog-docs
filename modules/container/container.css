@@ -1,0 +1,18 @@
+/* container
+------------------------- */
+
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+  max-width: 1000px;
+  display: flex;
+}
+
+.container__sidebar {
+  flex-basis: 180px;
+  flex-shrink: 0;
+  margin-right: 40px;
+}
+
+.container__main {
+}

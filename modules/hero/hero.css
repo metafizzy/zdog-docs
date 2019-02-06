@@ -1,0 +1,27 @@
+/* hero
+------------------------- */
+
+.hero {
+  display: flex;
+  align-items: center;
+  background: #FDB;
+  border-radius: 8px;
+}
+
+.hero__copy {
+  margin-left: 20px;
+}
+
+.hero__title {
+  font-size: 6.0rem;
+  margin: 0;
+  line-height: 1;
+  color: #E62;
+}
+
+.hero__tagline {
+  font-size: 1.2rem;
+  margin: 10px 0 0;
+  font-style: italic;
+  color: #636;
+}

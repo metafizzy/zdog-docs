@@ -1,0 +1,26 @@
+/* base
+------------------------- */
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Texta', sans-serif;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* font size on html for rem */
+html { font-size: 17px; }
+
+pre, code {
+  font-family: Consolas, Menlo, monospace;
+  font-size: 0.85rem;
+}
+
+@media screen and ( min-width: 768px ) {
+
+  html { font-size: 19px; }
+
+}

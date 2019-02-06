@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="{{description}}" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Zdog &middot; {{#if page.homepage}}{{description}}{{else}}{{page.title}}{{/if}}</title>
+
+  {{#if dev}}
+    {{#each stylesheets}}
+      <link rel="stylesheet" href="../{{this}}" />
+    {{/each}}
+  {{else}}
+    <link rel="stylesheet" href="{{@file.rootpath}}assets/zdog-docs.css?1" />
+  {{/if}}
+
+  {{! Twitter Cards }}
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@metafizzyco" />
+  <meta name="twitter:url" content="https://zzz.dog/{{@file.basename}}.html" />
+  <meta name="twitter:title" content="{{productName}}{{#unless page.homepage}} {{page.title}}{{/unless}}" />
+  <meta name="twitter:description" content="{{description}}" />
+
+</head>
+<body class="page--{{@file.basename}}">
+
+<div class="container">
+  
+  <div class="container__sidebar">
+    {{> site-nav }}
+    <ul class="page-nav" data-js="page-nav"></ul>
+  </div>
+  
+  <div class="container__main">
+    {{#if page.homepage}}
+      {{> hero}}
+    {{/if}}
+    
+    {{#if page.title}}
+      <h1 class="page-title">{{page.title}}</h1>
+    {{/if}}
+{{{main}}}
+  </div>
+  
+</div> {{! .container }}
+
+{{#if dev}}
+  {{#each jsPaths}}
+    <script src="../{{this}}"></script>
+  {{/each}}
+{{else}}
+  <script src="{{@file.rootpath}}js/zdog-docs.min.js?1"></script>
+{{/if}}
+
+<script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','UA-58739927-1','auto');ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+</body>
+</html>
