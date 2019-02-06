@@ -7,7 +7,7 @@ var site = {
   // templating data
   data: {
     productName: 'Flickity',
-    description: 'Round & flat pseudo-3D for designers',
+    description: 'Round, flat, designer-friendly pseudo-3D',
     majorVersion: 2,
     dev: process.argv[2] == 'dev',
   },

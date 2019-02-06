@@ -20,7 +20,7 @@ var jsSrc = [
   'bower_components/zdog/js/hemisphere.js',
   'bower_components/zdog/js/box.js',
   'bower_components/zdog/js/dragger.js',
-  'bower_components/zdog/js/illo.js',
+  'bower_components/zdog/js/illustration.js',
   // docs
   'base/boilerplate.js',
   // modules
