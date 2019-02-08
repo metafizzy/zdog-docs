@@ -14,13 +14,42 @@ body {
 /* font size on html for rem */
 html { font-size: 17px; }
 
-pre, code {
+/* ---- code ---- */
+
+pre, code, kbd {
   font-family: Consolas, Menlo, monospace;
-  font-size: 0.85rem;
+  font-size: 14px;
+  background: #F8EEE8;
+  white-space: pre-wrap;
 }
+
+pre {
+  padding: 10px;
+  border-radius: 6px;
+  overflow: auto;
+}
+
+code {
+  padding: 2px 3px;
+  line-height: 1.2;
+  border-radius: 3px;
+}
+
+pre code {
+  padding: 0;
+  line-height: 1.5;
+  background: none;
+  border: none;
+}
+
+/* ----  ---- */
 
 @media screen and ( min-width: 768px ) {
 
   html { font-size: 19px; }
+
+  pre, code {
+    font-size: 15px;
+  }
 
 }

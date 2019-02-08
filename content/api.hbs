@@ -2,46 +2,45 @@
 title: API
 ---
 
+{{! --------------------------------------------- }}
+
+<h2>Options</h2>
+
+<p>Set options with an object.</p>
+
+``` js
+const face = new Zdog.Rect({
+  addTo: illo,
+  width: 4,
+  height: 3,
+  rotate: { y: -2 },
+  color: '#E62',
+});
+```
+
+<p>Get and re-set options as properties on the returned item.</p>
+
+``` js
+// get option
+console.log( face.rotate.y );
+// => -2
+
+// re-set option
+face.rotate.y = 3;
+```
+
+{{! --------------------------------------------- }}
+
 {{> anchor-api }}
 {{> shape-api }}
+{{!> group-api }}
+{{!> vector-api }}
+{{!> illo-api }}
+{{!> dragger-api }}
+{{!> utils-api }}
 
 
-Rect
-  width
-  height
-RoundedRect
-  width
-  height
-  radius
-Ellipse
-  diameter
-  width
-  height
-  quarters
-Polygon
-  sides
-  radius
-Hemisphere
-  diameter
-  baseColor
-Cylinder
-  diameter
-  length
-  baseColor
-Cone
-  diameter
-  length
-  baseColor
-Box
-  width
-  height
-  depth
-  front
-  back
-  left
-  right
-  top
-  bottom
+```
 Group
   updateSort
   visible
@@ -50,3 +49,4 @@ Vector
   x, y, z
 Dragger
 Utilities
+```

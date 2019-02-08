@@ -12,7 +12,8 @@ const hb = require('gulp-hb');
 let contentSrc = 'content/**/*.hbs';
 let partialsSrc = [
   // 'bower_components/fizzy-docs-modules/*/*.hbs',
-  'modules/*/**/*.hbs',
+  'modules/*/*.hbs',
+  'demos/*/*.hbs',
 ];
 let dataSrc = 'data/*.json';
 let pageTemplateSrc = 'templates/*.hbs';

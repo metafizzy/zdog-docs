@@ -1,43 +1,67 @@
 <h2>Shape</h2>
 
-<p></p>
+<p>A visible shape. <code>Shape</code> is the super-class for all shape classes — <code>Rect</code>, <code>Ellipse</code>, <code>Cone</code>, etc. All shape classes can use <code>Shape</code> options and methods.</p>
 
-<h3>Shape options</h3>
+{{! --------------------------------------------- }}
+
+<h3>color</h3>
+
+<p>Sets shape stroke and fill color. Set to any color string — hex code, <code>rgb()</code>, <code>hsla()</code>, etc. Default <code>color: '#333'</code>.</p>
 
 ``` js
-let shape = new Zdog.Shape({
-  color: '#E62',
-  // stroke and fill color, set to any color string
-  // color: 'hsla(210, 100%, 50%, 0.7)'
-  // default: #333
-
-  stroke: 4
-  // renders a line of the path, sets line width
-  // set to 0 or false to disable
-  // default: 1
-
-  fill: true
-  // fills in color within shape
-  // default: false
-
-  closed: true
-  // closes the path from its last point back to its first
-  // default: true
-
-  visible: true
-  // shows or hides the shape
-  // does not show/hide child shapes
-  // default: true
-});
+color: '#EA0'
 ```
 
-<h3>backfacefront</h3>
+{{! --------------------------------------------- }}
+
+<h3>stroke</h3>
+
+<p>Renders the shape line and sets line width. Default <code>stroke: 1</code>.</p>
+
+``` js
+stroke: 4
+```
+
+<p>Set to <code>0</code> or <code>false</code> to disable.</p>
+
+``` js
+// render only fill
+stroke: false,
+fill: true,
+```
+
+{{! --------------------------------------------- }}
+
+<h3>fill</h3>
+
+<p>Renders the inner shape area. Disabled by default <code>fill: false</code>.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>closed</h3>
+
+<p>Closes the shape&rsquo;s path from its last point back to its first. Enabled by default <code>closed: true</code>.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>visible</h3>
+
+<p>Shows or hides shape. Does not affect child items. Enabled by default <code>visible: true</code>.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>backface</h3>
+
+<p>Shows or hides the shape when its backface is visible. Enabled by default <code>backface: true</code>. Set <code>backface: false</code> to hide the shape when its backface is showing.</p>
+
+<p>Set <code>backface</code> to a color to change the shape&rsquo;s color when its backface is showing.</p>
+
+{{! --------------------------------------------- }}
 
 <h3>front</h3>
 
-<h3>path</h3>
-
-
+{{! --------------------------------------------- }}
 
 <h3>updatePath()</h3>
 
+{{! --------------------------------------------- }}

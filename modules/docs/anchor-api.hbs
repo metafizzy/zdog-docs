@@ -1,12 +1,247 @@
+{{! --------------------------------------------- }}
+
 <h2>Anchor</h2>
 
+``` js
+const anchor = new Zdog.Anchor({
+  // options
+});
+```
+
+<p>An invisible item. Anchors are useful for collecting related shapes and transforming them together.</p>
+
+<p><code>Anchor</code> is the super class of all item and shape classes — <code>Shape</code>, <code>Group</code>, <code>Rect</code>, <code>Ellipse</code>, <code>Box</code>, etc. All item classes can use <code>Anchor</code> options and methods.</p>
+
+{{! --------------------------------------------- }}
+
 <h3>addTo</h3>
-<h3>scale</h3>
+
+<p>Add shape to parent shape.</p>
+
+``` js
+addTo: illo
+```
+
+{{! --------------------------------------------- }}
+
 <h3>translate</h3>
+
+<p>Positions the item.</p>
+
+<div class="example" data-js="anchorTransform"
+  data-transform='{ "translate": { "x": 5, "y": -10 } }'>
+  <div class="example__code">
+    ``` js
+    translate: { x: 5, y: -10 }
+    // move right 5, up 10
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
 <h3>rotate</h3>
+
+<p>Rotates the item. Set to a Vector-like object to rotate the item around the cooresponding axis.</p>
+
+<div class="example" data-js="anchorTransform"
+  data-transform='{ "rotate": { "x": 0.7854 } }'>
+  <div class="example__code">
+    ``` js
+    rotate: { x: Zdog.TAU/8 }
+    // rotate around horizontal axis
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<div class="example" data-js="anchorTransform"
+  data-transform='{ "rotate": { "y": 0.7854 } }'>
+  <div class="example__code">
+    ``` js
+    rotate: { y: Zdog.TAU/8 }
+    // rotate around vertical axis
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<div class="example" data-js="anchorTransform"
+  data-transform='{ "rotate": { "z": 0.7854 } }'>
+  <div class="example__code">
+    ``` js
+    rotate: { z: Zdog.TAU/8 }
+    // rotate around z axis
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>scale</h3>
+
+<p>Enlarges or shrinks item geometry. <code>scale</code> does not scale <code>stroke</code>.</p>
+
+<p>Set <code>scale</code> with a number to set <code>x</code>, <code>y</code>, & <code>z</code> scales to the same value.</p>
+
+<div class="example" data-js="anchorTransform"
+  data-transform='{ "scale": 2 }'>
+  <div class="example__code">
+    ``` js
+    scale: 2
+    // scale up all coordinates 200%
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Set <code>scale</code> to a <code>Vector</code>-like object to set coordinate-specific scale.</p>
+
+<div class="example" data-js="anchorTransform"
+  data-transform='{ "scale": { "x": 0.5, "y": 1.5 } }'>
+  <div class="example__code">
+    ``` js
+    scale: { x: 0.5, y: 1.5 }
+    // scale x 50%, y 150%
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
 <h3>copy()</h3>
+
+<p>Copy an item. <code>copy()</code> only copies the item, not the item&rsquo;s graph of child items. Use <code>copyGraph()</code> to copy the item and its graph.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // create original
+    const rect = new Zdog.Rect({
+      addTo: illo,
+      width: 20,
+      height: 20,
+      translate: { x: -12 },
+      stroke: 4,
+      color: '#EA0',
+    });
+    // copy
+    rect.copy({
+      // overwrite original options
+      translate: { x: 12 },
+      color: '#C25',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="anchorCopy" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
 <h3>copyGraph()</h3>
+
+<p>Copies item and its graph of descendent items.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // create original
+    const rect = new Zdog.Rect({
+      // ...
+    });
+    // add child item
+    new Shape({
+      addTo: rect,
+      // ...
+    });
+    // copy rect and its children
+    rect.copyGraph({
+      // overwrite original rect options
+      translate: { x: 12 },
+      color: '#C25',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="anchorCopyGraph" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
 <h3>addChild()</h3>
+
+<p>Adds child item. <code>addChild()</code> is useful if you create an item without <code>addTo</code> and need to add it later.</p>
+
+``` js
+const anchor = new Zdog.Anchor({
+  // ...
+});
+
+const shape = new Zdog.Shape({
+  // no addTo
+});
+// add shape to anchor
+anchor.addChild( shape );
+```
+
+{{! --------------------------------------------- }}
+
 <h3>removeChild()</h3>
+
+<p>Removes child item</p>
+
+``` js
+const shape = new Zdog.Shape({
+  addTo: anchor,
+});
+
+anchor.removeChild( shape );
+```
+
+{{! --------------------------------------------- }}
+
 <h3>remove()</h3>
+
+<p>Removes item from parent.</p>
+
+``` js
+const shape = new Zdog.Shape({
+  addTo: anchor,
+});
+
+shape.remove();
+```
+
+{{! --------------------------------------------- }}
+
 <h3>normalizeRotate()</h3>
+
+<p>Clamps <code>rotate</code> <code>x</code>, <code>y</code>, &amp; <code>z</code> values between <code>0</code> and <code>TAU</code>.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>updateGraph()</h3>
+
+{{! --------------------------------------------- }}
+
+<h3>renderGraph()</h3>
+
+{{! --------------------------------------------- }}

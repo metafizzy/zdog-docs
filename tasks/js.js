@@ -24,8 +24,8 @@ var jsSrc = [
   // docs
   'base/boilerplate.js',
   // modules
-  'modules/**/*.js',
-  'demos/**/*.js',
+  'modules/*/*.js',
+  'demos/*/*.js',
   // init
   'base/init.js',
 ];
