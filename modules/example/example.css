@@ -3,6 +3,7 @@
 
 .example {
   display: flex;
+  margin: 1.0rem 0;
 }
 
 .example__code {

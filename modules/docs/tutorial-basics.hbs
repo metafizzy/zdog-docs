@@ -1,0 +1,216 @@
+
+
+<h2>Zdog basics</h2>
+
+
+{{! --------------------------------------------- }}
+
+<p>Zdog is rendered on a <code>&lt;canvas></code> element. Set the <code>width</code> and <code>height</code> sizes.</p>
+
+``` html
+<canvas class="zdog-canvas" width="240" height="240"></canvas>
+```
+
+<p>Add the Zdog JavaScript to your page. For quick demos, add the CDN URL. Finally add a <code>&lt;script></code> pointing to your demo&rsquo;s JS file.</p>
+
+``` html
+<script src="https://unpkg.com/zdog@1/dist/zdog.pkgd.js"></script>
+<script src="zdog-demo.js"></script>
+```
+
+{{! --------------------------------------------- }}
+
+<h3>Initial static demo</h3>
+
+<p>Let&rsquo;s jump in with a basic non-animated demo.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // create illo
+    const illo = new Zdog.Illustration({
+      canvas: '.zdog-canvas',
+    });
+
+    // add circle
+    new Zdog.Ellipse({
+      addTo: illo,
+      diameter: 80,
+      stroke: 20,
+      color: '#636',
+    });
+
+    illo.updateRenderGraph();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="firstStaticDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Let&rsquo;s break it down. The Zdog API mostly consists by creating instances of Zdog&rsquo;s classes.</p>
+
+<p><code>Illustration</code> is the top-level class that handles dealing with the <code>&lt;canvas></code> element, holding all the shapes in the scene, and displaying those shapes on the <code>&lt;canvas></code>. We hooked up the <code>&lt;canvas></code> element by setting the <code>canvas</code> option to its matching selector <code>'.zdog-canvas'</code>. The <code>Illustration</code> instance is then set as a variable <code>illo</code>.</p>
+
+<p><code>Ellipse</code> is a shape class. We added it to the scene with <code>addTo: illo</code>. So the circle shape is a child of <code>illo</code> — part of it&rsquo;s <em>graph</em>. We set other options for the circle to set its size, shape, and color: <code>diameter: 80, stroke: 20, color: '#636'.</code></p>
+
+<p>Finally, to display the scene, we call <code>illo.updateRenderGraph()</code>.</p>
+
+<p>And we get ... a 80px wide purple circle. Exciting!</p>
+
+{{! --------------------------------------------- }}
+
+<h3>Animating</h3>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    function animate() {
+      // rotate illo
+      illo.rotate.y += 0.04;
+      illo.updateRenderGraph();
+      // animate next frame
+      requestAnimationFrame( animate );
+    }
+    // start animation
+    animate();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="animatingDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>To animate our scene we need to re-render <code>illo</code> every frame. So we wrap <code>illo.updateRenderGraph()</code> within a <code>requestAnimationFrame</code> loop. Now we can manipulate the scene and see its changes animated. We change the rotation of the scene by incrementally increasing <code>illo.rotate.y</code>.</p>
+
+<p>And now the animated circle is ... kind of lame. It <em>is</em> rotating, but being all alone and sitting in direct center, the visual effect is weak. Let's add another shape, a <code>Rect</code>, and position the shapes in 3D space.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // circle
+    new Zdog.Ellipse({
+      addTo: illo,
+      diameter: 80,
+      // position closer
+      translate: { z: 40 },
+      stroke: 20,
+      color: '#636',
+    });
+
+    // square
+    new Zdog.Rect({
+      addTo: illo,
+      width: 80,
+      height: 80,
+      // position further back
+      translate: { z: -40 },
+      stroke: 12,
+      color: '#E62',
+      fill: true,
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="positioningDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Now we're cooking. The shapes are positioned by setting <code>translate</code>. The circle has <code>translate: { z: 40 }</code>, so its original position is moved 40 pixels closer up front. The square is 40 pixels further back. The shapes are separated from another so, when rotating, they orbit around the center. More on positioning with <code>translate</code> later.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>zoom</h3>
+
+<p>Zdog requires setting lots of numbers. I like to keep my numbers smaller. Setting <code>zoom</code> will scale the whole scene proportionally.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const illo = new Zdog.Illustration({
+      canvas: '.zdog-canvas',
+      // zoom up 4x
+      zoom: 4,
+    });
+
+    new Zdog.Ellipse({
+      diameter: 20,
+      translate: { z: 10 },
+      stroke: 5,
+      ...
+    });
+
+    new Zdog.Rect({
+      width: 20,
+      height: 20,
+      translate: { z: 10 },
+      stroke: 3,
+      ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="zoomDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>Drag rotate</h3>
+
+<p>Enable rotation with dragging by setting <code>dragRotate: true</code> on the <code>Illustration</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const illo = new Zdog.Illustration({
+      canvas: '.zdog-canvas',
+      zoom: 4,
+      // enable rotating scene with dragging
+      dragRotate: true,
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="dragRotateTut1" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>We can add back the regular rotation and stop it for dragging with <code>onDragStart</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // rotating flag variable
+    let isRotating = true;
+
+    const illo = new Zdog.Illustration({
+      canvas: '.zdog-canvas',
+      zoom: 4,
+      dragRotate: true,
+      // stop rotation when dragging starts
+      onDragStart: function() {
+        isRotating = false;
+      },
+    });
+
+    // add shapes...
+
+    function animate() {
+      // rotate
+      if ( isRotating ) {
+        illo.rotate.y += 0.03;
+      }
+      illo.updateRenderGraph();
+      requestAnimationFrame( animate );
+    }
+    animate();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="dragRotateTut2" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>That covers the basics of displaying a 3D model with Zdog. Everything else is a matter of creating more complex models.</p>
+

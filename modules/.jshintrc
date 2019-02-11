@@ -3,6 +3,12 @@
   "unused": true,
   "undef": true,
   "globals": {
+    "yellow": false,
+    "gold": false,
+    "orange": false,
+    "garnet": false,
+    "eggplant": false,
+    "TAU": false,
     "Zdog": false,
     "ZdogDocs": false
   }
