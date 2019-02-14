@@ -42,7 +42,7 @@ ZdogDocs.shapeDemo = function( callback ) {
     }
 
     animate();
-    
+
   };
 };
 

@@ -1,6 +1,6 @@
-ZdogDocs.polygon = function( elem ) {
-  // console.log( elem.querySelector('.example__code').textContent );
+/* jshint evil: true */
 
+ZdogDocs.evalShapeDemo = function( elem ) {
 
   var isAnimating = false;
 
@@ -16,7 +16,8 @@ ZdogDocs.polygon = function( elem ) {
     },
   });
 
-  eval( elem.querySelector('.example__code').textContent );
+  var exampleCode = elem.querySelector('.example__code');
+  eval( exampleCode.textContent );
 
   function animate() {
     illo.updateGraph();
@@ -27,5 +28,4 @@ ZdogDocs.polygon = function( elem ) {
   }
 
   animate();
-
 };

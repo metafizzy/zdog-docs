@@ -10,7 +10,7 @@
 
 <p>When unset, <code>path</code> defaults to a single point. With <code>stroke</code> set, a single point renders as a sphere.</p>
 
-<div class="example">
+<div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
     new Zdog.Shape({
@@ -22,7 +22,7 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="pathPoint" class="illo" width="240" height="240"></canvas>
+    <canvas class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
@@ -66,7 +66,7 @@
 {/*x,y,z*/}, // line shorthand is just the point
 ```
 
-<div class="example">
+<div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
     new Zdog.Shape({
@@ -81,11 +81,11 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="pathLine" class="illo" width="240" height="240"></canvas>
+    <canvas class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
-<div class="example">
+<div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
     // z-shape
@@ -104,13 +104,13 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="pathLines" class="illo" width="240" height="240"></canvas>
+    <canvas class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
 <p>Path points can use <code>z</code> coordinates to form 3D shapes.</p>
 
-<div class="example">
+<div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
     // 3D shape
@@ -129,7 +129,7 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="pathLines3D" class="illo" width="240" height="240"></canvas>
+    <canvas class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
@@ -141,7 +141,7 @@
 { move: {/*x,y,z*/} },
 ```
 
-<div class="example">
+<div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
     new Zdog.Shape({
@@ -159,7 +159,7 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="pathMove" class="illo" width="240" height="240"></canvas>
+    <canvas class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
@@ -247,7 +247,7 @@
 
 <p>Closes the path from the last point back to the first. Enabled by default <code>/* closed: true */</code>.</p>
 
-<div class="example">
+<div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
     new Zdog.Shape({
@@ -264,11 +264,11 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="shapeClosed" data-closed="true" class="illo" width="240" height="240"></canvas>
+    <canvas data-closed="true" class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
-<div class="example">
+<div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
     new Zdog.Shape({
@@ -285,6 +285,6 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="shapeClosed" class="illo" width="240" height="240"></canvas>
+    <canvas class="illo" width="240" height="240"></canvas>
   </div>
 </div>
