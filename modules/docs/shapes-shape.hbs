@@ -1,0 +1,290 @@
+<h2>Shape</h2>
+
+<p>Shape class for custom shapes. The shape of a <code>Shape</code> is defined by its <code>path</code>.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>path</h3>
+
+<p>Defines the shape.</p>
+
+<p>When unset, <code>path</code> defaults to a single point. With <code>stroke</code> set, a single point renders as a sphere.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    new Zdog.Shape({
+      addTo: illo,
+      // no path set, default to single point
+      stroke: 80,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="pathPoint" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>Path commands</h3>
+
+<p>Set <code>path</code> to <i>Array</i> of path commands. Path commands set the directions for the path to shape. Similar to drawing a path in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#Drawing_paths">2D <code>&lt;canvas></code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">SVG paths</a>, or turtle graphics.</p>
+
+<p>There are four path commands: <code>line</code>, <code>move</code>, <code>arc</code>, and <code>bezier</code>. Each command is set as an <i>Object</i> with the key of the command and value of a vector <i>Object</i> or <i>Array</i> of vector <i>Object</i>s representing the command points.</p>
+
+
+``` js
+{ line: {/*x,y,z*/} }, // verbose syntax
+// or
+{/*x,y,z*/}, // line shorthand is just the point
+
+{ move: {/*x,y,z*/} },
+
+{ arc: [
+  {/*x,y,z*/}, // corner point
+  {/*x,y,z*/}, // end point
+]},
+
+{ bezier: [
+  {/*x,y,z*/}, // start control point
+  {/*x,y,z*/}, // end control point
+  {/*x,y,z*/}, // end point
+]},
+```
+
+<p>To start the path shape, the first path command is always treated as <code>move</code>.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>line</h3>
+
+``` js
+{ line: {/*x,y,z*/} }, // verbose syntax
+// or
+{/*x,y,z*/}, // line shorthand is just the point
+```
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    new Zdog.Shape({
+      addTo: illo,
+      path: [
+        { x: -40 }, // start at 1st point
+        { x:  40 }, // line to 2nd point
+      ],
+      stroke: 20,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="pathLine" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // z-shape
+    new Zdog.Shape({
+      addTo: illo,
+      path: [
+        { x: -32, y: -40 }, // start at top left
+        { x:  32, y: -40 }, // line to top right
+        { x: -32, y:  40 }, // line to bottom left
+        { x:  32, y:  40 }, // line to bottom right
+      ],
+      closed: false,
+      stroke: 20,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="pathLines" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Path points can use <code>z</code> coordinates to form 3D shapes.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // 3D shape
+    new Zdog.Shape({
+      addTo: illo,
+      path: [
+        { x: -32, y: -40, z:  40 },
+        { x:  32, y: -40 },
+        { x:  32, y:  40, z:  40 },
+        { x:  32, y:  40, z: -40 },
+      ],
+      closed: false,
+      stroke: 20,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="pathLines3D" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>move</h3>
+
+``` js
+{ move: {/*x,y,z*/} },
+```
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    new Zdog.Shape({
+      addTo: illo,
+      path: [
+        { x: -40, y: -32 },          // start at top left
+        { x:  40, y: -32 },          // line to top right
+        { move: { x: -40, y: 32 } }, // move to bottom left
+        { x:  40, y:  32 },          // line to bottom right
+      ],
+      closed: false,
+      stroke: 20,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="pathMove" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>arc</h3>
+
+``` js
+{ arc: [
+  {/*x,y,z*/}, // corner point
+  {/*x,y,z*/}, // end point
+]},
+```
+
+<p>Renders an elliptical curve. The ellipse of the curve fits within a rectangle formed by the previous, corner, and end points.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    new Zdog.Shape({
+      addTo: illo,
+      path: [
+        { x: -60, y: -60 },   // start
+        { arc: [
+          { x:  20, y: -60 }, // corner
+          { x:  20, y:  20 }, // end
+        ]},
+        { arc: [ // start next arc from last end point
+          { x:  20, y:  60 }, // corner
+          { x:  20, y:  60 }, // end
+        ]},
+      ],
+      closed: false,
+      stroke: 20,
+      color: '#636'
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="pathArc" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>bezier</h3>
+
+``` js
+{ bezier: [
+  {/*x,y,z*/}, // start control point
+  {/*x,y,z*/}, // end control point
+  {/*x,y,z*/}, // end point
+]},
+```
+
+<p>Renders a bezier curve.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    new Zdog.Shape({
+      addTo: illo,
+      path: [
+        { x: -60, y: -60 },   // start
+        { bezier: [
+          { x:  20, y: -60 }, // start control point
+          { x:  20, y:  60 }, // end control point
+          { x:  60, y:  60 }, // end point
+        ]},
+      ],
+      closed: false,
+      stroke: 20,
+      color: '#636'
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="pathBezier" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>closed</h3>
+
+<p>Closes the path from the last point back to the first. Enabled by default <code>/* closed: true */</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    new Zdog.Shape({
+      addTo: illo,
+      path: [ // triangle
+        { x:   0, y: -40 },
+        { x:  40, y:  40 },
+        { x: -40, y:  40 },
+      ],
+      // closed by default
+      stroke: 20,
+      color: '#636'
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeClosed" data-closed="true" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    new Zdog.Shape({
+      addTo: illo,
+      path: [
+        { x:   0, y: -40 },
+        { x:  40, y:  40 },
+        { x: -40, y:  40 },
+      ],
+      closed: false, // unclosed
+      stroke: 20,
+      color: '#636'
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeClosed" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>

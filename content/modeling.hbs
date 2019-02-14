@@ -1,4 +1,6 @@
-<h2>Modeling</h2>
+---
+title: Modeling
+---
 
 <div class="example">
   <div class="example__code">
@@ -10,6 +12,8 @@
 </div>
 
 {{! --------------------------------------------- }}
+
+<h2>Shapes & child shapes</h2>
 
 <p>Our initial setup picks up from the basics demo above. We'll start with the head.</p>
 
@@ -30,8 +34,26 @@
       color: gold,
     });
 
-    // eye
-    new Zdog.Ellipse({
+    // -- animate --- //
+
+    function animate() {
+      illo.updateRenderGraph();
+      requestAnimationFrame( animate );
+    }
+    animate();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelHead" data-step="1" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>The head shape is rendered as a flat-colored sphere with <code>Shape</code>. The <code>Shape</code> class can be defined to render any shape — lines, curves, polygons — via its <code>path</code> option. As <code>head</code> does not have <code>path</code> set, its path defaults to a single point. That point, combined with <code>stroke</code> renders a flat-colored sphere. In other words, a circle. More on <code>stroke</code> later.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const eye = new Zdog.Ellipse({
       addTo: head,
       diameter: 2,
       quarters: 2, // semi-circle
@@ -43,26 +65,16 @@
       // hide when front-side is facing back
       backface: false,
     });
-
-    // -- animate --- //
-
-    function animate() {
-      illo.updateRenderGraph();
-      requestAnimationFrame( animate );
-    }
-    animate();
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="modelEye" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="modelHead" data-step="2" class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
-<p>The head shape is rendered as a flat-colored sphere with <code>Shape</code>. The <code>Shape</code> class can be defined to render any shape — lines, curves, polygons — via its <code>path</code> option. As <code>head</code> does not have <code>path</code> set, its path defaults to a single point.
-  
-<p>That point, combined with <code>stroke</code> renders a flat-colored sphere. </p>
+<p>Next we add the eye as a child shape to <code>head</code> with <code>addTo: head</code>. This is imporant. Adding child shapes allows you to collect shapes together. Any <code>translate</code>, <code>rotate</code>, and <code>scale</code> that is set on a parent shape is applied to its children.</p>
 
-<p>The eye has been added as a child shape to <code>head</code> with <code>addTo: head</code>. This is imporant. Adding child shapes allows you to group shapes together. Any <code>translate</code>, <code>rotate</code>, and <code>scale</code> that is set on a parent shape is applied to its children.</p>
+<h2>copy</h2>
 
 <p>Let's add the other eye and a smile.</p>
 
@@ -75,23 +87,55 @@
       diameter: 2,
       quarters: 2,
       translate: { x: -2, y: 1, z: 4.5 },
-      rotate: { z: -TAU/4 },
-      color: eggplant,
-      stroke: 0.5,
-      backface: false,
+      // ...
     });
     // eye on right
     eye.copy({
       translate: { x: 2, y: 1, z: 4.5 },
     });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelHead" data-step="3" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
+<p>To create the eye on the right, we can <code>copy()</code> the eye on the left. The original options are copied over and then can be overwritten with new options, in this case changing <code>translate</code>.</p>
+
+<h2>Vector options</h2>
+
+<p><code>translate</code> is a <code>Vector</code> option. <code>Vector</code>s are set with an <i>Object</i> with <code>x</code>, <code>y</code>, and/or <code>z</code> properties. <code>Vector</code> options are used all over Zdog for <code>path</code> points, <code>translate</code> positioning, <code>rotate</code> angles, and <code>scale</code> proportions.</p>
+
+<p>Un-set coordinates in Vector options default to <code>0</code>. So you only need to set non-zero values.</p>
+
+``` js
+new Zdog.Vector({ x: 1, y: 2 }) // => { x: 1, y: 2, z: 0 }
+new Zdog.Vector({ x: 1 })       // => { x: 1, y: 0, z: 0 }
+new Zdog.Vector({})             // => { x: 0, y: 0, z: 0 }
+```
+
+<p>Compare the <code>translate</code> values for the eye shapes.</p>
+
+``` js
+// eye on left
+translate: { x: -2, y: 1, z: 4.5 }
+// eye on right
+translate: { x: 2, y: 1, z: 4.5 }
+```
+
+<p>The only difference is the <code>x</code> coordinate. But the whole <code>x</code>, <code>y</code>, <code>z</code> coordinates need to be set. Setting just <code>translate: { x: 2 }</code> would yield <code>{ x: 2, y: 0, z: 0 }</code> which is not what we want.</p>
+
+<p>The smile is made with a similar semi-circle <code>Ellipse</code>. Its path is closed with <code>closed: true</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
     // smile
     new Zdog.Ellipse({
       addTo: head,
       diameter: 3,
       quarters: 2,
       translate: { y: 2.5, z: 4.5 },
-      // rotate to point down
       rotate: { z: TAU/4 },
       closed: true,
       color: '#FED',
@@ -102,19 +146,11 @@
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="modelHead" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="modelHead" data-step="4" class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
-<p>To create the eye on the right, we can <code>copy()</code> the eye on the left. The original options are copied over and then can be overwritten with new options, in this case changing <code>translate</code>.
-
-<p><code>translate</code> is set for all three shapes with Vector-like objects — plain ol' JavaScript objects with <code>x</code>, <code>y</code>, and/or <code>z</code> properties. NEED MORE HERE</p>
-
-<p>Although the <code>x</code> coordinate is the only thing that changed, the entire vector needs to be written. Setting just <code>translate: { x: 2 }</code> would yield <code>{ x: 2, y: 0, z: 0 }</code> which is not what we want.</p>
-
-<p>The smile is made with a similar semi-circle shape using <code>Ellipse</code>. Its path is closed with <code>closed: true</code>.</p>
-
-{{! chest --------------------------------------------- }}
+<h2>Path</h2>
 
 <p>Let's give this floating head a body starting with a chest.</p>
 
@@ -131,12 +167,12 @@
     });
 
     const head = new Zdog.Shape({
-      addTo: chest,
+      addTo: chest, // add head to chest
       stroke: 12,
       translate: { y: -3 },
       color: gold,
     });
-    
+
     // eyes & smile...
     ```
   </div>
@@ -146,6 +182,8 @@
 </div>
 
 <p><code>chest</code> is rendered as a horizontal line with <code>Shape</code>. Unlike <code>head</code>, <code>chest</code> has its <code>path</code> set. <code>path</code> is set with an <i>Array</i>, each item in the array defines a direction for the path to take. The <code>path</code> for <code>chest</code> consists of <i>Array</i> with two Vector-like <i>Objects</i>. So this path reads: start at <code>x: -1.5</code>, draw a line to <code>x: 1.5</code>.</p>
+
+<h3>Stroke volume</h3>
 
 <p>Whereas polygonal 3D engines rely on meshes polygons to depict volume, Zdog shapes can show volume with <code>stroke</code>. The chest is a simple horizontal line, but with thick <code>stroke</code>, it appears as a big, round pill. <b>Utilizing <code>stroke</code> for volume is what makes Zdog special.</b> Let go of your earthly polygons and become one with the round thickness.</p>
 
@@ -175,7 +213,7 @@
       translate: { y: -6.5 },
       // ...
     });
-    
+
     // head...
     ```
   </div>

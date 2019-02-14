@@ -1,7 +1,12 @@
+---
+title: Getting started
+---
 
+<p>This tutorial will walk you through how to use Zdog to design and display 3D models.</p>
 
-<h2>Zdog basics</h2>
+{{! --------------------------------------------- }}
 
+<h2>HTML</h2>
 
 {{! --------------------------------------------- }}
 
@@ -20,13 +25,15 @@
 
 {{! --------------------------------------------- }}
 
-<h3>Initial static demo</h3>
+<h2>Initial static demo</h2>
 
 <p>Let&rsquo;s jump in with a basic non-animated demo.</p>
 
 <div class="example">
   <div class="example__code">
     ``` js
+    // zdog-demo.js
+
     // create illo
     const illo = new Zdog.Illustration({
       canvas: '.zdog-canvas',
@@ -60,7 +67,7 @@
 
 {{! --------------------------------------------- }}
 
-<h3>Animating</h3>
+<h2>Animating</h2>
 
 <div class="example">
   <div class="example__code">
@@ -120,7 +127,7 @@
 
 {{! --------------------------------------------- }}
 
-<h3>zoom</h3>
+<h2>Zoom</h2>
 
 <p>Zdog requires setting lots of numbers. I like to keep my numbers smaller. Setting <code>zoom</code> will scale the whole scene proportionally.</p>
 
@@ -156,7 +163,7 @@
 
 {{! --------------------------------------------- }}
 
-<h3>Drag rotate</h3>
+<h2>Drag rotate</h2>
 
 <p>Enable rotation with dragging by setting <code>dragRotate: true</code> on the <code>Illustration</code>.</p>
 

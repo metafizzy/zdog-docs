@@ -1,0 +1,158 @@
+{{! --------------------------------------------- }}
+
+<h2>Rect</h2>
+
+<p>A rectangle. Set size with <code>width</code> and <code>height</code>. Default sizes: <code>width: 1, height: 1</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const rect = new Zdog.Rect({
+      addTo: illo,
+      width: 120,
+      height: 80,
+      stroke: 20,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="rect" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>All shapes are oriented facing "front" — towards the positive z-axis. Set <code>rotate</code> to orient a shape in another direction.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const rect = new Zdog.Rect({
+      addTo: illo,
+      width: 80,
+      height: 64,
+      stroke: 10,
+      translate: { x: -48 },
+      // turn to face left
+      rotate: { y: TAU/4 },
+      color: '#E62',
+    });
+
+    rect.copy({
+      translate: { y: -48 },
+      // turn to face up
+      rotate: { x: TAU/4 },
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="rectRotate" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h2>RoundedRect</h2>
+
+<p>A rectangle with rounded corners. Set size with <code>width</code> and <code>height</code>, like with <code>Rect</code>. Set rounded corner radius with <code>cornerRadius</code>. Default: <code>cornerRadius: 0.25</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const roundedRect = new Zdog.RoundedRect({
+      addTo: illo,
+      width: 120,
+      height: 80,
+      cornerRadius: 32,
+      stroke: 20,
+      color: '#EA0',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="roundedRect" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h2>Ellipse</h2>
+
+<p>An ellipse. Set <code>diameter</code> for circles. Default <code>diameter: 1</code></p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const circle = new Zdog.Ellipse({
+      addTo: illo,
+      diameter: 80,
+      stroke: 20,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="ellipseCircle" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Set <code>width</code> and <code>height</code> for ellipses.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const circle = new Zdog.Ellipse({
+      addTo: illo,
+      width: 64,
+      height: 96,
+      stroke: 20,
+      color: '#C25',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="ellipse" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Set <code>quarters</code> to an integer for quarter- and semi-circles. The quarter circle starts in the upper-right and continues clockwise.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const semicircle = new Zdog.Ellipse({
+      addTo: illo,
+      diameter: 80,
+      quarters: 2,
+      stroke: 20,
+      color: '#C25',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="ellipseQuarters" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>Polygon</h3>
+
+<p>A regular polygon. Set size with <code>radius</code> and the number of sides with <code>sides</code>. Default: <code>radius: 0.5, sides: 3</code>.</p>
+
+<div class="example" data-js="polygon">
+  <div class="example__code">
+    ``` js
+    const pentagon = new Zdog.Polygon({
+      addTo: illo,
+      radius: 40,
+      sides: 5,
+      stroke: 20,
+      color: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
