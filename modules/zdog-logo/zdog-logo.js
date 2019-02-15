@@ -1,13 +1,20 @@
-ZdogDocs.zdogLogo = function( elem ) {
+ZdogDocs.zdogLogo = function( elem, data ) {
 
   var canvas = elem;
   var illoSize = 96;
-  var zoom = 2.5;
+  var zoom = data.hero ? 2.5 : 1.8;
   canvas.width = canvas.height = illoSize * zoom;
   var TAU = Zdog.TAU;
   var initRotate = { x: 20/360 * TAU, y: -50/360 * TAU };
-  var isRotating = false;
+  var isSpinning = false;
   var isAnimating = false;
+  // don't render on homepage
+  var basename = document.body.getAttribute('data-basename');
+  var isHomepageSidebar = !data.hero && basename == 'index';
+  // if ( isHomepageSidebar ) {
+  //   elem.style.background = 'transparent';
+  //   return;
+  // }
 
   var illo = new Zdog.Illustration({
     canvas: canvas,
@@ -16,7 +23,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     dragRotate: true,
     onDragStart: function() {
       isAnimating = true;
-      isRotating = false;
+      isSpinning = false;
       animate();
     },
     onDragEnd: function() {
@@ -240,7 +247,7 @@ ZdogDocs.zdogLogo = function( elem ) {
 
   function animate() {
     // update
-    if ( isRotating ) {
+    if ( isSpinning ) {
       var turn = Math.floor( t % 2 );
       if ( turn == 0 ) {
         illo.rotate.y = Zdog.easeInOut( t, 4 ) * TAU + initRotate.y;

@@ -6,6 +6,91 @@ homepage: true
 
 {{! --------------------------------------------------- }}
 
+<h2>Made with Zdog</h2>
+
+{{! --------------------------------------------------- }}
+
+<h2>Install</h2>
+
+<h3>Download</h3>
+
+<ul>
+  <li><a href="https://unpkg.com/zdog@1/dist/zdog.pkgd.min.js">zdog.pkgd.min.js</a> - minified</li>
+  <li><a href="https://unpkg.com/zdog@1/dist/zdog.pkgd.js">zdog.pkgd.js</a> - un-minified</li>
+</ul>
+
+<h3>CDN</h3>
+
+<p>Link directly to Zdog JS on <a href="https://unpkg.com/">unpkg</a>.</p>
+
+``` html
+<script src="https://unpkg.com/zdog@1/dist/zdog.pkgd.min.js"></script>
+```
+
+<h3>Package managers</h3>
+
+<ul>
+  <li>Install with npm: <code>npm install zdog</code></li>
+  <li>Install with Bower: <code>bower install zdog --save</code></li>
+</ul>
+
+{{! --------------------------------------------------- }}
+
+<h2>Hello world demo</h2>
+
+<p>Create 3D models with Zdog by adding shapes. See <a href="getting-started">Getting started</a> for a walk-through of this demo.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    let isSpinning = true;
+
+    const illo = new Zdog.Illustration({
+      canvas: '.zdog-canvas',
+      zoom: 4,
+      dragRotate: true,
+      // stop spinning when drag starts
+      onDragStart: function() {
+        isSpinning = false;
+      },
+    });
+
+    // circle
+    new Zdog.Ellipse({
+      addTo: illo,
+      diameter: 20,
+      translate: { z: 10 },
+      stroke: 5,
+      color: '#636',
+    });
+
+    // square
+    new Zdog.Rect({
+      addTo: illo,
+      width: 20,
+      height: 20,
+      translate: { z: -10 },
+      stroke: 3,
+      color: '#E62',
+      fill: true,
+    });
+
+    function animate() {
+      illo.rotate.y += isSpinning ? 0.03 : 0;
+      illo.updateRenderGraph();
+      requestAnimationFrame( animate );
+    }
+    animate();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="dragRotateTut2" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+
+{{! --------------------------------------------------- }}
+
 <h2>About Zdog</h2>
 
 <p>Hi! <a href="https://desandro.com">Dave</a> here. I wanted to make a video game. I needed a 3D engine, but most engines were too powerful and complex for me. I made Zdog so I could design and display simple 3D models without a lot of overhead.</p>

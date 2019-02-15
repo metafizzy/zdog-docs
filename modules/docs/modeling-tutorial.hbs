@@ -1,3 +1,5 @@
+<h2>Modeling tutorial</h2>
+
 <div class="example">
   <div class="example__code">
     <p>Modeling with Zdog is done by positioning and combining shapes to make more complex objects. This tutorial will walk through modeling this high-struttin' dude.</p>
@@ -17,9 +19,9 @@
 
 {{! --------------------------------------------- }}
 
-<h2>Shapes & child shapes</h2>
+<h3>Head &amp; face</h3>
 
-<p>Our initial setup picks up from the basics demo above. We'll start with the head.</p>
+<p>Our initial setup picks up from the Getting started demo. Let's start with the head.</p>
 
 <div class="example">
   <div class="example__code">
@@ -52,7 +54,7 @@
   </div>
 </div>
 
-<p>The head shape is rendered as a flat-colored sphere with <code>Shape</code>. The <code>Shape</code> class can be defined to render any shape — lines, curves, polygons — via its <code>path</code> option. As <code>head</code> does not have <code>path</code> set, its path defaults to a single point. That point, combined with <code>stroke</code> renders a flat-colored sphere. In other words, a circle. More on <code>stroke</code> later.</p>
+<p>The head shape is rendered as a flat-colored sphere with <code>Shape</code>. The <code>Shape</code> class can be defined to render any shape — lines, curves, polygons — via its <code>path</code> option. As <code>head</code> does not have <code>path</code> set, its path defaults to a single point. That point, combined with <code>stroke</code> renders a flat-colored sphere. In other words, a circle.</p>
 
 <div class="example">
   <div class="example__code">
@@ -78,9 +80,7 @@
 
 <p>Next we add the eye as a child shape to <code>head</code> with <code>addTo: head</code>. This is imporant. Adding child shapes allows you to collect shapes together. Any <code>translate</code>, <code>rotate</code>, and <code>scale</code> that is set on a parent shape is applied to its children.</p>
 
-<h2>copy</h2>
-
-<p>Let's add the other eye and a smile.</p>
+<p>For the eye on the right, we can <code>.copy()</code> the right. The original options are copied over and then can be overwritten with new options, in this case changing <code>translate</code>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -103,20 +103,6 @@
     <canvas data-js="modelHead" data-step="3" class="illo" width="240" height="240"></canvas>
   </div>
 </div>
-
-<p>To create the eye on the right, we can <code>copy()</code> the eye on the left. The original options are copied over and then can be overwritten with new options, in this case changing <code>translate</code>.</p>
-
-<h2>Vector options</h2>
-
-<p><code>translate</code> is a <code>Vector</code> option. <code>Vector</code>s are set with an <i>Object</i> with <code>x</code>, <code>y</code>, and/or <code>z</code> properties. <code>Vector</code> options are used all over Zdog for <code>path</code> points, <code>translate</code> positioning, <code>rotate</code> angles, and <code>scale</code> proportions.</p>
-
-<p>Un-set coordinates in Vector options default to <code>0</code>. So you only need to set non-zero values.</p>
-
-``` js
-new Zdog.Vector({ x: 1, y: 2 }) // => { x: 1, y: 2, z: 0 }
-new Zdog.Vector({ x: 1 })       // => { x: 1, y: 0, z: 0 }
-new Zdog.Vector({})             // => { x: 0, y: 0, z: 0 }
-```
 
 <p>Compare the <code>translate</code> values for the eye shapes.</p>
 
@@ -154,7 +140,7 @@ translate: { x: 2, y: 1, z: 4.5 }
   </div>
 </div>
 
-<h2>Path</h2>
+<h2>Chest &amp; hips</h2>
 
 <p>Let's give this floating head a body starting with a chest.</p>
 

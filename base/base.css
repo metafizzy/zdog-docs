@@ -8,11 +8,29 @@ body {
   color: #444;
   line-height: 1.5;
   margin: 0;
-  padding: 0;
+  padding: 1.0rem 0;
 }
 
 /* font size on html for rem */
 html { font-size: 17px; }
+
+/* ---- links ---- */
+
+a {
+  color: #E62;
+  text-decoration: none;
+}
+
+a:visited { color: #C25; }
+
+a:hover {
+  color: #636;
+  background: #FDB;
+}
+
+a:focus, a:active {
+  background: #EA0;
+}
 
 /* ---- code ---- */
 

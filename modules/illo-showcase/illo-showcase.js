@@ -1,7 +1,7 @@
 ZdogDocs.illoShowcase = function( elem ) {
 
   var TAU = Zdog.TAU;
-  var isRotating = true;
+  var isSpinning = true;
   var canvasSize = 180;
   // colors
   var white = 'white';
@@ -19,7 +19,7 @@ ZdogDocs.illoShowcase = function( elem ) {
   var dragStartRX, dragStartRY;
 
   function controlDragStart() {
-    isRotating = false;
+    isSpinning = false;
     dragStartRX = viewRotation.x;
     dragStartRY = viewRotation.y;
   }
@@ -412,7 +412,7 @@ ZdogDocs.illoShowcase = function( elem ) {
       rotate: { y: -TAU/8 },
       dragRotate: true,
       onDragStart: function() {
-        isRotating = false;
+        isSpinning = false;
       }
     });
     illos.push( illo );
@@ -600,7 +600,7 @@ ZdogDocs.illoShowcase = function( elem ) {
   var t = 0;
 
   function animate() {
-    if ( isRotating ) {
+    if ( isSpinning ) {
       viewRotation.y = Zdog.easeInOut( t, 3 ) * TAU;
       t += 1/150;
     }

@@ -2,7 +2,7 @@
 
 ZdogDocs.anchorTransform = function( elem, data ) {
 
-  var isRotating = false;
+  var isSpinning = false;
   var TAU = Zdog.TAU;
 
   var illo = new Zdog.Illustration({
@@ -10,7 +10,7 @@ ZdogDocs.anchorTransform = function( elem, data ) {
     zoom: 4,
     dragRotate: true,
     onDragStart: function() {
-      isRotating = false;
+      isSpinning = false;
     },
   });
 
@@ -46,7 +46,7 @@ ZdogDocs.anchorTransform = function( elem, data ) {
 
   // animate
   function animate() {
-    if ( isRotating ) {
+    if ( isSpinning ) {
       illo.rotate.y += TAU/150;
     }
     illo.updateGraph();

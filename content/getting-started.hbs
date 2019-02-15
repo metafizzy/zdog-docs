@@ -189,7 +189,7 @@ title: Getting started
   <div class="example__code">
     ``` js
     // rotating flag variable
-    let isRotating = true;
+    let isSpinning = true;
 
     const illo = new Zdog.Illustration({
       canvas: '.zdog-canvas',
@@ -197,7 +197,7 @@ title: Getting started
       dragRotate: true,
       // stop rotation when dragging starts
       onDragStart: function() {
-        isRotating = false;
+        isSpinning = false;
       },
     });
 
@@ -205,7 +205,7 @@ title: Getting started
 
     function animate() {
       // rotate
-      if ( isRotating ) {
+      if ( isSpinning ) {
         illo.rotate.y += 0.03;
       }
       illo.updateRenderGraph();

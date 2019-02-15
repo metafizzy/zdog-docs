@@ -216,3 +216,41 @@ new Vector({ x: 1 }).add({ y: 2 });
 
 <h3>Groups</h3>
 
+<p>Use a <code>Group</code> to control rendering order. Shapes will be rendered in the order they are added to the <code>Group</code>. <code>Group</code>s are useful for positioning shapes within other shapes, like windows in walls or pupils in eyes.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // always render wall then door then window
+    var wallGroup = new Zdog.Group({
+      addTo: illo,
+    });
+
+    // wall
+    new Zdog.Rect({
+      addTo: wallGroup,
+      width: 140,
+      height: 100,
+      // ...
+    });
+    // door
+    new Zdog.Rect({
+      addTo: wallGroup,
+      width: 30,
+      height: 65,
+      // ...
+    });
+    // window
+    new Zdog.Ellipse({
+      addTo: wallGroup,
+      diameter: 30,
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="groupWall" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}

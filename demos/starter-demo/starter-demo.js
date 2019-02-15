@@ -1,6 +1,6 @@
 ZdogDocs.starterDemo = function( elem ) {
 
-  var isRotating = true;
+  var isSpinning = true;
   var TAU = Zdog.TAU;
 
   var illo = new Zdog.Illustration({
@@ -8,7 +8,7 @@ ZdogDocs.starterDemo = function( elem ) {
     zoom: 4,
     dragRotate: true,
     onDragStart: function() {
-      isRotating = false;
+      isSpinning = false;
     },
   });
 
@@ -44,7 +44,7 @@ ZdogDocs.starterDemo = function( elem ) {
 
   // animate
   function animate() {
-    if ( isRotating ) {
+    if ( isSpinning ) {
       illo.rotate.y += TAU/150;
     }
     illo.updateGraph();

@@ -8,5 +8,32 @@
 }
 
 .site-nav__item {
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
 
+.site-nav__item a {
+  text-decoration: none;
+  padding: 7px 10px;
+  display: block;
+  border-radius: 8px;
+}
+
+.site-nav__item.is-selected a {
+  color: #636;
+  background: #EA0;
+}
+
+/* ---- homepage ---- */
+
+.site-nav__item--index { font-size: 2.0rem; }
+.site-nav__item--index a {
+  color: #636;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.site-nav__item--index.is-selected a {
+  color: white;
+  background: transparent;
 }

@@ -23,11 +23,12 @@
   <meta name="twitter:description" content="{{description}}" />
 
 </head>
-<body class="page--{{@file.basename}}">
+<body data-basename="{{@file.basename}}">
 
 <div class="container">
   
   <div class="container__sidebar">
+    {{> zdog-logo }}
     {{> site-nav }}
     <ul class="page-nav" data-js="page-nav"></ul>
   </div>

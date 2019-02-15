@@ -4,24 +4,21 @@
 .hero {
   display: flex;
   align-items: center;
-  background: #FDB;
-  border-radius: 8px;
-}
-
-.hero__copy {
-  margin-left: 20px;
+  height: 170px;
 }
 
 .hero__title {
   font-size: 6.0rem;
   margin: 0;
   line-height: 1;
-  color: #E62;
+  color: #636;
 }
 
 .hero__tagline {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  line-height: 1.1;
   margin: 5px 0 0;
-  font-style: italic;
-  color: #636;
+  font-weight: bold;
+  color: #E62;
+  padding-left: 40px;
 }

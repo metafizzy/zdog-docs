@@ -1,13 +1,13 @@
 ZdogDocs.dragRotateTut2 = function( elem ) {
   
-  var isRotating = true;
+  var isSpinning = true;
 
   var illo = new Zdog.Illustration({
     canvas: elem,
     zoom: 4,
     dragRotate: true,
     onDragStart: function() {
-      isRotating = false;
+      isSpinning = false;
     },
   });
 
@@ -32,7 +32,7 @@ ZdogDocs.dragRotateTut2 = function( elem ) {
   });
 
   function animate() {
-    if ( isRotating ) {
+    if ( isSpinning ) {
       illo.rotate.y += 0.03;
     }
     illo.updateGraph();
