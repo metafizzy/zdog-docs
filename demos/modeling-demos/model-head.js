@@ -1,7 +1,7 @@
-ZdogDocs.modelHead = function( elem ) {
+ZdogDocs.modelHead = function( elem, data ) {
 
   var isAnimating = false;
-  var step = parseInt( elem.getAttribute('data-step') || 0 );
+  var step = parseInt( data.step || 0 );
 
   var illo = new Zdog.Illustration({
     canvas: elem,

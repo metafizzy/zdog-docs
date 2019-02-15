@@ -1,6 +1,6 @@
 /* jshint evil: true */
 
-ZdogDocs.anchorTransform = function( elem ) {
+ZdogDocs.anchorTransform = function( elem, data ) {
 
   var isRotating = false;
   var TAU = Zdog.TAU;
@@ -15,7 +15,7 @@ ZdogDocs.anchorTransform = function( elem ) {
   });
 
   // read transform from attribute and set anchor
-  var transform = JSON.parse( elem.getAttribute('data-transform') );
+  var transform = JSON.parse( data.transform );
   var anchor = new Zdog.Anchor( transform );
   illo.addChild( anchor );
 

@@ -1,0 +1,218 @@
+{{! --------------------------------------------- }}
+
+<h2>Concepts</h2>
+
+{{! --------------------------------------------- }}
+
+<h3>Child shapes</h3>
+
+<p>Using child shapes and their additive transformations is an effective way to build complex models.</p>
+
+<p>Zdog models are built with shapes. Shapes can be positioned with <code>translate</code>. Shapes are positioned relatively. For instance, when added to an <code>Illustration</code>, shapes are positioned relative to the <code>Illustration</code>'s origin.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const zCircle = new Zdog.Ellipse({
+      addTo: illo,
+      translate: { z: 40 }, // z +40 from illo
+      // ...
+    });
+
+    const xRect = new Zdog.Rect({
+      addTo: illo,
+      translate: { x: 40 }, // x +40 from illo
+      // ...
+    });
+
+    const yTri = new Zdog.Polygon({
+      addTo: illo,
+      translate: { y: -60 }, // y -60 from illo
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="childShapes" data-step="1" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Shapes can be added as children to other shapes. A child shape is positioned relative to its parent.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const zCircle = new Zdog.Ellipse({
+      addTo: illo,
+      translate: { z: 40 }, // z +40 from illo
+      // ...
+    });
+
+    const xRect = new Zdog.Rect({
+      addTo: zCircle,
+      translate: { x: 40 }, // x +40 from zCircle
+      // ...
+    });
+
+    const yTri = new Zdog.Polygon({
+      addTo: xRect,
+      translate: { y: -60 }, // y -60 from xRect
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="childShapes" data-step="2" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Relative transformation also applies to <code>rotate</code> and <code>scale</code>. Child shapes inherit the transformations of their parents (<i>wow, that is deep</i>).</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const zCircle = new Zdog.Ellipse({
+      addTo: illo,
+      scale: 1.5, // scale 150%
+      translate: { z: 40 },
+      rotate: { z: -Zdog.TAU/8 }, // rotate 45° CCW
+      // ...
+    });
+
+    const xRect = new Zdog.Rect({
+      addTo: zCircle,
+      translate: { x: 40 },
+      rotate: { x: Zdog.TAU/8 }, // rotate back
+      // ...
+    });
+
+    const yTri = new Zdog.Polygon({
+      addTo: xRect,
+      translate: { y: -60 },
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="childShapes" data-step="3" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+
+{{! --------------------------------------------- }}
+
+<h3>Anchors</h3>
+
+<p>An <code>Anchor</code> is an invisible shape. Use an <code>Anchor</code> for transformations without rendering a shape.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const zAnchor = new Zdog.Anchor({
+      addTo: illo,
+      scale: 1.5,
+      translate: { z: 40 },
+      rotate: { z: -Zdog.TAU/8 },
+    });
+
+    const xAnchor = new Zdog.Anchor({
+      addTo: zAnchor,
+      translate: { x: 40 },
+      rotate: { x: Zdog.TAU/8 },
+    });
+
+    const yTri = new Zdog.Polygon({
+      addTo: xAnchor,
+      translate: { y: -60 },
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="childShapes" data-step="4" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>Vector Objects</h3>
+
+<p>Options like <code>translate</code>, <code>rotation</code>, and <code>scale</code> are set with vector <i>Object</i>s. A vector <i>Object</i> is a plain ol' JavaScript <i>Object</i> with <code>x</code>, <code>y</code>, and/or <code>z</code> properties for coordinates. Vector <i>Object</i>s are used to set and manipulate <code>Vector</code>s.</p>
+
+<p>The coordinate properties are optional. They default to <code>0</code> if undefined. So you only need to set non-zero values.</p>
+
+``` js
+new Zdog.Vector({ x: 1, z: 2 }) // => { x: 1, y: 0, z: 2 }
+new Zdog.Vector({ y: 3 })       // => { x: 0, y: 3, z: 0 }
+new Zdog.Vector({})             // => { x: 0, y: 0, z: 0 }
+
+const position = new Zdog.Vector({ x: 4 });
+// => { x: 4, y: 0, z: 0 }
+position.add({ y: 5 });
+// => { x: 4, y: 5, z: 0 }
+```
+
+<p>A vector <i>Object</i> is different from an instance of a <code>Vector</code> class.</p>
+
+``` js
+// won't work, just an Object
+{ x: 1 }.add({ y: 2 });
+
+// will work, is a Vector
+new Vector({ x: 1 }).add({ y: 2 });
+```
+
+{{! --------------------------------------------- }}
+
+<h3>Copying</h3>
+
+<p>Copy items with <code>.copy()</code>.</p>
+
+{{> copy-example }}
+
+<p>Copy items with their children with <code>.copyGraph()</code>.</p>
+
+{{> copy-graph-example }}
+
+{{! --------------------------------------------- }}
+
+<h3>Stroke volume</h3>
+
+<p>Whereas polygonal 3D engines rely on meshes polygons to depict volume, Zdog shapes can show volume with <code>stroke</code>.
+
+<p>Look at this tasty burger. The patty and cheese slice are just simple circles. The sesame seeds are just lines. But with thick <code>stroke</code> they appear as plump round discs and pills.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // cheese
+    new Zdog.Ellipse({
+      diameter: 84,
+      stroke: 10,
+      // ...
+    });
+    // patty
+    new Zdog.Ellipse({
+      diameter: 72,
+      stroke: 28,
+      // ...
+    });
+    // seed
+    new Zdog.Shape({
+      path: [ { y: -3 }, { y: 3 } ],
+      stroke: 8,
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="tastyBurger" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p><b>Utilizing <code>stroke</code> for volume is what makes Zdog special.</b> Let go of your earthly polygons and become one with the round thickness.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>Groups</h3>
+

@@ -7,6 +7,7 @@ window.ZdogDocs = {};
 // global convience variables
 window.TAU = Zdog.TAU;
 // colors
+window.offWhite = '#FED';
 window.yellow = '#ED0';
 window.gold = '#EA0';
 window.orange = '#E62';
@@ -16,7 +17,7 @@ window.eggplant = '#636';
 // ----- shapeDemo ----- //
 
 ZdogDocs.shapeDemo = function( callback ) {
-  return function( canvas ) {
+  return function( canvas, data ) {
     var isAnimating = false;
 
     var illo = new Zdog.Illustration({
@@ -31,7 +32,7 @@ ZdogDocs.shapeDemo = function( callback ) {
       },
     });
 
-    callback( canvas, illo );
+    callback( canvas, data, illo );
 
     function animate() {
       illo.updateGraph();

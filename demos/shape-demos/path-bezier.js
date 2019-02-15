@@ -1,4 +1,4 @@
-ZdogDocs.pathBezier = ZdogDocs.shapeDemo( function( canvas, illo ) {
+ZdogDocs.pathBezier = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
   var start        = { x: -60, y: -60 };
   var startControl = { x:  20, y: -60 };

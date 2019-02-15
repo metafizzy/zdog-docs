@@ -1,0 +1,24 @@
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // create original
+    const rect = new Zdog.Rect({
+      // ...
+    });
+    // add child item
+    new Shape({
+      addTo: rect,
+      // ...
+    });
+    // copy rect and its children
+    rect.copyGraph({
+      // overwrite original rect options
+      translate: { x: 48 },
+      color: '#C25',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="anchorCopyGraph" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>

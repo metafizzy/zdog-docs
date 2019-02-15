@@ -2,21 +2,23 @@
 
 <h2>Anchor</h2>
 
+<p>A item that can be added to another item, and have other items added to it.</p>
+
+<p><code>Anchor</code> is the super class of all item and shape classes — <code>Shape</code>, <code>Group</code>, <code>Illustration</code>, <code>Rect</code>, <code>Ellipse</code>, <code>Box</code>, etc. All items that can be added to a Zdog scene act as <code>Anchor</code>s. All item classes can use <code>Anchor</code> options and methods.</p>
+
+<p>The <code>Anchor</code> class itself is an invisible item. Anchors are useful for collecting related shapes and transforming them together.</p>
+
 ``` js
 const anchor = new Zdog.Anchor({
   // options
 });
 ```
 
-<p>An invisible item. Anchors are useful for collecting related shapes and transforming them together.</p>
-
-<p><code>Anchor</code> is the super class of all item and shape classes — <code>Shape</code>, <code>Group</code>, <code>Rect</code>, <code>Ellipse</code>, <code>Box</code>, etc. All item classes can use <code>Anchor</code> options and methods.</p>
-
 {{! --------------------------------------------- }}
 
 <h3>addTo</h3>
 
-<p>Add shape to parent shape.</p>
+<p>Adds item to parent item.</p>
 
 ``` js
 addTo: illo
@@ -128,30 +130,7 @@ addTo: illo
 
 <p>Copy an item. <code>copy()</code> only copies the item, not the item&rsquo;s graph of child items. Use <code>copyGraph()</code> to copy the item and its graph.</p>
 
-<div class="example">
-  <div class="example__code">
-    ``` js
-    // create original
-    const rect = new Zdog.Rect({
-      addTo: illo,
-      width: 20,
-      height: 20,
-      translate: { x: -12 },
-      stroke: 4,
-      color: '#EA0',
-    });
-    // copy
-    rect.copy({
-      // overwrite original options
-      translate: { x: 12 },
-      color: '#C25',
-    });
-    ```
-  </div>
-  <div class="example__demo">
-    <canvas data-js="anchorCopy" class="illo" width="240" height="240"></canvas>
-  </div>
-</div>
+{{> copy-example }}
 
 {{! --------------------------------------------- }}
 
@@ -159,30 +138,7 @@ addTo: illo
 
 <p>Copies item and its graph of descendent items.</p>
 
-<div class="example">
-  <div class="example__code">
-    ``` js
-    // create original
-    const rect = new Zdog.Rect({
-      // ...
-    });
-    // add child item
-    new Shape({
-      addTo: rect,
-      // ...
-    });
-    // copy rect and its children
-    rect.copyGraph({
-      // overwrite original rect options
-      translate: { x: 12 },
-      color: '#C25',
-    });
-    ```
-  </div>
-  <div class="example__demo">
-    <canvas data-js="anchorCopyGraph" class="illo" width="240" height="240"></canvas>
-  </div>
-</div>
+{{> copy-graph-example }}
 
 {{! --------------------------------------------- }}
 

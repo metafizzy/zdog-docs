@@ -3,6 +3,7 @@
   "unused": true,
   "undef": true,
   "globals": {
+    "offWhite": false,
     "yellow": false,
     "gold": false,
     "orange": false,

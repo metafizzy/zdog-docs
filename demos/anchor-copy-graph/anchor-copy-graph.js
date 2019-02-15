@@ -1,48 +1,24 @@
-ZdogDocs.anchorCopyGraph = function( elem ) {
-
-  var isRotating = false;
-  var TAU = Zdog.TAU;
-
-  var illo = new Zdog.Illustration({
-    canvas: elem,
-    zoom: 4,
-    dragRotate: true,
-    onDragStart: function() {
-      isRotating = false;
-    },
-  });
+ZdogDocs.anchorCopyGraph = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
   var rect = new Zdog.Rect({
     addTo: illo,
-    width: 16,
-    height: 16,
-    translate: { x: -12 },
-    stroke: 4,
-    color: '#EA0',
+    width: 64,
+    height: 64,
+    translate: { x: -48 },
+    stroke: 16,
+    color: gold,
   });
 
   new Zdog.Shape({
     addTo: rect,
-    translate: { z: 5 },
-    stroke: 8,
-    color: '#636',
+    translate: { z: 20 },
+    stroke: 32,
+    color: eggplant,
   });
 
   rect.copyGraph({
-    translate: { x: 12 },
-    color: '#C25',
+    translate: { x: 48 },
+    color: garnet,
   });
 
-  // animate
-  function animate() {
-    if ( isRotating ) {
-      illo.rotate.y += TAU/150;
-    }
-    illo.updateGraph();
-    illo.renderGraph();
-    requestAnimationFrame( animate );
-  }
-
-  animate();
-
-};
+});

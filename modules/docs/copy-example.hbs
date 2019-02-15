@@ -1,0 +1,24 @@
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // create original
+    const rect = new Zdog.Rect({
+      addTo: illo,
+      width: 64,
+      height: 64,
+      translate: { x: -48 },
+      stroke: 16,
+      color: '#EA0',
+    });
+    // copy
+    rect.copy({
+      // overwrite original options
+      translate: { x: 48 },
+      color: '#C25',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="anchorCopy" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>

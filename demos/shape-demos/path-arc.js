@@ -1,4 +1,4 @@
-ZdogDocs.pathArc = ZdogDocs.shapeDemo( function( canvas, illo ) {
+ZdogDocs.pathArc = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
   function graphArc( start, corner, end ) {
     // arc

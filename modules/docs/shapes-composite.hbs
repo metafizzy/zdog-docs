@@ -71,6 +71,27 @@
   </div>
 </div>
 
+<p>For different base colors, set <code>frontBaseColor</code> and <code>rearBaseColor</code></p>
+
+<div class="example" data-js="evalShapeDemo">
+  <div class="example__code">
+    ``` js
+    const can = new Zdog.Cylinder({
+      addTo: illo,
+      diameter: 80,
+      length: 120,
+      stroke: false,
+      color: '#C25',
+      frontBaseColor: '#EA0',
+      rearBaseColor: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
 {{! --------------------------------------------- }}
 
 <h2>Box</h2>
