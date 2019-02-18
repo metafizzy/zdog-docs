@@ -1,17 +1,19 @@
 ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
+  illo.rotate.x = -TAU/8;
+
   var burger = new Zdog.Anchor({
     addTo: illo,
-    translate: { y: 12 },
+    translate: { y: 24 },
     rotate: { x: TAU/4 },
   });
 
   // top bun
   var topBun = new Zdog.Hemisphere({
     addTo: burger,
-    diameter: 80,
-    translate: { z: 44 },
-    stroke: 16,
+    diameter: 96,
+    translate: { z: 60 },
+    stroke: 24,
     color: orange,
     // backface: gold,
   });
@@ -19,9 +21,9 @@ ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
   // cheese
   new Zdog.Ellipse({
     addTo: burger,
-    diameter: 84,
-    translate: { z: 24 },
-    stroke: 10,
+    diameter: 112,
+    translate: { z: 32 },
+    stroke: 16,
     color: yellow,
     fill: true,
   });
@@ -29,8 +31,8 @@ ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
   // patty
   new Zdog.Ellipse({
     addTo: burger,
-    diameter: 72,
-    stroke: 28,
+    diameter: 96,
+    stroke: 32,
     color: garnet,
     fill: true,
   });
@@ -40,7 +42,7 @@ ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
     addTo: burger,
     diameter: topBun.diameter,
     length: 16,
-    translate: { z: -35 },
+    translate: { z: -44 },
     stroke: topBun.stroke,
     color: topBun.color,
   });
@@ -52,11 +54,13 @@ ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
   var seedAnchor = new Zdog.Anchor({
     addTo: topBun,
   });
+  
+  var seedZ = ( topBun.diameter + topBun.stroke ) / 2 + 1;
   // seed
   new Zdog.Shape({
     addTo: seedAnchor,
     path: [ { y: -3 }, { y: 3 } ],
-    translate: { z: 49 },
+    translate: { z: seedZ },
     stroke: 8,
     color: gold,
   });

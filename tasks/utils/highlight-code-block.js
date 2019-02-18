@@ -6,15 +6,13 @@ highlightjs.configure({
 });
 
 var hljsJavascript = highlightjs.getLanguage('javascript');
-// highlight Packery
-hljsJavascript.keywords.flickity_keyword = 'Flickity';
-// highlight packery variables
-hljsJavascript.keywords.flickity_var = 'flkty';
-
+// highlight Zdog classes
 hljsJavascript.contains.push({
-  className: 'jquery_var',
-  begin: /\$grid/
+  className: 'zdog_class',
+  begin: `Zdog\\.\\w+`,
 });
+
+hljsJavascript.keywords.demo_var = 'illo anchor rect circle shape';
 
 var reFirstLine = /.*\n/;
 

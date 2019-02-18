@@ -6,9 +6,7 @@
 
 <h3>Child shapes</h3>
 
-<p>Using child shapes and their additive transformations is an effective way to build complex models.</p>
-
-<p>Zdog models are built with shapes. Shapes can be positioned with <code>translate</code>. Shapes are positioned relatively. For instance, when added to an <code>Illustration</code>, shapes are positioned relative to the <code>Illustration</code>'s origin.</p>
+<p>Zdog models are built with shapes. Shapes can be positioned with <code>translate</code>. Their positions are <em>relative</em>. For instance, when added to an <code>Illustration</code>, shapes are positioned relative to the <code>Illustration</code>'s origin.</p>
 
 <div class="example">
   <div class="example__code">
@@ -66,7 +64,7 @@
   </div>
 </div>
 
-<p>Relative transformation also applies to <code>rotate</code> and <code>scale</code>. Child shapes inherit the transformations of their parents (<i>wow, that is deep</i>).</p>
+<p><code>translate</code> is a transformation option. Relative transformation also applies to <code>rotate</code> and <code>scale</code>. Child shapes inherit the transformations of their parents (<i>wow, that is deep</i>).</p>
 
 <div class="example">
   <div class="example__code">
@@ -98,6 +96,7 @@
   </div>
 </div>
 
+<p>Using child shapes and their additive transformations enables you to build complex models.</p>
 
 {{! --------------------------------------------- }}
 
@@ -137,29 +136,14 @@
 
 <h3>Vector Objects</h3>
 
-<p>Options like <code>translate</code>, <code>rotation</code>, and <code>scale</code> are set with vector <i>Object</i>s. A vector <i>Object</i> is a plain ol' JavaScript <i>Object</i> with <code>x</code>, <code>y</code>, and/or <code>z</code> properties for coordinates. Vector <i>Object</i>s are used to set and manipulate <code>Vector</code>s.</p>
+<p>Properties like <code>translate</code>, <code>rotation</code>, and <code>scale</code> are <code>Vector</code>s. A <code>Vector</code> can be set with a vector <i>Object</i>.</p>
 
-<p>The coordinate properties are optional. They default to <code>0</code> if undefined. So you only need to set non-zero values.</p>
-
-``` js
-new Zdog.Vector({ x: 1, z: 2 }) // => { x: 1, y: 0, z: 2 }
-new Zdog.Vector({ y: 3 })       // => { x: 0, y: 3, z: 0 }
-new Zdog.Vector({})             // => { x: 0, y: 0, z: 0 }
-
-const position = new Zdog.Vector({ x: 4 });
-// => { x: 4, y: 0, z: 0 }
-position.add({ y: 5 });
-// => { x: 4, y: 5, z: 0 }
-```
-
-<p>A vector <i>Object</i> is different from an instance of a <code>Vector</code> class.</p>
+{{> vector-objects }}
 
 ``` js
-// won't work, just an Object
-{ x: 1 }.add({ y: 2 });
-
-// will work, is a Vector
-new Vector({ x: 1 }).add({ y: 2 });
+translate: { x: 1, z: 2 }, // => { x: 1, y: 0, z: 2 }
+translate: { y: 3 },       // => { x: 0, y: 3, z: 0 }
+translate: {}              // => { x: 0, y: 0, z: 0 }
 ```
 
 {{! --------------------------------------------- }}
@@ -210,7 +194,7 @@ new Vector({ x: 1 }).add({ y: 2 });
   </div>
 </div>
 
-<p><b>Utilizing <code>stroke</code> for volume is what makes Zdog special.</b> Let go of your earthly polygons and become one with the round thickness.</p>
+<p><b>Using <code>stroke</code> for volume is what makes Zdog special.</b> Let go of your earthly polygons and become one with the round thickness.</p>
 
 {{! --------------------------------------------- }}
 

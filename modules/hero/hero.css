@@ -11,7 +11,7 @@
   font-size: 6.0rem;
   margin: 0;
   line-height: 1;
-  color: #636;
+  color: #EA0;
 }
 
 .hero__tagline {
@@ -19,6 +19,6 @@
   line-height: 1.1;
   margin: 5px 0 0;
   font-weight: bold;
-  color: #E62;
+  color: #636;
   padding-left: 40px;
 }

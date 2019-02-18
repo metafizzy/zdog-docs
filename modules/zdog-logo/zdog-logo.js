@@ -2,7 +2,7 @@ ZdogDocs.zdogLogo = function( elem, data ) {
 
   var canvas = elem;
   var illoSize = 96;
-  var zoom = data.hero ? 2.5 : 1.8;
+  var zoom = data.hero ? 2.5 : 1.75;
   canvas.width = canvas.height = illoSize * zoom;
   var TAU = Zdog.TAU;
   var initRotate = { x: 20/360 * TAU, y: -50/360 * TAU };

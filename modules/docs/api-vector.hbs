@@ -1,0 +1,172 @@
+<h2>Vector</h2>
+
+<p>A 3D vector with <code>x</code>, <code>y</code>, and <code>z</code> coordinates.</p>
+
+<p>Create a Vector by passing in a vector <i>Object</i> or another <code>Vector</code>.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 1, y: 0, z: 2 });
+```
+
+<p>Zdog uses <code>Vector</code>s for position in 3D space and for rotation.</p>
+
+``` js
+// position
+const position = new Zdog.Vector({ x: 1, y: -2, z: 3 });
+// => 1 right, 2 up, 3 closer
+```
+
+<p>With rotation, the coordinate values are used for the angle around the respective axis.</p>
+
+``` js
+const rotation = new Zdog.Vector({ y: Zdog.TAU/4 });
+// => quarter-turn around vertical y-axis
+```
+
+{{! --------------------------------------------- }}
+
+<h3>Vector Objects</h3>
+
+{{> vector-objects }}
+
+``` js
+new Zdog.Vector({ x: 1, z: 2 }) // => { x: 1, y: 0, z: 2 }
+new Zdog.Vector({ y: 3 })       // => { x: 0, y: 3, z: 0 }
+new Zdog.Vector({})             // => { x: 0, y: 0, z: 0 }
+
+const position = new Zdog.Vector({ x: 4 });
+// => { x: 4, y: 0, z: 0 }
+position.add({ y: 5 });
+// => { x: 4, y: 5, z: 0 }
+```
+
+
+<p>A vector <i>Object</i> is different from an instance of a <code>Vector</code> class.</p>
+
+``` js
+// won't work, just an Object
+{ x: 1 }.add({ y: 2 });
+
+// will work, is a Vector
+new Zdog.Vector({ x: 1 }).add({ y: 2 });
+```
+
+{{! --------------------------------------------- }}
+
+<h3>set()</h3>
+
+<p>Sets <code>x</code>, <code>y</code>, <code>z</code> coordinates.</p>
+
+``` js
+vec.set({ x: 1, z: 2 })
+// => { x: 1, y: 0, z: 2 }
+```
+
+{{! --------------------------------------------- }}
+
+<h3>copy()</h3>
+
+<p>Returns a new <code>Vector</code> with copied <code>x</code>, <code>y</code>, and <code>z</code> coordinates. Most <code>Vector</code> methods are mutable — they change the Vector's coordinates. Use <code>.copy()</code> to work with a vector while still preserving the original.</p>
+
+``` js
+const positionA = new Zdog.Vector({ x: 1, z: 2 });
+const positionB = positionA.copy();
+
+positionB.add({ x: 3 });
+// => { x: 4, y: 0, z: 2 }
+positionA
+// => { x: 1, y: 0, z: 2 }
+```
+
+{{! --------------------------------------------- }}
+
+<h3>add()</h3>
+
+<p>Adds <code>x</code>, <code>y</code>, <code>z</code> coordinate values.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 1, z: 2 });
+position.add({ x: 3, y: 4 });
+// => { x: 4, y: 5, z: 2 }
+```
+
+{{! --------------------------------------------- }}
+
+<h3>substract()</h3>
+
+<p>Subtracts <code>x</code>, <code>y</code>, <code>z</code> coordinate values.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 1, z: 2 });
+position.subtract({ x: 3, y: 4 });
+// => { x: -2, y: -4, z: 2 }
+```
+
+{{! --------------------------------------------- }}
+
+<h3>multiply()</h3>
+
+<p>Multiplies <code>x</code>, <code>y</code>, <code>z</code> coordinate values.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 2, z: 3 });
+position.multiply({ x: 3, y: 4 z: 5 });
+// => { x: 6, y: 0, z: 15 }
+```
+
+<p><code>.multiply()</code> can be passed a <i>Number</i> to multiply all coordinates by the same value.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 2, z: 3 });
+position.multiply( 4 );
+// => { x: 8, y: 0, z: 12 }
+```
+
+{{! --------------------------------------------- }}
+
+<h3>rotate()</h3>
+
+``` js
+vector.rotate( rotation );
+```
+
+<p>Rotates a position vector given a <code>rotation</code> vector <i>Object</i>.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 1, y: 2 });
+// rotate 45° clockwise
+position.rotate({ z: Zdog.TAU/4 });
+// => { x: -2, y: 1, z: 0 }
+```
+
+{{! --------------------------------------------- }}
+
+<h3>magnitude()</h3>
+
+<p>Returns the total length of the vector.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 6, y: 8 });
+let mag = position.magnitude();
+// => 10
+```
+
+{{! --------------------------------------------- }}
+
+<h3>lerp()</h3>
+
+``` js
+vector.lerp( point, alpha );
+```
+
+<p>Linear interporlate the vector towards <code>point</code>, given <code>alpha</code> a percent between the vector and <code>point</code>.</p>
+
+``` js
+const position = new Zdog.Vector({ x: 2, y: 4 });
+// interpolate 75% to 6,8,0
+position.lerp( { x: 6, y: 8 }, 0.75 );
+// => { x: 5, y: 7, z: 0 }
+```
+
+{{! --------------------------------------------- }}
+

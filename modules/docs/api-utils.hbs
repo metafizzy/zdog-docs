@@ -1,0 +1,66 @@
+<h2>Utilities</h2>
+
+<p>Zdog includes a couple constants and methods to help with math &amp; animation.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>TAU</h3>
+
+``` js
+Zdog.TAU // => 6.28318
+```
+
+<p>A full rotation in radians. <code>Math.PI * 2</code>. <code>TAU</code> is more user-friendly than <code>PI</code> as <code>TAU</code> maps directly to a full rotation.</p>
+
+``` js
+rotate: { y: Zdog.TAU/4 } // /4 = quarter turn
+rotate: { y: Zdog.TAU/2 } // /2 = half turn
+rotate: { y: Zdog.TAU*3 } // *3 = 3 full turns
+```
+
+{{! --------------------------------------------- }}
+
+<h3>easeInOut()</h3>
+
+
+{{! --------------------------------------------- }}
+
+<h3>lerp()</h3>
+
+``` js
+Zdog.lerp( a, b, alpha )
+```
+
+<p>Linear interpolation between values <code>a</code> and <code>b</code> given a percent decimal <code>alpha</code>.</p>
+
+``` js
+Zdog.lerp( 20, 40, 0.75 );
+// => 35
+```
+
+{{! --------------------------------------------- }}
+
+<h3>modulo()</h3>
+
+``` js
+Zdog.modulo( a, b )
+```
+
+<p>Returns <a href="https://en.wikipedia.org/wiki/Modular_arithmetic">modulo</a> or "wrap around" value of <code>a</code> given <code>b</code>.</p>
+
+``` js
+// It's 8AM now. What time will it be 18 hours from now?
+let later = Zdog.modulo( 8 + 18, 24 )
+// => 2, 2AM
+
+// It's 8AM now. What time was it 15 hours ago?
+let earlier = Zdog.modulo( 8 - 15, 24 )
+// => 17, uh, I'm American
+earlier = Zdog.modulo( earlier, 12 )
+// => 5PM
+
+// Why can't I use % operator?
+earlier = ( 8 - 15 ) % 24;
+// => -7, oh no. % returns remainders, which can be negative
+```
+

@@ -1,0 +1,23 @@
+/* hashed-header
+------------------------- */
+
+.hashed-header {
+  position: relative;
+}
+
+.hashed-header__link {
+  position: absolute;
+}
+
+.hashed-header__link:before {
+  position: absolute;
+  right: 0;
+  padding-right: 5px;
+  content: '#';
+  opacity: 0;
+}
+
+.hashed-header:hover .hashed-header__link:before {
+  content: '#';
+  opacity: 1;
+}

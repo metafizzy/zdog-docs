@@ -123,10 +123,10 @@ ZdogDocs.modelComplete = function( elem ) {
 
   var forearm = new Zdog.Shape({
     addTo: upperArm,
-    path: [ { y: 0 }, { y: armSize-2 } ],
+    path: [ { y: 0 }, { y: armSize } ],
     translate: { y: armSize },
     rotate: { x: TAU/8 },
-    color: garnet,
+    color: gold,
     stroke: 4,
   });
 

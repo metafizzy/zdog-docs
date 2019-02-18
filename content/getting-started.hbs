@@ -2,7 +2,7 @@
 title: Getting started
 ---
 
-<p>This tutorial will walk you through how to use Zdog to design and display 3D models.</p>
+<p>This page will walk you through how to design, display, and animate a basic 3D model with Zdog.</p>
 
 {{! --------------------------------------------- }}
 
@@ -16,10 +16,10 @@ title: Getting started
 <canvas class="zdog-canvas" width="240" height="240"></canvas>
 ```
 
-<p>Add the Zdog JavaScript to your page. For quick demos, add the CDN URL. Finally add a <code>&lt;script></code> pointing to your demo&rsquo;s JS file.</p>
+<p>Add the Zdog JavaScript file to your page. For quick demos, add the CDN URL. Finally add a <code>&lt;script></code> for your demo&rsquo;s JS file.</p>
 
 ``` html
-<script src="https://unpkg.com/zdog@1/dist/zdog.pkgd.js"></script>
+<script src="https://unpkg.com/zdog@1/dist/zdog.pkgd.min.js"></script>
 <script src="zdog-demo.js"></script>
 ```
 
@@ -36,6 +36,7 @@ title: Getting started
 
     // create illo
     const illo = new Zdog.Illustration({
+      // set canvas with selector
       canvas: '.zdog-canvas',
     });
 
@@ -47,6 +48,7 @@ title: Getting started
       color: '#636',
     });
 
+    // update & render
     illo.updateRenderGraph();
     ```
   </div>
@@ -69,6 +71,8 @@ title: Getting started
 
 <h2>Animating</h2>
 
+<p>To animate our scene we need to re-render <code>illo</code> every frame.</p>
+
 <div class="example">
   <div class="example__code">
     ``` js
@@ -88,7 +92,7 @@ title: Getting started
   </div>
 </div>
 
-<p>To animate our scene we need to re-render <code>illo</code> every frame. So we wrap <code>illo.updateRenderGraph()</code> within a <code>requestAnimationFrame</code> loop. Now we can manipulate the scene and see its changes animated. We change the rotation of the scene by incrementally increasing <code>illo.rotate.y</code>.</p>
+<p>So we wrap <code>illo.updateRenderGraph()</code> within a <code>requestAnimationFrame</code> loop. Now we can manipulate the scene and see its changes animated. We change the rotation of the scene by incrementally increasing <code>illo.rotate.y</code>.</p>
 
 <p>And now the animated circle is ... kind of lame. It <em>is</em> rotating, but being all alone and sitting in direct center, the visual effect is weak. Let's add another shape, a <code>Rect</code>, and position the shapes in 3D space.</p>
 
@@ -219,5 +223,5 @@ title: Getting started
   </div>
 </div>
 
-<p>That covers the basics of displaying a 3D model with Zdog. Everything else is a matter of creating more complex models.</p>
+<p>That covers the basics of displaying a 3D model with Zdog. Now you&rsquo;re ready to learn more about Zdog <a href="modeling">modeling</a> and <a href="shapes">shapes</a>.</p>
 

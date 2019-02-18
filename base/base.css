@@ -5,7 +5,7 @@
 
 body {
   font-family: 'Texta', sans-serif;
-  color: #444;
+  color: #534;
   line-height: 1.5;
   margin: 0;
   padding: 1.0rem 0;
@@ -37,7 +37,7 @@ a:focus, a:active {
 pre, code, kbd {
   font-family: Consolas, Menlo, monospace;
   font-size: 14px;
-  background: #F8EEE8;
+  background: #FFF4E8;
   white-space: pre-wrap;
 }
 

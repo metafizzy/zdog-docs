@@ -6,7 +6,8 @@ code .tag .value { color: #0A2; }
 code .number, /* integer */
 code .literal { color: #07D; } /*boolean*/
 code .keyword { color: #E31; } /* keyword */
-code .attribute { color: #D31; } /* markup attribute */
+code .attribute, /* HTML attribute */
+code .attr { color: #818; } /* JS Object key */
 code .title  { color: #39A; }
 code .params  { color: #98D; }
 
@@ -25,9 +26,5 @@ code .at_rule { color: #088; }
 
 code .built_in { color: #E08; }
 
-code .flickity, /* new Flickity() */
-code .flickity_var { color: #D0D; } /* flkty */
-
-code .jquery_var { color: #D70; } /* $carousel */
-
-code .flickity { text-decoration: underline; }
+code .zdog_class { color: #C25; } /* Zdog classes */
+code .demo_var { color: #096; }
