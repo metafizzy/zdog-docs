@@ -4,12 +4,35 @@ title: API
 
 {{! --------------------------------------------- }}
 
-<h2>Options</h2>
+<h2>Classes</h2>
 
-<p>Set options with an object.</p>
+<p>Zdog's API consists mostly of creating and using instances of its classes.</p>
 
 ``` js
-const face = new Zdog.Rect({
+const illo = new Zdog.Illustration({
+  canvas: '.zdog-canvas',
+});
+
+const anchor = new Zdog.Anchor({
+  addTo: illo,
+  translate: { y: 10 },
+});
+
+const rect = new Zdog.Rect({
+  addTo: anchor,
+});
+
+illo.updateRenderGraph();
+```
+
+{{! --------------------------------------------- }}
+
+<h3>Properties</h3>
+
+<p>Set initial properties with an object.</p>
+
+``` js
+const rect = new Zdog.Rect({
   addTo: illo,
   width: 80,
   height: 60,
@@ -18,16 +41,22 @@ const face = new Zdog.Rect({
 });
 ```
 
-<p>Get and re-set options as properties on the returned item.</p>
+<p>Get and re-set properties on the returned instance.</p>
 
 ``` js
 // get option
-console.log( face.rotate.y );
+console.log( rect.rotate.y );
 // => -2
 
 // re-set option
-face.rotate.y = 3;
+rect.rotate.y = 3;
 ```
+
+{{! --------------------------------------------- }}
+
+<h3>Inheritance</h3>
+
+<p>Some Zdog classes inherit their functionality from other functionality. For example, </p>
 
 {{! --------------------------------------------- }}
 

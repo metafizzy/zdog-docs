@@ -9,19 +9,11 @@
   </div>
 </div>
 
-{{!
-  CONCEPTS
-  shapes & child shapes
-  Vector objects
-  stroke volume
-  anchor to rotate, then translate
-}}
-
 {{! --------------------------------------------- }}
 
 <h3>Head &amp; face</h3>
 
-<p>Our initial setup picks up from the Getting started demo. Let's start with the head.</p>
+<p>Our initial setup picks up from the <a href="getting-started">Getting started demo</a>. We have an <a href="api#illustration"><code>Illustration</code></a>, a model with a single <a href="shapes#shape"><code>Shape</code></a>, and an animation loop.</p>
 
 <div class="example">
   <div class="example__code">
@@ -54,7 +46,9 @@
   </div>
 </div>
 
-<p>The head shape is rendered as a flat-colored sphere with <code>Shape</code>. The <code>Shape</code> class can be defined to render any shape — lines, curves, polygons — via its <code>path</code> option. As <code>head</code> does not have <code>path</code> set, its path defaults to a single point. That point, combined with <code>stroke</code> renders a flat-colored sphere. In other words, a circle.</p>
+<p>The head shape is rendered as a flat-colored sphere with <a href="shapes#shape"><code>Shape</code></a>. The <code>Shape</code> class can be defined to render any shape — lines, curves, polygons — via its <a href="shapes#shape-path"><code>path</code> property</a>. As <code>head</code> does not have <code>path</code> set, its path defaults to a single point. That point, with <a href="#concepts-stroke-volume"><code>stroke</code> volume</a>, renders a flat-colored sphere. In other words, a circle.</p>
+
+<p>Next we add the eye <a href="shapes#ellipse"><code>Ellipse</code></a> as a <a href="#concepts-child-shapes">child shape</a> to <code>head</code> with <a href="api#anchor-addto"><code>addTo: head</code></a>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -78,9 +72,7 @@
   </div>
 </div>
 
-<p>Next we add the eye as a child shape to <code>head</code> with <code>addTo: head</code>. This is imporant. Adding child shapes allows you to collect shapes together. Any <code>translate</code>, <code>rotate</code>, and <code>scale</code> that is set on a parent shape is applied to its children.</p>
-
-<p>For the eye on the right, we can <code>.copy()</code> the right. The original options are copied over and then can be overwritten with new options, in this case changing <code>translate</code>.</p>
+<p>For the eye on the right, we can <a href="#concepts-copying"><code>.copy()</code></a> the right. The original options are copied over and then can be overwritten with new options, in this case changing <code>translate</code>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -104,7 +96,7 @@
   </div>
 </div>
 
-<p>Compare the <code>translate</code> values for the eye shapes.</p>
+<p>Compare the <code>translate</code> <a href="#concepts-vector-objects">vector <i>Object</i>s</a> for the eyes.</p>
 
 ``` js
 // eye on left
@@ -113,9 +105,9 @@ translate: { x: -2, y: 1, z: 4.5 }
 translate: { x: 2, y: 1, z: 4.5 }
 ```
 
-<p>The only difference is the <code>x</code> coordinate. But the whole <code>x</code>, <code>y</code>, <code>z</code> coordinates need to be set. Setting just <code>translate: { x: 2 }</code> would yield <code>{ x: 2, y: 0, z: 0 }</code> which is not what we want.</p>
+<p>The only difference is the <code>x</code> coordinate. But all three <code>x</code>, <code>y</code>, <code>z</code> coordinates need to be set. Setting just <code>translate: { x: 2 }</code> would yield <code>{ x: 2, y: 0, z: 0 }</code> which is not what we want.</p>
 
-<p>The smile is made with a similar semi-circle <code>Ellipse</code>. Its path is closed with <code>closed: true</code>.</p>
+<p>The smile is made with a similar semi-circle <a href="shapes#ellipse"><code>Ellipse</code></a>. Its path is closed with <a href="api#shape-closed"><code>closed: true</code></a>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -140,52 +132,45 @@ translate: { x: 2, y: 1, z: 4.5 }
   </div>
 </div>
 
-<h2>Chest &amp; hips</h2>
+{{! --------------------------------------------- }}
+
+<h3>Body core</h3>
 
 <p>Let's give this floating head a body starting with a chest.</p>
 
 <div class="example">
   <div class="example__code">
     ``` js
-    // illo zoom: 7.5
-
-    const chest = new Zdog.Shape({
-      addTo: illo,
-      path: [ { x: -1.5 }, { x: 1.5 } ],
-      color: garnet,
-      stroke: 9,
-    });
+    // illo zoom: 5
 
     const head = new Zdog.Shape({
-      addTo: chest, // add head to chest
-      stroke: 12,
-      translate: { y: -3 },
-      color: gold,
+      translate: { y: -14 }, // make room for body
+      // ...
     });
 
     // eyes & smile...
+
+    const chest = new Zdog.Shape({
+      addTo: illo,
+      path: [ { x: -1.5 }, { x:  1.5 } ],
+      translate: { y: -4.5 },
+      color: garnet,
+      stroke: 9,
+    });
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="modelChest" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="modelBodyCore" data-step="1" class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
-<p><code>chest</code> is rendered as a horizontal line with <code>Shape</code>. Unlike <code>head</code>, <code>chest</code> has its <code>path</code> set. <code>path</code> is set with an <i>Array</i>, each item in the array defines a direction for the path to take. The <code>path</code> for <code>chest</code> consists of <i>Array</i> with two Vector-like <i>Objects</i>. So this path reads: start at <code>x: -1.5</code>, draw a line to <code>x: 1.5</code>.</p>
+<p><code>chest</code> is a <a href="shapes#shape-line">horizontal line <code>Shape</code></a>. Unlike <code>head</code>, <code>chest</code> has its <a href="shapes#shape-path"><code>path</code></a> set. The <code>path</code> for <code>chest</code> is set to an <i>Array</i> with two <a href="#concepts-vector-objects">vector <i>Object</i>s</a>. So this path reads: start at <code>x: -1.5</code>, draw a line to <code>x: 1.5</code>. <a href="#concepts-stroke-volume">Ample stroke</a> gives makes this little line a big barrelled torso.</p>
 
-<h3>Stroke volume</h3>
-
-<p>Whereas polygonal 3D engines rely on meshes polygons to depict volume, Zdog shapes can show volume with <code>stroke</code>. The chest is a simple horizontal line, but with thick <code>stroke</code>, it appears as a big, round pill. <b>Utilizing <code>stroke</code> for volume is what makes Zdog special.</b> Let go of your earthly polygons and become one with the round thickness.</p>
-
-{{! hips --------------------------------------------- }}
-
-<p>Speaking of thickness, let's render the hips with another horizontal line.</p>
+<p>Let's make the hips with another horizontal line.</p>
 
 <div class="example">
   <div class="example__code">
     ``` js
-    // illo zoom: 5
-
     const hips = new Zdog.Shape({
       addTo: illo,
       path: [ { x: -3 }, { x: 3 } ],
@@ -193,29 +178,31 @@ translate: { x: 2, y: 1, z: 4.5 }
       color: eggplant,
       stroke: 4,
     });
-
-    const spine = new Zdog.Anchor({
-      addTo: hips,
-    });
-
-    const chest = new Zdog.Shape({
-      addTo: spine,
-      translate: { y: -6.5 },
-      // ...
-    });
-
-    // head...
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="modelChestHips" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="modelBodyCore" data-step="2" class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
-<p>spine bend</p>
-<p>legs</p>
-<p>feet</p>
-<p>arms</p>
-<p>legs rotate</p>
-<p>spine rotate</p>
-<p>arms rotate</p>
+{{! --------------------------------------------- }}
+
+<h3>Legs</h3>
+
+{{! --------------------------------------------- }}
+
+<h3>Arms</h3>
+
+{{! --------------------------------------------- }}
+
+<h3>Rotating legs</h3>
+
+{{! --------------------------------------------- }}
+
+<h3>Rotating spine </h3>
+
+{{! --------------------------------------------- }}
+
+<h3>Rotating arms</h3>
+
+{{! --------------------------------------------- }}

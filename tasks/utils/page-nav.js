@@ -13,7 +13,10 @@ module.exports = function pageNav() {
     let h2Slug;
     // insert slugs into headers
     contents = contents.replace( reHeader, function( full, number, title ) {
-      let slug = title.replace( /[^\w\d]+/gi, '-' )
+      // remove HTML entities &
+      let slug = title.replace( /&\w+;/gi, '' )
+        // replace non-alphanumeric characters with dashes
+        .replace( /[^\w]+/gi, '-' )
         // trim trailing hyphens
         .replace( /^\-/, '' ).replace( /\-$/, '' ).toLowerCase();
 

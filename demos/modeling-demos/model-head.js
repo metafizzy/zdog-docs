@@ -1,20 +1,7 @@
-ZdogDocs.modelHead = function( elem, data ) {
+ZdogDocs.modelHead = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
-  var isAnimating = false;
   var step = parseInt( data.step || 0 );
-
-  var illo = new Zdog.Illustration({
-    canvas: elem,
-    zoom: 10,
-    dragRotate: true,
-    onDragStart: function() {
-      isAnimating = true;
-      animate();
-    },
-    onDragEnd: function() {
-      isAnimating = false;
-    },
-  });
+  illo.zoom = 10;
 
   // -- model --- //
 
@@ -61,16 +48,4 @@ ZdogDocs.modelHead = function( elem, data ) {
     });
   }
 
-  // ----- animate ----- //
-
-  function animate() {
-    illo.updateGraph();
-    illo.renderGraph();
-    if ( isAnimating ) {
-      requestAnimationFrame( animate );
-    }
-  }
-
-  animate();
-
-};
+});
