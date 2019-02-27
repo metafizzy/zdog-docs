@@ -2,7 +2,7 @@
 
 <h2>Hemisphere</h2>
 
-<p>A spherical hemisphere. Set size with <code>diameter</code>. Set the color of the base ellipse with <code>baseColor</code>. Defaults: <code>diameter: 1, fill: true</code>. The origin of the hemisphere is the center of the base. The dome faces outward toward the front.</p>
+<p>A spherical hemisphere. Set size with <code>diameter</code>. Set the color of the base ellipse with <code>backface</code>. Defaults: <code>diameter: 1, fill: true</code>. The origin of the hemisphere is the center of the base. The dome faces front toward positive z-axis.</p>
 
 <div class="example" data-js="evalShapeDemo">
   <div class="example__code">
@@ -14,7 +14,7 @@
       // disable stroke for crisp edge
       stroke: false,
       color: '#C25',
-      baseColor: '#EA0',
+      backface: '#EA0',
     });
     ```
   </div>
@@ -27,7 +27,7 @@
 
 <h2>Cone</h2>
 
-<p>A square cylinder with circular bases. Set size with <code>diameter</code> and <code>length</code>. Default <code>diameter: 1, length: 1, fill: true</code>. Set the color of the base ellipse with <code>baseColor</code>. The origin of the hemisphere is the center of the base. The dome faces front toward positive z-axis.</p>
+<p>A square cylinder with circular bases. Set size with <code>diameter</code> and <code>length</code>. Default <code>diameter: 1, length: 1, fill: true</code>. Set the color of the base ellipse with <code>backface</code>. The origin of the hemisphere is the center of the base. The dome faces front toward positive z-axis.</p>
 
 <div class="example" data-js="evalShapeDemo">
   <div class="example__code">
@@ -38,7 +38,7 @@
       length: 90,
       stroke: false,
       color: '#636',
-      baseColor: '#C25',
+      backface: '#C25',
     });
     ```
   </div>
@@ -51,7 +51,7 @@
 
 <h2>Cylinder</h2>
 
-<p>A square cylinder with circular bases. Set size with <code>diameter</code> and <code>length</code>. Default <code>diamter: 1, length: 1, fill: true</code>. Set the color of the base ellipse with <code>baseColor</code>. The origin of the cylinder is the center of its length. The cylinder is oriented front-to-back along the z-axis.</p>
+<p>A square cylinder with circular bases. Set size with <code>diameter</code> and <code>length</code>. Defaults <code>diameter: 1, length: 1, fill: true</code>. Set the color of the base ellipse with <code>backface</code>. The origin of the cylinder is the center of its length. The cylinder is oriented front-to-back along the z-axis.</p>
 
 <div class="example" data-js="evalShapeDemo">
   <div class="example__code">
@@ -62,7 +62,7 @@
       length: 120,
       stroke: false,
       color: '#C25',
-      baseColor: '#E62',
+      backface: '#E62',
     });
     ```
   </div>
@@ -96,7 +96,7 @@
 
 <h2>Box</h2>
 
-<p>A rectangular prism. Set size with <code>width</code>, <code>height</code>, and <code>depth</code>. Set face colors with face options: <code>frontFace</code>, <code>rearFace</code>, <code>leftFace</code>, <code>rightFace</code>, <code>topFace</code>, and <code>bottomFace</code>.</p>
+<p>A rectangular prism. Set size with <code>width</code>, <code>height</code>, and <code>depth</code>. Set face colors with face options: <code>frontFace</code>, <code>rearFace</code>, <code>leftFace</code>, <code>rightFace</code>, <code>topFace</code>, and <code>bottomFace</code>. Defaults <code>width: 1, height: 1, depth: 1, fill: true</code></p>
 
 <div class="example" data-js="evalShapeDemo">
   <div class="example__code">
@@ -107,12 +107,11 @@
       height: 100,
       depth: 80,
       stroke: false,
-      color: '#C25',
-      left: '#E62',
-      right: '#E62',
-      back: '#EA0',
-      top: '#ED0',
-      bottom: '#636',
+      color: '#C25', // default face color
+      leftFace: '#EA0',
+      rightFace: '#E62',
+      topFace: '#ED0',
+      bottomFace: '#636',
     });
     ```
   </div>
@@ -134,11 +133,11 @@
       stroke: false,
       color: '#C25',
       // remove left & right faces
-      left: false,
-      right: false,
-      back: '#EA0',
-      top: '#ED0',
-      bottom: '#636',
+      leftFace: false,
+      rightFace: false,
+      rearFace: '#EA0',
+      topFace: '#ED0',
+      bottomFace: '#636',
     });
     ```
   </div>

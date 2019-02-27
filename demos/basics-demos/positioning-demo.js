@@ -1,7 +1,7 @@
 ZdogDocs.positioningDemo = function( elem ) {
 
   var illo = new Zdog.Illustration({
-    canvas: elem,
+    element: elem,
   });
 
   // circle

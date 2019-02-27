@@ -21,7 +21,7 @@ ZdogDocs.shapeDemo = function( callback ) {
     var isAnimating = false;
 
     var illo = new Zdog.Illustration({
-      canvas: canvas,
+      element: canvas,
       dragRotate: true,
       onDragStart: function() {
         isAnimating = true;

@@ -3,7 +3,7 @@ ZdogDocs.modelEye = function( elem ) {
   var isAnimating = false;
 
   var illo = new Zdog.Illustration({
-    canvas: elem,
+    element: elem,
     zoom: 10,
     dragRotate: true,
     onDragStart: function() {

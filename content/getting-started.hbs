@@ -10,7 +10,7 @@ title: Getting started
 
 {{! --------------------------------------------- }}
 
-<p>Zdog is rendered on a <code>&lt;canvas></code> element. Set the <code>width</code> and <code>height</code> sizes.</p>
+<p>Zdog is rendered on a <code>&lt;canvas></code> or <code>&lt;svg></code> element. Set the <code>width</code> and <code>height</code> sizes.</p>
 
 ``` html
 <canvas class="zdog-canvas" width="240" height="240"></canvas>
@@ -37,7 +37,7 @@ title: Getting started
     // create illo
     const illo = new Zdog.Illustration({
       // set canvas with selector
-      canvas: '.zdog-canvas',
+      element: '.zdog-canvas',
     });
 
     // add circle
@@ -59,7 +59,7 @@ title: Getting started
 
 <p>Let&rsquo;s break it down. The Zdog API mostly consists by creating instances of Zdog&rsquo;s classes.</p>
 
-<p><code>Illustration</code> is the top-level class that handles dealing with the <code>&lt;canvas></code> element, holding all the shapes in the scene, and displaying those shapes on the <code>&lt;canvas></code>. We hooked up the <code>&lt;canvas></code> element by setting the <code>canvas</code> option to its matching selector <code>'.zdog-canvas'</code>. The <code>Illustration</code> instance is then set as a variable <code>illo</code>.</p>
+<p><code>Illustration</code> is the top-level class that handles dealing with the <code>&lt;canvas></code> or <code>&lt;svg></code> element, holding all the shapes in the scene, and displaying those shapes in the element. We hooked up the element by setting the <code>element</code> option to its matching selector <code>'.zdog-canvas'</code>. The <code>Illustration</code> instance is then set as a variable <code>illo</code>.</p>
 
 <p><code>Ellipse</code> is a shape class. We added it to the scene with <code>addTo: illo</code>. So the circle shape is a child of <code>illo</code> — part of it&rsquo;s <em>graph</em>. We set other options for the circle to set its size, shape, and color: <code>diameter: 80, stroke: 20, color: '#636'.</code></p>
 
@@ -139,7 +139,7 @@ title: Getting started
   <div class="example__code">
     ``` js
     const illo = new Zdog.Illustration({
-      canvas: '.zdog-canvas',
+      element: '.zdog-canvas',
       // zoom up 4x
       zoom: 4,
     });
@@ -175,7 +175,7 @@ title: Getting started
   <div class="example__code">
     ``` js
     const illo = new Zdog.Illustration({
-      canvas: '.zdog-canvas',
+      element: '.zdog-canvas',
       zoom: 4,
       // enable rotating scene with dragging
       dragRotate: true,
@@ -196,7 +196,7 @@ title: Getting started
     let isSpinning = true;
 
     const illo = new Zdog.Illustration({
-      canvas: '.zdog-canvas',
+      element: '.zdog-canvas',
       zoom: 4,
       dragRotate: true,
       // stop rotation when dragging starts

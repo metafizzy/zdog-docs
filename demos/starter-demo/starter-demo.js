@@ -4,7 +4,7 @@ ZdogDocs.starterDemo = function( elem ) {
   var TAU = Zdog.TAU;
 
   var illo = new Zdog.Illustration({
-    canvas: elem,
+    element: elem,
     zoom: 4,
     dragRotate: true,
     onDragStart: function() {

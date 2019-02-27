@@ -1,7 +1,7 @@
 ZdogDocs.firstStaticDemo = function( elem ) {
   // create illo
   var illo = new Zdog.Illustration({
-    canvas: elem,
+    element: elem,
   });
 
   // add circle shape

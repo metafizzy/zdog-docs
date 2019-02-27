@@ -6,9 +6,11 @@ var getGlobPaths = require('./utils/get-glob-paths');
 var jsSrc = [
   // Zdog
   'bower_components/zdog/js/utils.js',
+  'bower_components/zdog/js/canvas-renderer.js',
+  'bower_components/zdog/js/svg-renderer.js',
   'bower_components/zdog/js/vector.js',
   'bower_components/zdog/js/anchor.js',
-  'bower_components/zdog/js/path-direction.js',
+  'bower_components/zdog/js/path-command.js',
   'bower_components/zdog/js/shape.js',
   'bower_components/zdog/js/group.js',
   'bower_components/zdog/js/rect.js',

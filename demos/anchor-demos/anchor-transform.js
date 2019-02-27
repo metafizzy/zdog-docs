@@ -6,7 +6,7 @@ ZdogDocs.anchorTransform = function( elem, data ) {
   var TAU = Zdog.TAU;
 
   var illo = new Zdog.Illustration({
-    canvas: elem.querySelector('canvas'),
+    element: elem.querySelector('canvas'),
     zoom: 4,
     dragRotate: true,
     onDragStart: function() {

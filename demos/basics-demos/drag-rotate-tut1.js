@@ -1,7 +1,7 @@
 ZdogDocs.dragRotateTut1 = function( elem ) {
 
   var illo = new Zdog.Illustration({
-    canvas: elem,
+    element: elem,
     zoom: 4,
     dragRotate: true,
   });

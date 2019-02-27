@@ -12,17 +12,18 @@ ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
   var topBun = new Zdog.Hemisphere({
     addTo: burger,
     diameter: 96,
-    translate: { z: 60 },
+    translate: { z: 54 },
     stroke: 24,
     color: orange,
     // backface: gold,
   });
 
   // cheese
-  new Zdog.Ellipse({
+  new Zdog.Rect({
     addTo: burger,
-    diameter: 112,
-    translate: { z: 32 },
+    width: 92,
+    height: 92,
+    translate: { z: 28 },
     stroke: 16,
     color: yellow,
     fill: true,
@@ -42,7 +43,7 @@ ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
     addTo: burger,
     diameter: topBun.diameter,
     length: 16,
-    translate: { z: -44 },
+    translate: { z: -40 },
     stroke: topBun.stroke,
     color: topBun.color,
   });

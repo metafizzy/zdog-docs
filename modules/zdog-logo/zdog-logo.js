@@ -17,7 +17,7 @@ ZdogDocs.zdogLogo = function( elem, data ) {
   // }
 
   var illo = new Zdog.Illustration({
-    canvas: canvas,
+    element: canvas,
     zoom: zoom,
     rotate: initRotate,
     dragRotate: true,

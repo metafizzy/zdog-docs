@@ -3,7 +3,7 @@ ZdogDocs.modelComplete = function( elem ) {
   var isAnimating = false;
 
   var illo = new Zdog.Illustration({
-    canvas: elem,
+    element: elem,
     zoom: 5,
     rotate: { y: -TAU/8 },
     dragRotate: true,

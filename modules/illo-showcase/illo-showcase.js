@@ -40,7 +40,7 @@ ZdogDocs.illoShowcase = function( elem ) {
     var zoom = 3;
 
     var illo = new Zdog.Illustration({
-      canvas: canvas,
+      element: canvas,
       zoom: zoom,
       rotate: { y: -TAU/8 },
       translate: { y: 4 },
@@ -151,7 +151,7 @@ ZdogDocs.illoShowcase = function( elem ) {
       addTo: head,
       diameter: 12,
       color: gold,
-      baseColor: garnet,
+      backface: garnet,
       rotate: { x: -TAU/4 },
       stroke: false,
     });
@@ -188,7 +188,7 @@ ZdogDocs.illoShowcase = function( elem ) {
       addTo: head,
       diameter: 12,
       color: garnet,
-      baseColor: gold,
+      backface: gold,
       rotate: { x: TAU/4 },
       stroke: false,
     });
@@ -203,7 +203,7 @@ ZdogDocs.illoShowcase = function( elem ) {
     // var illoSize = 9;
 
     var illo = new Zdog.Illustration({
-      canvas: canvas,
+      element: canvas,
       zoom: 26,
       rotate: { x: (35/360) * TAU, y: TAU/8 },
     });
@@ -225,12 +225,12 @@ ZdogDocs.illoShowcase = function( elem ) {
       var boxOptions = {
         addTo: model,
         stroke: false,
-        top: yellow,
-        back: gold,
-        left: orange,
-        right: orange,
-        front: garnet,
-        bottom: eggplant,
+        topFace: yellow,
+        rearFace: gold,
+        leftFace: orange,
+        rightFace: orange,
+        frontFace: garnet,
+        bottomFace: eggplant,
       };
       Zdog.extend( boxOptions, options );
 
@@ -239,32 +239,32 @@ ZdogDocs.illoShowcase = function( elem ) {
 
     // top
     addBox({
-      bottom: false,
+      bottomFace: false,
       translate: { y: -1 },
     });
     // bottom
     addBox({
-      top: false,
+      topFace: false,
       translate: { y: 1 },
     });
     // front
     addBox({
-      back: false,
+      rearFace: false,
       translate: { z: 1 },
     });
     // back
     addBox({
-      front: false,
+      frontFace: false,
       translate: { z: -1 },
     });
     // left
     addBox({
-      right: false,
+      rightFace: false,
       translate: { x: -1 },
     });
     // right
     addBox({
-      left: false,
+      leftFace: false,
       translate: { x: 1 },
     });
 
@@ -307,7 +307,7 @@ ZdogDocs.illoShowcase = function( elem ) {
     var zoom = 4;
 
     var illo = new Zdog.Illustration({
-      canvas: canvas,
+      element: canvas,
       zoom: zoom,
       rotate: { x: -TAU/8 },
     });
@@ -369,7 +369,7 @@ ZdogDocs.illoShowcase = function( elem ) {
       diameter: 6,
       length: 2,
       color: eggplant,
-      baseColor: white,
+      backface: white,
       translate: { z: 1 },
       fill: true,
       stroke: false,
@@ -407,7 +407,7 @@ ZdogDocs.illoShowcase = function( elem ) {
     // var illoSize = 96;
 
     var illo = new Zdog.Illustration({
-      canvas: canvas,
+      element: canvas,
       zoom: 2,
       rotate: { y: -TAU/8 },
       dragRotate: true,

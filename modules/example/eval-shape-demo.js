@@ -5,7 +5,7 @@ ZdogDocs.evalShapeDemo = function( elem ) {
   var isAnimating = false;
 
   var illo = new Zdog.Illustration({
-    canvas: elem.querySelector('.illo'),
+    element: elem.querySelector('.illo'),
     dragRotate: true,
     onDragStart: function() {
       isAnimating = true;
