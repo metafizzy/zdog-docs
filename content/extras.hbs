@@ -2,3 +2,105 @@
 title: Extras
 ---
 
+<p>This page is a work-in-progress. Pardon the construction.</p>
+
+{{! --------------------------------------------- }}
+
+<h2>Z-fighting</h2>
+
+{{! --------------------------------------------- }}
+
+<h3>Intentional z-fighting</h3>
+
+{{! --------------------------------------------- }}
+
+<h3>Unintentional z-fighting</h3>
+
+{{! --------------------------------------------- }}
+
+<h3>Using Group</h3>
+
+{{! --------------------------------------------- }}
+
+<h2>Known bugs</h2>
+
+{{! --------------------------------------------- }}
+
+<h3>Hemisphere, Cone, &amp; Cone scale bug</h3>
+
+{{! --------------------------------------------- }}
+
+<h3>One pixel gaps</h3>
+
+<p>Gaps can appear in between flat polygons of solids.</p>
+
+<div class="example" data-js="evalShapeDemo">
+  <div class="example__code">
+    ``` js
+    new Zdog.Box({
+      addTo: illo,
+      width: 120,
+      height: 100,
+      depth: 80,
+      rotate: { x: -Zdog.TAU/8, y: Zdog.TAU/8 },
+      stroke: false,
+      color: '#EA0',
+      rearFace: '#636',
+      leftFace: '#636',
+      bottomFace: '#636',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>You can cover over this gaps by adding a think 1-pixel-wide stroke to the polygons.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // with an Illustration without zoom set
+
+    new Zdog.Box({
+      stroke: 1, // 1px stroke
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="onePixelGapFix" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // with an Illustration with zoom set
+    const illo = new Illustration({
+      zoom: 4,
+      // ...
+    });
+
+    new Zdog.Box({
+      addTo: illo,
+      stroke: 1 / illo.zoom, // 1px stroke
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="onePixelGapFixZoom" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h2>Rendering without an Illustration</h2>
+
+{{! --------------------------------------------- }}
+
+<h2>Canvas or SVG</h2>
+
+{{! --------------------------------------------- }}

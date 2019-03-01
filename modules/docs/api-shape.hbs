@@ -8,9 +8,16 @@
 
 <p>Sets shape stroke and fill color. Set to any color string — hex code, <code>rgb()</code>, <code>hsla()</code>, etc. Default <code>color: '#333'</code>.</p>
 
-``` js
-color: '#EA0'
-```
+<div class="example">
+  <div class="example__code">
+    ``` js
+    color: '#E62'
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeOption" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}
 
@@ -18,17 +25,33 @@ color: '#EA0'
 
 <p>Renders the shape line and sets line width. Default <code>stroke: 1</code>.</p>
 
-``` js
-stroke: 4
-```
+<div class="example">
+  <div class="example__code">
+    ``` js
+    stroke: 30
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeOption" data-options='{ "stroke": 30 }'
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
-<p>Set to <code>0</code> or <code>false</code> to disable.</p>
+<p>Set <code>stroke</code> to <code>0</code> or <code>false</code> to disable.</p>
 
-``` js
-// render only fill
-stroke: false,
-fill: true,
-```
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // render only fill
+    stroke: false,
+    fill: true,
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeOption" data-options='{ "stroke": false, "fill": true }'
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}
 
@@ -36,11 +59,17 @@ fill: true,
 
 <p>Renders the inner shape area. Disabled by default <code>fill: false</code>.</p>
 
-{{! --------------------------------------------- }}
-
-<h3>closed</h3>
-
-<p>Closes the shape&rsquo;s path from its last point back to its first. Enabled by default <code>closed: true</code>.</p>
+<div class="example">
+  <div class="example__code">
+    ``` js
+    fill: true
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeOption" data-options='{ "fill": true }'
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}
 
@@ -52,16 +81,82 @@ fill: true,
 
 <h3>backface</h3>
 
-<p>Shows or hides the shape when its backface is visible. Enabled by default <code>backface: true</code>. Set <code>backface: false</code> to hide the shape when its backface is showing.</p>
+<p>Shows or hides the shape when its backface is visible. Enabled by default <code>backface: true</code>.</p>
+
+<p>Set <code>backface: false</code> to hide the shape when its backface is showing.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    backface: false
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeOption" data-options='{ "backface": false, "fill": true }'
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 <p>Set <code>backface</code> to a color to change the shape&rsquo;s color when its backface is showing.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    backface: "#636"
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeOption" data-options='{ "backface": "#636", "fill": true }'
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}
 
 <h3>front</h3>
 
+<p>A <a href="#vector"><code>Vector</code></a> used to determine where the front of the shape is. Useful for changing how <a href="#shape-backface"><code>backface</code></a> works for custom <code>Shape</code>s. Default <code>front: { z: 1 }</code>. </p>
+
 {{! --------------------------------------------- }}
 
 <h3>updatePath()</h3>
+
+<p>Updates the shape path. Trigger <code>updatePath()</code> after you change a point on a <code>Shape</code>'s path, a <code>Rect</code>'s width or height, etc.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const triangle = new Zdog.Shape({
+      path: [
+        // drag to change this first point
+        { x:   0, y: -50 }, 
+        { x:  50, y:  50 },
+        { x: -50, y:  50 },
+      ],
+      // ...
+    });
+    // get first path point
+    const trianglePoint = triangle.path[0];
+    const dragStartX, dragStartY;
+
+    new Zdog.Dragger({
+      onDragStart: function() {
+        dragStartX = trianglePoint.x;
+        dragStartY = trianglePoint.y;
+      },
+      onDragMove: function( pointer, moveX, moveY ) {
+        trianglePoint.x = dragStartX + moveX;
+        trianglePoint.y = dragStartY + moveY;
+        // path point changed, updatePath() to apply change
+        triangle.updatePath();
+      },
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeUpdatePath" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}

@@ -1,19 +1,62 @@
 <h2>Dragger</h2>
 
+<p>Tracks dragging interaction with pointer events. <code>Illustration</code> inherits <code>Dragger</code> which enables <code>dragRotate</code> and use of the <i>onDrag</i> callback functions.</p>
+
+<p>The <code>Dragger</code> class by itself is useful for rendering without an <code>Illustration</code>.</p>
+
 {{! --------------------------------------------- }}
 
 <h3>startElement</h3>
+
+<p>The element to start dragging on the initial <code>mousedown</code>, <code>pointerdown</code>, or <code>touchstart</code> event.</p>
+
+
 
 {{! --------------------------------------------- }}
 
 <h3>onDragStart</h3>
 
+<p>Callback function triggered when dragging starts with the initial <code>mousedown</code>, <code>pointerdown</code>, or <code>touchstart</code> event.</p>
+
+``` js
+onDragStart: function( pointer ) {
+  console.log(`Drag started at ${pointer.pageX}, ${pointer.pageY});
+}
+```
+
+<ul>
+  <li><code>pointer</code> - the <i>Event</i> or <i>Touch</i> object with <code>.pageX</code> and <code>.pageY</code>.</li>
+</ul>
+
 {{! --------------------------------------------- }}
 
 <h3>onDragMove</h3>
 
+<p>Callback function triggered when dragging moves with <code>mousemove</code>, <code>pointermove</code>, or <code>touchmove</code> event.</p>
+
+``` js
+onDragStart: function( pointer, moveX, moveY ) {
+  console.log(`Drag moved ${moveX}, ${moveY}`);
+}
+```
+
+<ul>
+  <li><code>pointer</code> - the <i>Event</i> or <i>Touch</i> object with <code>.pageX</code> and <code>.pageY</code>.</li>
+  <li><code>moveX</code> - horizontal distance moved from the dragStart position.</li>
+  <li><code>moveY</code> - vertical distance moved from the dragStart position.</li>
+</ul>
+
+
 {{! --------------------------------------------- }}
 
 <h3>onDragEnd</h3>
+
+<p>Callback function triggered when dragging ends on the <code>mouseup</code>, <code>pointerup</code>, or <code>touchend</code> event.</p>
+
+``` js
+onDragStart: function() {
+  console.log('Drag ended');
+}
+```
 
 {{! --------------------------------------------- }}

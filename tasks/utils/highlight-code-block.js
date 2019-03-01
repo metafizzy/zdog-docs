@@ -14,35 +14,42 @@ hljsJavascript.contains.push({
 
 hljsJavascript.keywords.demo_var = 'illo anchor rect circle shape';
 
-var reFirstLine = /.*\n/;
-
-function replaceCodeBlock( match, leadingWhiteSpace, block ) {
-  var langMatch = block.match( reFirstLine );
-  var language = langMatch && langMatch[0];
-  // remove first line
-  block = block.replace( reFirstLine, '' );
-  if ( language ) {
-    language = language.trim();
+function replaceCodeBlock( whiteSpace, block ) {
+  if ( !block ) {
+    return '';
   }
+  var langMatch = block.match( /^ *([\w]+)\n/ );
+  var language = langMatch && langMatch[1];
+  // remove first line
+  block = block.replace( /.*\n/, '' );
   // remove leading whitespace from code block
-  if ( leadingWhiteSpace && leadingWhiteSpace.length ) {
-    var reLeadingWhiteSpace = new RegExp( '^' + leadingWhiteSpace, 'gim' );
-    block = block.replace( reLeadingWhiteSpace, '' );
+  if ( whiteSpace && whiteSpace.length ) {
+    var reWhiteSpace = new RegExp( '^' + whiteSpace, 'gim' );
+    block = block.replace( reWhiteSpace, '' );
   }
   // highlight code
-  var highlighted = language ? highlightjs.highlight( language, block, true ).value : block;
-  // wrap in <pre><code>
-  var html = '\n<pre><code' +
-    ( language ? ' class="' + language + '"' : '' ) + '>' +
-    highlighted + '</code></pre>';
-  return html;
+  var highlighted = block;
+  if ( language ) {
+    highlighted = highlightjs.highlight( language, block, true ).value;
+  }
+  var codeAttr = language ? `class="${language}"` : '';
+  return `<pre><code ${codeAttr}>${highlighted}</code></pre>\n`;
 }
 
 module.exports = function() {
   return transfob( function( file, enc, next ) {
     var contents = file.contents.toString();
-    contents = contents.replace( /\n( *)```([^```]+)```/gi, replaceCodeBlock );
-    file.contents = Buffer.from( contents );
+    // split contents by ```, get leading white space
+    var blocks = contents.split( /\n( *)```/ );
+    var hiContent = '';
+    for ( var i=0; i < blocks.length; i += 4 ) {
+      var normBlock = blocks[i];
+      var whitespace = blocks[ i + 1 ] || '';
+      var codeBlock = blocks[ i + 2 ] || '';
+      codeBlock = replaceCodeBlock( whitespace, codeBlock );
+      hiContent += `${normBlock}\n${codeBlock}`;
+    }
+    file.contents = Buffer.from( hiContent );
     next( null, file );
   });
 };

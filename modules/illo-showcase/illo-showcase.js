@@ -601,7 +601,7 @@ ZdogDocs.illoShowcase = function( elem ) {
 
   function animate() {
     if ( isSpinning ) {
-      viewRotation.y = Zdog.easeInOut( t, 3 ) * TAU;
+      viewRotation.y = Zdog.easeInOut( t % 1, 3 ) * TAU;
       t += 1/150;
     }
     illos.forEach( animateEachIllo );

@@ -188,16 +188,33 @@ shape.remove();
 
 {{! --------------------------------------------- }}
 
-<h3>normalizeRotate()</h3>
-
-<p>Clamps <code>rotate</code> <code>x</code>, <code>y</code>, &amp; <code>z</code> values between <code>0</code> and <code>TAU</code>.</p>
-
-{{! --------------------------------------------- }}
-
 <h3>updateGraph()</h3>
+
+<p>Updates the items all its child items so they are ready for rendering. <code>updateGraph()</code> is useful for rendering without an <code>Illustration</code>.</p>
+
+``` js
+anchor.updateGraph();
+```
 
 {{! --------------------------------------------- }}
 
 <h3>renderGraph()</h3>
+
+<p>Renders the item and all its child items. <code>renderGraph()</code> is useful for rendering without an <code>Illustration</code>.</p>
+
+``` js
+anchor.renderGraph( context, renderer );
+```
+
+<ul>
+  <li><code>context</code>: Either a canvas context or a <code>&lt;svg></code> element</li>
+  <li><code>renderer</code>: A corresponding Zdog renderer: <code>Zdog.CanvasRenderer</code> or <code>Zdog.SvgRenderer</code></li>
+</ul>
+
+{{! --------------------------------------------- }}
+
+<h3>normalizeRotate()</h3>
+
+<p>Clamps <code>rotate</code> <code>x</code>, <code>y</code>, &amp; <code>z</code> values between <code>0</code> and <code>TAU</code>.</p>
 
 {{! --------------------------------------------- }}
