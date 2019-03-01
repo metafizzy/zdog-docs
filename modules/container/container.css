@@ -23,12 +23,23 @@
 }
 
 .container__main > h2 {
+  position: relative;
   font-size: 2.4rem;
-  border-top: 8px solid #FDB;
   padding-top: 10px;
   line-height: 1.2;
   margin: 3.0rem 0 2.0rem;
   padding-top: 1.5rem;
+}
+
+.container__main > h2::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 8px;
+  background: #FDB;
+  top: 0rem;
+  border-radius: 4px;
 }
 
 .container__main > h3 {
@@ -40,10 +51,12 @@
 
 .container__main > h2:target,
 .container__main > h3:target {
-  padding-left: 5px;
-  background: #EA0;
-  color: white;
+  color: #C25;
   border-color: #C25;
+}
+
+.container__main > h2:target::before {
+  background: #C25;
 }
 
 

@@ -35,34 +35,7 @@
   </div>
 </div>
 
-<p>Shapes can be added as children to other shapes. A child shape is positioned relative to its parent.</p>
-
-<div class="example">
-  <div class="example__code">
-    ``` js
-    const zCircle = new Zdog.Ellipse({
-      addTo: illo,
-      translate: { z: 40 }, // z +40 from illo
-      // ...
-    });
-
-    const xRect = new Zdog.Rect({
-      addTo: zCircle,
-      translate: { x: 40 }, // x +40 from zCircle
-      // ...
-    });
-
-    const yTri = new Zdog.Polygon({
-      addTo: xRect,
-      translate: { y: -60 }, // y -60 from xRect
-      // ...
-    });
-    ```
-  </div>
-  <div class="example__demo">
-    <canvas data-js="childShapes" data-step="2" class="illo" width="240" height="240"></canvas>
-  </div>
-</div>
+{{> child-shapes-add-to }}
 
 <p><code>translate</code> is a transformation — as is <code>rotate</code> and <code>scale</code>. Child shapes inherit the transformations of their parents (<i>wow, that is deep</i>).</p>
 
@@ -131,6 +104,7 @@
     <canvas data-js="childShapes" data-step="4" class="illo" width="240" height="240"></canvas>
   </div>
 </div>
+
 
 {{! --------------------------------------------- }}
 
@@ -201,41 +175,6 @@ translate: {}              // => { x: 0, y: 0, z: 0 }
 
 <h3>Groups</h3>
 
-<p>Use a <code>Group</code> to control rendering order. Shapes will be rendered in the order they are added to the <code>Group</code>. <code>Group</code>s are useful for positioning shapes within other shapes, like windows in walls or pupils in eyes.</p>
-
-<div class="example">
-  <div class="example__code">
-    ``` js
-    // always render wall then door then window
-    var wallGroup = new Zdog.Group({
-      addTo: illo,
-    });
-
-    // wall
-    new Zdog.Rect({
-      addTo: wallGroup,
-      width: 140,
-      height: 100,
-      // ...
-    });
-    // door
-    new Zdog.Rect({
-      addTo: wallGroup,
-      width: 30,
-      height: 65,
-      // ...
-    });
-    // window
-    new Zdog.Ellipse({
-      addTo: wallGroup,
-      diameter: 30,
-      // ...
-    });
-    ```
-  </div>
-  <div class="example__demo">
-    <canvas data-js="groupWall" class="illo" width="240" height="240"></canvas>
-  </div>
-</div>
+{{> group-concept }}
 
 {{! --------------------------------------------- }}

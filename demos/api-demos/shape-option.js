@@ -18,18 +18,4 @@ ZdogDocs.shapeOption = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
   new Zdog.Shape( options );
 
-  if ( data.options && data.options.backface != undefined ) {
-    var dot = new Zdog.Shape({
-      addTo: illo,
-      color: garnet,
-      stroke: 20,
-      translate: { z: 40 },
-    });
-    
-    dot.copy({
-      color: gold,
-      translate: { z: -40 },
-    });
-  }
-
 });

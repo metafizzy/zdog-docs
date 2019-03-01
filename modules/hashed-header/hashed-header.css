@@ -9,7 +9,7 @@
   position: absolute;
 }
 
-.hashed-header__link:before {
+.hashed-header__link::before {
   position: absolute;
   right: 0;
   padding-right: 5px;
@@ -17,7 +17,7 @@
   opacity: 0;
 }
 
-.hashed-header:hover .hashed-header__link:before {
+.hashed-header:hover .hashed-header__link::before {
   content: '#';
   opacity: 1;
 }

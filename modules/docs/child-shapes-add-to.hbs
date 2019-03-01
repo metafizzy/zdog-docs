@@ -1,0 +1,28 @@
+<p>Shapes can be added as children to other shapes. A child shape is positioned relative to its parent.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const zCircle = new Zdog.Ellipse({
+      addTo: illo,
+      translate: { z: 40 }, // z +40 from illo
+      // ...
+    });
+
+    const xRect = new Zdog.Rect({
+      addTo: zCircle,
+      translate: { x: 40 }, // x +40 from zCircle
+      // ...
+    });
+
+    const yTri = new Zdog.Polygon({
+      addTo: xRect,
+      translate: { y: -60 }, // y -60 from xRect
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="childShapes" data-step="2" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<p>Use a <code>Group</code> to control rendering order. Shapes will be rendered in the order they are added to the <code>Group</code>. <code>Group</code>s are useful for positioning shapes within other shapes, like windows in walls or pupils in eyes.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // render shapes in order added
+    var eyeGroup = new Zdog.Group({
+      addTo: illo,
+    });
+    // eye white first
+    new Zdog.Ellipse({
+      addTo: eyeGroup,
+      width: 160,
+      height: 80,
+      // ...
+    });
+    // then iris
+    const iris = new Zdog.Ellipse({
+      addTo: eyeGroup,
+      diameter: 70,
+      // ...
+    });
+    // then pupil
+    iris.copy({
+      diameter: 30,
+      color: '#636',
+    });
+    // highlight last in front
+    iris.copy({
+      diameter: 30,
+      translate: { x: 15, y: -15 },
+      color: 'white',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="groupEye" class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
