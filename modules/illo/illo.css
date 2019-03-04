@@ -10,3 +10,8 @@
 .illo--no-drag {
   cursor: auto;
 }
+
+.illo--fluid-canvas {
+  display: block;
+  width: 100%;
+}

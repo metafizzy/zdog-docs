@@ -136,26 +136,19 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <h3>Body core</h3>
 
-<p>Let's give this floating head a body starting with a chest.</p>
+<p>Let's give this floating head a body starting with the hips.</p>
 
 <div class="example">
   <div class="example__code">
     ``` js
     // illo zoom: 5
+    // remove head for now
 
-    const head = new Zdog.Shape({
-      translate: { y: -14 }, // make room for body
-      // ...
-    });
-
-    // eyes & smile...
-
-    const chest = new Zdog.Shape({
+    const hips = new Zdog.Shape({
       addTo: illo,
-      path: [ { x: -1.5 }, { x:  1.5 } ],
-      translate: { y: -4.5 },
-      color: garnet,
-      stroke: 9,
+      path: [ { x: -3 }, { x: 3 } ],
+      stroke: 4,
+      color: '#636',
     });
     ```
   </div>
@@ -164,34 +157,274 @@ translate: { x: 2, y: 1, z: 4.5 }
   </div>
 </div>
 
-<p><code>chest</code> is a <a href="shapes#shape-line">horizontal line <code>Shape</code></a>. Unlike <code>head</code>, <code>chest</code> has its <a href="shapes#shape-path"><code>path</code></a> set. The <code>path</code> for <code>chest</code> is set to an <i>Array</i> with two <a href="#concepts-vector-objects">vector <i>Object</i>s</a>. So this path reads: start at <code>x: -1.5</code>, draw a line to <code>x: 1.5</code>. <a href="#concepts-stroke-volume">Ample stroke</a> gives makes this little line a big barrelled torso.</p>
+<p><code>hips</code> is just a <a href="shapes#shape-line">horizontal line <code>Shape</code></a>. Unlike <code>head</code>, <code>hips</code> has its <a href="shapes#shape-path"><code>path</code></a> set. The <code>path</code> is set to an <i>Array</i> with two <a href="#concepts-vector-objects">vector <i>Object</i>s</a>. So this path reads: start at <code>x: -3</code>, draw a line to <code>x: 3</code>.</p>
 
-<p>Let's make the hips with another horizontal line.</p>
+<p>We start with the hips because the model's upper body pivots around the hips. By adding the upper body shapes to hips, we can rotate the hips and shapes will rotate with it.</p>
+
+<p>Let's work our way up and add the chest next.</p>
+
 
 <div class="example">
   <div class="example__code">
     ``` js
-    const hips = new Zdog.Shape({
-      addTo: illo,
-      path: [ { x: -3 }, { x: 3 } ],
-      translate: { y: 2 },
-      color: eggplant,
-      stroke: 4,
+    const chest = new Zdog.Shape({
+      addTo: hips,
+      path: [ { x: -1.5 }, { x: 1.5 } ],
+      // position right above hips
+      // ( hips.stroke + chest.stroke ) / 2
+      translate: { y: -6.5 },
+      stroke: 9,
+      color: '#C25',
     });
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="modelBodyCore" data-step="2" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="modelBodyCore" data-step="2"
+      class="illo" width="240" height="240"></canvas>
   </div>
 </div>
+
+<p><code>chest</code> is another <a href="shapes#shape-line">horizontal line <code>Shape</code></a>. <a href="#concepts-stroke-volume">Ample stroke</a> gives makes this little line a big barrelled torso.</p>
+
+<p>The head can now go back on top.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const head = new Zdog.Shape({
+      addTo: chest,
+      stroke: 12,
+      // position above chest
+      translate: { y: -9.5 },
+      color: '#EA0',
+    });
+
+    // other face shapes...
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelBodyCore" data-step="3"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Now we can rotate <code>illo</code> and <code>hips</code> to see a preview of the final product.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const illo = new Zdog.Illustration({
+      zoom: 5,
+      // rotate for three-quarters view
+      rotate: { y: -Zdog.TAU/8 },
+      // ...
+    });
+
+    const hips = new Zdog.Shape({
+      addTo: illo,
+      // tilt back 45°
+      rotate: { x: Zdog.TAU/8 },
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelBodyCore" data-step="4"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>So chill.</p>
 
 {{! --------------------------------------------- }}
 
 <h3>Legs</h3>
 
+<p>Let's get back upright and now work on the lower half.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const hipX = 3;
+
+    const hips = new Zdog.Shape({
+      path: [ { x: -hipX }, { x: hipX } ],
+      // ...
+    });
+
+    const leg = new Zdog.Shape({
+      addTo: hips,
+      path: [ { y: 0 }, { y: 12 } ],
+      translate: { x: -hipX },
+      color: '#636',
+      stroke: 4,
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelLegs" data-step="1"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>We can render a leg with a straight line <code>Shape</code>. This line will start at the left hip. So we add the <code>leg</code> to <code>hips</code> and set its origin with <code>translate: { x: -hipX }</code>. We can use a variable <code>hipX</code> within both <code>hips.path</code> and <code>leg.translate</code> for consistency. Now we can draw the <code>path</code> starting at the origin <code>0</code> and go down, hence <code>path: [ { y: 0 }, { y: 12 } ]</code>.</p>
+
+<p>Next, the foot.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // foot
+    new Zdog.RoundedRect({
+      addTo: leg,
+      width: 2,
+      height: 4,
+      cornerRadius: 1,
+      // y: past leg end, z: scootch toward front
+      translate: { y: 14, z: 2 },
+      color: '#C25',
+      fill: true,
+      stroke: 4,
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelLegs" data-step="2"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>The foot is first shape we need to consider in three dimensions. The toe sticks out toward the front. We could draw a custom <code>Shape</code> that works with <code>z</code> values. But instead, a simpler approach is to rotate a basic shape into the desired orientation.</p>
+
+<p>This simple foot is rendered with a <a href="shapes#roundedrect"><code>RoundedRect</code></a>. The corners are completely rounded with <code>cornerRadius: 1</code>, forming a flattened pill shape. The foot is added to <code>leg</code> and positioned vertically a little past the end of the leg, and along <code>z</code> toward the front so the toe sticks out farther than the heel.</p>
+
+<p>Now let's rotate that foot.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // foot
+    new Zdog.RoundedRect({
+      addTo: leg,
+      translate: { y: 14, z: 2 },
+      // rotate 90° along x-axis
+      rotate: { x: Zdog.TAU/4 }
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelLegs" data-step="3"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Perfecto. Now that one leg is in place, we can copy the leg and its foot with <a href="api#anchor-copygraph"><code>.copyGraph()</code></a>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    leg.copyGraph({
+      // position on right
+      translate: { x: hipX },
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelLegs" data-step="4"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
 {{! --------------------------------------------- }}
 
 <h3>Arms</h3>
+
+<p>This fella needs some dukes for puttin' up. We'll use the same technique with the legs, this time working off the <code>chest</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    var armSize = 6;
+
+    // left arm
+    const upperArm = new Zdog.Shape({
+      addTo: chest,
+      path: [ { y: 0 }, { y: armSize } ],
+      translate: { x: -5, y: -2 },
+      color: '#636',
+      stroke: 4,
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelArms" data-step="1"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Whereas the leg was just one straight line from hip to foot, the arm will require two parts. The first <code>upperArm</code> shape starts from the <code>chest</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const forearm = new Zdog.Shape({
+      addTo: upperArm,
+      path: [ { y: 0 }, { y: armSize } ],
+      translate: { y: armSize },
+      color: '#EA0',
+      stroke: 4,
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelArms" data-step="2"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>The <code>forearm</code> connects to the <code>upperArm</code>. It starts at the end of the <code>upperArm</code> by setting <code>translate: { y: armSize }</code>, which matches  <code>upperArm</code>'s end <code>path</code> point.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // hand
+    new Zdog.Shape({
+      addTo: forearm,
+      // connect to end of forearm
+      // scootch toward front a bit
+      translate: { y: armSize, z: 1 },
+      stroke: 6,
+      color: '#EA0',
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelArms" data-step="3"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>The hand is rendered as a single-point <code>Shape</code> like the <code>head</code>. It connects to <code>forearm</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // copy to right arm
+    upperArm.copyGraph({
+      translate: { x: 5, y: -2 },
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelArms" data-step="4"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Whoa! All the body parts are in place.</p>
+
+<p>Rotating the model around, you'll notice how the shapes pop-over one another — like where the <code>upperArm</code> and <code>forearm</code> overlap on the elbow. This is called <a href="extras#z-fighting">z-fighting</a>. We'll clean this up a bit as we rotate shapes away from one another. But these z-fights are innevitable with pseudo-3D engine like Zdog. Rather than fighting this effect, accept it for what it is. It's not a bug, it's what makes Zdog <em>charming</em>.</p>
 
 {{! --------------------------------------------- }}
 

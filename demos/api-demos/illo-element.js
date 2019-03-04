@@ -1,20 +1,13 @@
-ZdogDocs.anchorTransform = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
-
-  // read transform from attribute and set anchor
-  var anchorOptions = {
-    addTo: illo,
-  };
+ZdogDocs.illoElement = ZdogDocs.shapeDemo( function( elem, data, illo ) {
 
   if ( data.options ) {
     data.options = JSON.parse( data.options );
-    Zdog.extend( anchorOptions, data.options );
+    illo.setOptions( data.options );
   }
-
-  var anchor = new Zdog.Anchor( anchorOptions );
 
   // circle
   new Zdog.Ellipse({
-    addTo: anchor,
+    addTo: illo,
     diameter: 80,
     translate: { z: -40 },
     stroke: 20,
@@ -23,7 +16,7 @@ ZdogDocs.anchorTransform = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
   // triangle
   new Zdog.Shape({
-    addTo: anchor,
+    addTo: illo,
     path: [
       { x:   0, y: -32 },
       { x:  32, y:  32 },

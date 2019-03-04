@@ -1,8 +1,7 @@
 const transfob = require('transfob');
 
 // get <h2>title</h2>
-const reHeader = /\n<h([23])>([\w _#&;\.\(\)\$\-]+)<\/h[23]>/gi;
-//
+const reHeader = /\n<h([23])>([^<]+)<\/h[23]>/gi;
 
 module.exports = function pageNav() {
   return transfob( function( file, enc, next ) {

@@ -130,7 +130,7 @@ addTo: illo
 
 <h3>copy()</h3>
 
-<p>Copy an item. <code>copy()</code> only copies the item, not the item&rsquo;s graph of child items. Use <a href="#anchor-copygraph"><code>copyGraph()</code></a> to copy the item and its graph.</p>
+<p>Copy an item. <code>copy()</code> only copies the item, not the item&rsquo;s graph of descendant items. Use <a href="#anchor-copygraph"><code>copyGraph()</code></a> to copy the item and its graph.</p>
 
 {{> copy-example }}
 
@@ -192,7 +192,7 @@ shape.remove();
 
 <h3>updateGraph()</h3>
 
-<p>Updates the items and all its descendant items so they are ready for rendering. Useful for <a href="extras#rendering-without-illustration">rendering without <code>Illustration</code></a>.</p>
+<p>Updates the items and all its graph of descendant items so they are ready for rendering. Useful for <a href="extras#rendering-without-illustration">rendering without <code>Illustration</code></a>.</p>
 
 ``` js
 anchor.updateGraph();
@@ -209,14 +209,14 @@ anchor.renderGraphCanvas( ctx );
 ```
 
 <ul>
-  <li><code>ctx</code>: The <i>CanvasRenderingContext2D</i></li>
+  <li><code>ctx</code>: <i>CanvasRenderingContext2D</i></li>
 </ul>
 
 ``` js
 const canvas = document.querySelector('.zdog-canvas');
 const ctx = canvas.getContext('2d');
 
-const scene = new Anchor({...});
+const scene = new Anchor();
 // add some shapes...
 
 scene.updateGraph();

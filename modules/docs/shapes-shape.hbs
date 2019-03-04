@@ -30,28 +30,30 @@
 
 <h3>Path commands</h3>
 
-<p>Set <code>path</code> to <i>Array</i> of path commands. Path commands set the directions for the path to shape. Similar to drawing a path in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#Drawing_paths">2D <code>&lt;canvas></code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">SVG paths</a>, or turtle graphics.</p>
+<p>Set <code>path</code> to <i>Array</i> of path commands. Path commands set the directions for the path to shape. Similar to drawing a path in <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#Drawing_paths">2D <code>&lt;canvas></code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">SVG paths</a>, or <a href="https://en.wikipedia.org/wiki/Logo_(programming_language)">Logo's turtle graphics</a>.</p>
 
-<p>There are four path commands: <code>line</code>, <code>move</code>, <code>arc</code>, and <code>bezier</code>. Each command is set as an <i>Object</i> with the key of the command and value of a vector <i>Object</i> or <i>Array</i> of vector <i>Object</i>s representing the command points.</p>
+<p>There are four path commands: <code>line</code>, <code>move</code>, <code>arc</code>, and <code>bezier</code>. Each command is set as an <i>Object</i> with the key of the command and value of a <a href="api#vector-vector-objects">vector <i>Object</i></a> or an <i>Array</i> of vector <i>Object</i>s representing the command points.</p>
 
 
 ``` js
-{ line: {/*x,y,z*/} }, // verbose syntax
-// or
-{/*x,y,z*/}, // line shorthand is just the point
+path: [
+  { line: {/*x,y,z*/} }, // verbose syntax
+  // or
+  {/*x,y,z*/}, // line shorthand is just the point
 
-{ move: {/*x,y,z*/} },
+  { move: {/*x,y,z*/} },
 
-{ arc: [
-  {/*x,y,z*/}, // corner point
-  {/*x,y,z*/}, // end point
-]},
+  { arc: [
+    {/*x,y,z*/}, // corner point
+    {/*x,y,z*/}, // end point
+  ]},
 
-{ bezier: [
-  {/*x,y,z*/}, // start control point
-  {/*x,y,z*/}, // end control point
-  {/*x,y,z*/}, // end point
-]},
+  { bezier: [
+    {/*x,y,z*/}, // start control point
+    {/*x,y,z*/}, // end control point
+    {/*x,y,z*/}, // end point
+  ]},
+]
 ```
 
 <p>To start the path shape, the first path command is always treated as <code>move</code>.</p>
@@ -245,7 +247,7 @@
 
 <h3>closed</h3>
 
-<p>Closes the path from the last point back to the first. Enabled by default <code>/* closed: true */</code>.</p>
+<p>Closes the path from the last point back to the first. Enabled by default <code><span class="comment">closed: true</span></code>.</p>
 
 <div class="example" data-js="evalShapeDemo">
   <div class="example__code">

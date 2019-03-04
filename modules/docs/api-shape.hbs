@@ -1,12 +1,12 @@
 <h2>Shape</h2>
 
-<p>A visible shape. <code>Shape</code> is the super-class for all shape classes — <code>Rect</code>, <code>Ellipse</code>, <code>Cone</code>, etc. All shape classes can use <code>Shape</code> options and methods.</p>
+<p>A visible shape. <code>Shape</code> is the super-class for all shape classes — <a href="shapes#rect"><code>Rect</code></a>, <a href="shapes#ellipse"><code>Ellipse</code></a>, <a href="shapes#cone"><code>Cone</code></a>, etc. All shape classes can use <code>Shape</code> options and methods.</p>
 
 {{! --------------------------------------------- }}
 
 <h3>color</h3>
 
-<p>Sets shape stroke and fill color. Set to any color string — hex code, <code>rgb()</code>, <code>hsla()</code>, etc. Default <code>color: '#333'</code>.</p>
+<p>Sets shape stroke and fill color. Set to any color string — hex code, <code>rgb()</code>, <code>hsla()</code>, etc. Default <code><span class="comment">color: '#333'</span></code>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -23,7 +23,7 @@
 
 <h3>stroke</h3>
 
-<p>Renders the shape line and sets line width. Default <code>stroke: 1</code>.</p>
+<p>Renders the shape line and sets line width. Default <code><span class="comment">stroke: 1</span></code>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<p>Set <code>stroke</code> to <code>0</code> or <code>false</code> to disable.</p>
+<p>Set <code>stroke</code> to <code><span class="number">0</span></code> or <code><span class="literal">false</span></code> to disable.</p>
 
 <div class="example">
   <div class="example__code">
@@ -57,7 +57,7 @@
 
 <h3>fill</h3>
 
-<p>Renders the inner shape area. Disabled by default <code>fill: false</code>.</p>
+<p>Renders the inner shape area. Disabled by default <code><span class="comment">fill: false</span></code>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -67,6 +67,24 @@
   </div>
   <div class="example__demo">
     <canvas data-js="shapeOption" data-options='{ "fill": true }'
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>closed</h3>
+
+<p>Closes the path from the last point back to the first. Enabled by default <code><span class="comment">closed: true</span></code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    closed: false
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="shapeOption" data-options='{ "closed": false }'
       class="illo" width="240" height="240"></canvas>
   </div>
 </div>

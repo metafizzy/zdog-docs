@@ -1,27 +1,336 @@
 <h2>Illustration</h2>
 
-<p>Inherits both <code>Anchor</code> and <code>Dragger</code>.</p>
+<p>Handles displaying and rotating a scene on an HTML element. Inherits both <code>Anchor</code> and <code>Dragger</code>. <code>Illustration</code> does several things.</p>
+
+<ul>
+  <li>As an <code>Anchor</code>, it acts as a top level item for all other items in the scene to be added to.</li>
+  <li>It manages rendering items to an HTML element, either a <code>&lt;canvas></code> or an  <code>&lt;svg></code>.</li>
+  <li>It manages the dragging interaction to rotate an item.</li>
+</ul>
 
 {{! --------------------------------------------- }}
 
 <h3>element</h3>
 
+<p>The HTML element to render on, either a <code>&lt;canvas></code> or an  <code>&lt;svg></code>.</p>
+
+``` js
+// set with a selector string
+element: '.zdog-canvas'
+
+// set with an Element
+element: document.querySelector('.zdog-canvas')
+```
+
+<p><code>Illustration</code> requires the initial size of the element be set in its element <code>width</code> and <code>height</code> attributes.</p>
+
+``` html
+<canvas class="zdog-canvas" width="240" height="240"></canvas>
+```
+
+<p>With a <code>&lt;canvas></code> element, <code>Illustration</code> will increase resolution of the <code>&lt;canvas></code> for high pixel density displays.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` html
+    <canvas class="zdog-canvas" width="240" height="240"></canvas>
+    ```
+    ``` js
+    element: '.zdog-canvas'
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" data-js="illoElement"
+      width="240" height="240"></canvas>
+  </div>
+</div>
+
+<div class="example">
+  <div class="example__code">
+    ``` html
+    <svg class="zdog-svg" width="240" height="240"></svg>
+    ```
+    ``` js
+    element: '.zdog-svg'
+    ```
+  </div>
+  <div class="example__demo" style="max-width: 240px;">
+    <svg class="illo" data-js="illoElement" width="240" height="240"></svg>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>translate, rotate, &amp; scale</h3>
+
+<p>As an <code>Anchor</code>, you can sets <a href="#anchor-translate"><code>translate</code></a>, <a href="#anchor-rotate"><code>rotate</code></a>, &amp; <a href="#anchor-scale"><code>scale</code></a> transforms on the <code>Illustration</code>.</p>
+
+<p>Set <code>rotate</code> to set the initial view rotation of the scene.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    rotate: { y: Zdog.TAU/8 }
+    // rotate 45°
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoElement" data-options='{ "rotate": { "y": 0.785 } }'
+      class="illo"  width="240" height="240"></canvas>
+  </div>
+</div>
+
 {{! --------------------------------------------- }}
 
 <h3>zoom</h3>
 
-{{! --------------------------------------------- }}
+<p>Enlargens or shrinks the displayed size of the rendering. Whereas <code>scale</code> will change the size of item geometry, <code>zoom</code> changes item geometry <em>and</em> <a href="#shape-stroke"><code>stroke</code></a> size.</p>
 
-<h3>dragRotate</h3>
+<div class="example">
+  <div class="example__code">
+    ``` js
+    zoom: 1.5
+    // enlargen 150%
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoElement" data-options='{ "zoom": 1.5 }'
+      class="illo"  width="240" height="240"></canvas>
+  </div>
+</div>
 
-<p>With <code>dragRotate</code> enabled, you can then use the <code>onDrag</code> functions: <code>onDragStart</code>, <code>onDragMove</code>, <code>onDragEnd</code></p>
+<div class="example">
+  <div class="example__code">
+    ``` js
+    zoom: 0.5
+    // shrink to 50% size
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoElement" data-options='{ "zoom": 0.5 }'
+      class="illo"  width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}
 
 <h3>centered</h3>
 
+<p>Centers the scene in the element. Enabled by default <code><span class="comment">centered: true</span></code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    centered: false
+    // position scene at 0,0 in top left corner
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoElement" data-options='{ "centered": false }'
+      class="illo"  width="240" height="240"></canvas>
+  </div>
+</div>
+
+
+{{! --------------------------------------------- }}
+
+<h3>dragRotate</h3>
+
+<p>Enables dragging to rotate on an item.</p>
+
+<p>With <code>dragRotate</code> enabled, you can then use <code>Dragger</code> <i>onDrag</i> functions: <a href="#dragger-ondragstart"><code>onDragStart</code></a>, <a href="#dragger-ondragmove"><code>onDragMove</code></a>, <a href="#dragger-ondragend"><code>onDragEnd</code></a></p>
+
+<p>Set <code>dragRotate: true</code> to drag-rotate the <code>Illustration</code>'s item graph.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const illo = new Zdog.Illustration({
+      dragRotate: true,
+      // ...
+    });
+
+    const circle = new Zdog.Ellipse({
+      addTo: illo,
+      // ...
+    });
+    const triangle = new Zdog.Shape({
+      addTo: illo,
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoElement"
+      class="illo"  width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Set <code>dragRotate</code> to an item to drag-rotate that item's graph.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const triangle = new Zdog.Shape({...});
+
+    const illo = new Zdog.Illustration({
+      dragRotate: triangle,
+      // ...
+    });
+    illo.addChild( triangle );
+
+    const circle = new Zdog.Ellipse({
+      addTo: illo,
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoDragRotateItem"
+      class="illo"  width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
+
+<h3>resize</h3>
+
+<p>Enables fluid resizing of element.</p>
+
+<p>With an <code>&lt;canvas></code> element, <code>Illustration</code> will re-set the <code>width</code> and <code>height</code> attributes to match the display size of the element for crisp pixel-perfect display.</p>
+
+<p>Enable <code>resize: true</code> for fluid element resizing.</p>
+
+<div class="example example--stacked">
+  <div class="example__code">
+    ``` html
+    <!-- set initial size and aspect ratio -->
+    <canvas class="zdog-canvas" width="480" height="240"></canvas>
+    ```
+    ``` css
+    .zdog-canvas {
+      display: block;
+      width: 100%;
+    }
+    ```
+    ``` js
+    resize: true
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoResize"
+      class="illo illo--fluid-canvas" width="480" height="240"></canvas>
+  </div>
+</div>
+
+<p>With an <code>&lt;svg></code> element, <code>Illustration</code> will remove <code>width</code> and <code>height</code> attributes, so the <code>&lt;svg></code> will scale up its size proportionally, filling up the width of its parent element — similar behavior to an <code>&lt;img></code> with <code>width: 100%</code>.</p>
+
+<div class="example example--stacked">
+  <div class="example__code">
+    ``` html
+    <svg class="zdog-svg" width="480" height="240"></svg>
+    ```
+    ``` js
+    resize: true
+    ```
+  </div>
+  <div class="example__demo">
+    <svg data-js="illoResize"
+      class="illo" width="480" height="240"></svg>
+  </div>
+</div>
+
+<p>Set <code>resize: <span class='string'>'fullscreen'</span></code> to resize the element to the size of the browser window.</p>
+
+{{! --------------------------------------------- }}
+
+<h3>onResize</h3>
+
+<p>A function triggered when the element is resized. Required <code>resize</code> to be enabled.</p>
+
+``` js
+onResize: function( width, height ) {
+  console.log(`Illo element is ${width} x ${height}`);
+}
+```
+
+<p>Use <code>onResize</code> to proportionally scale <a href="#illustration-zoom"><code>zoom</code></a>.</p>
+
+<div class="example example--stacked">
+  <div class="example__code">
+    ``` js
+    resize: true,
+    onResize: function( width ) {
+      // scale zoom 
+      this.zoom = width / 400;
+    },
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="illoResize" data-onresize="true"
+      class="illo illo--fluid-canvas" width="480" height="240"></canvas>
+  </div>
+</div>
+
+
 {{! --------------------------------------------- }}
 
 <h3>onPrerender</h3>
+
+<p>Function triggered before rendering.</p>
+
+``` js
+onPrerender: function( context ) {
+  // ...
+}
+```
+
+<ul>
+  <li><code>context</code> - the rendering context. For <code>&lt;canvas></code>, the <i>CanvasRenderingContext2D</i>. For <code>&lt;svg></code>, the <code>&lt;svg></code> element.</li>
+</ul>
+
+{{! --------- '[]------------------------------------ }}
+
+<h3>renderGraph()</h3>
+
+<p>Renders an item and its graph to the <code>Illustration</code>'s element.</p>
+
+<p>Call <code>.renderGraph()</code> to render the <code>Illustration</code> item graph.</p>
+
+``` js
+illo.renderGraph()
+```
+
+<p>Pass in an item to render that item.</p>
+
+``` js
+illo.renderGraph( scene )
+```
+
+{{! --------------------------------------------- }}
+
+<h3>updateRenderGraph()</h3>
+
+<p>Combines <a href="#anchor-updategraph"><code>updateGraph()</code></a> and <code>renderGraph()</code> methods — to save you a line of code. Updates and renders an item and its graph to the <code>Illustration</code>'s element.</p>
+
+<p>Call <code>.updateRenderGraph()</code> to render the <code>Illustration</code>'s item graph.</p>
+
+``` js
+illo.updateRenderGraph()
+```
+
+<p>Pass in an item to render that item.</p>
+
+``` js
+illo.updateRenderGraph( scene )
+```
+
+{{! --------------------------------------------- }}
+
+<h3>setSize()</h3>
+
+``` js
+illo.setSize( width, height )
+```
 
 {{! --------------------------------------------- }}

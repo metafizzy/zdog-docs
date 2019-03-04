@@ -35,8 +35,7 @@ ZdogDocs.shapeDemo = function( callback ) {
     callback( canvas, data, illo );
 
     function animate() {
-      illo.updateGraph();
-      illo.renderGraph();
+      illo.updateRenderGraph();
       if ( isAnimating ) {
         requestAnimationFrame( animate );
       }

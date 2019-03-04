@@ -2,6 +2,7 @@ ZdogDocs.groupEye = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
   var eyeGroup = new Zdog.Group({
     addTo: illo,
+    translate: { z: 20 },
   });
 
   // eye white

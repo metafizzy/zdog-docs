@@ -16,6 +16,10 @@
 
 /* ---- .container__main ---- */
 
+.container__main {
+  flex-grow: 1;
+}
+
 .container__main > h1 {
   font-size: 4.0rem;
   line-height: 1.2;

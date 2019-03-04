@@ -2,7 +2,57 @@
 
 <p>Tracks dragging interaction with pointer events. <code>Illustration</code> inherits <code>Dragger</code> which enables <code>dragRotate</code> and use of the <i>onDrag</i> callback functions.</p>
 
-<p>The <code>Dragger</code> class by itself is useful for rendering without an <code>Illustration</code>.</p>
+<p>The <code>Dragger</code> class by itself is useful for dragging interactions outside of <a href="#illustration-dragrotate"><code>Illustration.dragRotate</code></a> or <a href="extras#rendering-without-illustration">rendering without <code>Illustration</code></a>. See <a href="#shape-updatepath"><code>updatePath</code></a> for another Dragger demo.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // use Dragger to rotate shapes separately
+    const circle = new Zdog.Ellipse({...});
+    const triangle = new Zdog.Shape({...});
+    // variables for rotation dragging
+    const viewRotation = new Zdog.Vector();
+    let dragStartRX, dragStartRY;
+
+    new Zdog.Dragger({
+      startElement: illo.element,
+      onDragStart: function() {
+        // highlight on drag start
+        circle.color = garnet;
+        triangle.color = gold;
+        // keep track of rotation
+        dragStartRX = viewRotation.x;
+        dragStartRY = viewRotation.y;
+      },
+      onDragMove: function( pointer, moveX, moveY ) {
+        // move rotation
+        var moveRX = moveY / illo.width * Zdog.TAU * -1;
+        var moveRY = moveX / illo.width * Zdog.TAU * -1;
+        viewRotation.x = dragStartRX + moveRX;
+        viewRotation.y = dragStartRY + moveRY;
+      },
+      onDragEnd: function() {
+        // remove highlight colors on drag end
+        circle.color = eggplant;
+        triangle.color = orange;
+      },
+    });
+
+    function animate() {
+      // rotate shapes
+      circle.rotate.set( viewRotation );
+      triangle.rotate.set( viewRotation );
+      illo.updateRenderGraph();
+      requestAnimationFrame( animate );
+    }
+    animate();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="draggerRotateSync"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}
 
@@ -10,7 +60,13 @@
 
 <p>The element to start dragging on the initial <code>mousedown</code>, <code>pointerdown</code>, or <code>touchstart</code> event.</p>
 
+``` js
+// set with a selector string
+startElement: '.zdog-canvas'
 
+// set with an Element
+startElement: document.querySelector('.zdog-canvas')
+```
 
 {{! --------------------------------------------- }}
 

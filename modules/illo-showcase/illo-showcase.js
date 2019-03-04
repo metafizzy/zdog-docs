@@ -27,8 +27,8 @@ ZdogDocs.illoShowcase = function( elem ) {
   function controlDragMove( pointer, moveX, moveY ) {
     var moveRX = moveY / canvasSize * TAU;
     var moveRY = moveX / canvasSize * TAU;
-    viewRotation.x = dragStartRX + moveRX;
-    viewRotation.y = dragStartRY + moveRY;
+    viewRotation.x = dragStartRX - moveRX;
+    viewRotation.y = dragStartRY - moveRY;
   }
 
   // ------------------------- strutter ------------------------- //
@@ -614,8 +614,7 @@ ZdogDocs.illoShowcase = function( elem ) {
     var initialRotate = initialRotates[i];
     eachRotate.set( viewRotation ).add( initialRotate );
     illo.rotate.set( eachRotate );
-    illo.updateGraph();
-    illo.renderGraph();
+    illo.updateRenderGraph();
   }
 
   animate();

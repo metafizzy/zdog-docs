@@ -6,11 +6,25 @@
   margin: 1.0rem 0;
 }
 
+/* disable flex */
+.example--stacked {
+  display: block;
+}
+
 .example__code {
   flex-grow: 1;
-  margin-right: 20px;
+  margin-right: 1.0rem;
+}
+
+.example--stacked .example__code {
+  margin-right: 0;
+  margin-bottom: 1.0rem;
 }
 
 .example__code pre {
   margin: 0;
+}
+
+.example__code pre + pre {
+  margin-top: 1.0rem;
 }
