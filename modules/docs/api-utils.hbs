@@ -22,6 +22,41 @@ rotate: { y: Zdog.TAU*3 } // *3 = 3 full turns
 
 <h3>easeInOut()</h3>
 
+<p>Apply an in-out easing. Useful for animation.</p>
+
+``` js
+let easeAlpha = Zdog.easeInOut( alpha, power );
+```
+
+<ul>
+  <li><code>alpha</code> - a <i>Number</i> <code>0</code> to <code>1</code>.</li>
+  <li><code>power</code> - the exponential power of the easing curve. Default <code>2</code>.</li>
+</ul>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    var timer = 0;
+
+    function animate() {
+      // apply easing to rotation
+      var alpha = Zdog.easeInOut( timer % 1, 3 );
+      illo.rotate.y = alpha * Zdog.TAU;
+      timer += 1/150; // complete cycle every 150 frames
+
+      illo.updateRenderGraph();
+      requestAnimationFrame( animate );
+    }
+    animate();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo illo--no-drag" data-js="utilsEaseInOut"
+      width="240" height="240"></canvas>
+  </div>
+</div>
+
+
 
 {{! --------------------------------------------- }}
 

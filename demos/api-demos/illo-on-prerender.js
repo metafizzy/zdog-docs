@@ -1,11 +1,9 @@
-ZdogDocs.illoResize = function( elem, data ) {
+ZdogDocs.illoOnPrerender = function( elem ) {
 
   var isAnimating = false;
 
   var illo = new Zdog.Illustration({
     element: elem,
-    zoom: 1.5,
-    resize: true,
     dragRotate: true,
     onDragStart: function() {
       isAnimating = true;
@@ -14,14 +12,10 @@ ZdogDocs.illoResize = function( elem, data ) {
     onDragEnd: function() {
       isAnimating = false;
     },
-    onResize: function( width ) {
-      if ( data.onresize ) {
-        this.zoom = width / 400;
-      }
-      // render on resize because may not be animating
-      if ( this.isCanvas && this.children.length ) {
-        this.updateRenderGraph();
-      }
+    onPrerender: function( ctx ) {
+      ctx.fillStyle = gold;
+      ctx.fillRect( -1, -120, 2, 240 );
+      ctx.fillRect( -120, -1, 240, 2 );
     },
   });
 
@@ -34,7 +28,6 @@ ZdogDocs.illoResize = function( elem, data ) {
       { x: -32, y:  32 },
     ],
     translate: { z: 40 },
-    // rotate: { y: TAU/4 },
     color: orange,
     stroke: 12,
     fill: true,

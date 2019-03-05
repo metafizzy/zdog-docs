@@ -8,6 +8,38 @@
   <li>It manages the dragging interaction to rotate an item.</li>
 </ul>
 
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const illo = new Zdog.Illustration({
+      element: '.zdog-canvas',
+      dragRotate: true,
+    });
+    // add shapes to Illustration
+    // triangle
+    new Zdog.Shape({
+      addTo: illo,
+      // ...
+    });
+    // circle
+    new Zdog.Ellipse({
+      addTo: illo,
+      // ...
+    });
+    // animate
+    function animate() {
+      illo.updateRenderGraph();
+      requestAnimationFrame( animate );
+    }
+    animate();
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" data-js="illoElement"
+      width="240" height="240"></canvas>
+  </div>
+</div>
+
 {{! --------------------------------------------- }}
 
 <h3>element</h3>
@@ -289,7 +321,26 @@ onPrerender: function( context ) {
   <li><code>context</code> - the rendering context. For <code>&lt;canvas></code>, the <i>CanvasRenderingContext2D</i>. For <code>&lt;svg></code>, the <code>&lt;svg></code> element.</li>
 </ul>
 
-{{! --------- '[]------------------------------------ }}
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // with <canvas>
+    onPrerender: function( ctx ) {
+      // render axis lines
+      ctx.fillStyle = '#EA0';
+      // with centered enabled, 0,0 is center of canvas
+      ctx.fillRect( -1, -120, 2, 240 );
+      ctx.fillRect( -120, -1, 240, 2 );
+    },
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas class="illo" data-js="illoOnPrerender"
+      width="240" height="240"></canvas>
+  </div>
+</div>
+
+{{! --------------------------------------------- }}
 
 <h3>renderGraph()</h3>
 
@@ -328,6 +379,8 @@ illo.updateRenderGraph( scene )
 {{! --------------------------------------------- }}
 
 <h3>setSize()</h3>
+
+<p>Sets element size.</p>
 
 ``` js
 illo.setSize( width, height )
