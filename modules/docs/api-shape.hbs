@@ -144,19 +144,12 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const triangle = new Zdog.Shape({
-      path: [
-        // drag to change this first point
-        { x:   0, y: -50 }, 
-        { x:  50, y:  50 },
-        { x: -50, y:  50 },
-      ],
-      // ...
-    });
+    const triangle = new Zdog.Shape({...});
     // get first path point
     const trianglePoint = triangle.path[0];
     const dragStartX, dragStartY;
 
+    // drag to change path point
     new Zdog.Dragger({
       onDragStart: function() {
         dragStartX = trianglePoint.x;
@@ -168,7 +161,6 @@
         // path point changed, updatePath() to apply change
         triangle.updatePath();
       },
-      // ...
     });
     ```
   </div>

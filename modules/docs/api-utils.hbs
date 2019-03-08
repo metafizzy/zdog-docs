@@ -56,7 +56,23 @@ let easeAlpha = Zdog.easeInOut( alpha, power );
   </div>
 </div>
 
+{{! --------------------------------------------- }}
 
+<h3>extend()</h3>
+
+``` js
+Zdog.extend( a, b )
+```
+
+<p>Sets the properties of <i>Object</i> <code>b</code> on to <i>Object</i> <code>a</code>.</p>
+
+``` js
+const optionsA = { stroke: 4, fill: true };
+const optionsB = { color: '#EA0', fill: false };
+
+Zdog.extend( optionsA, optionsB );
+// optionsA = { stroke: 4, color: '#EA0', fill: false }
+```
 
 {{! --------------------------------------------- }}
 

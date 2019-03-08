@@ -1,34 +1,25 @@
-ZdogDocs.modelComplete = function( elem ) {
+ZdogDocs.modelRotateSpine = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
 
-  var isAnimating = false;
-
-  var illo = new Zdog.Illustration({
-    element: elem,
-    zoom: 5,
-    rotate: { y: -TAU/8 },
-    dragRotate: true,
-    onDragStart: function() {
-      isAnimating = true;
-      animate();
-    },
-    onDragEnd: function() {
-      isAnimating = false;
-    },
-  });
+  var step = parseInt( data.step );
+  illo.zoom = 5;
+  illo.rotate.y = -TAU/8;
 
   // ----- model ----- //
 
   var hipX = 3;
-
+  // hips
   var hips = new Zdog.Shape({
     addTo: illo,
     path: [ { x: -hipX }, { x: hipX } ],
     translate: { y: 2 },
-    color: eggplant,
+    rotate: step == 1 ? { x: TAU/8 } : null,
     stroke: 4,
+    color: eggplant,
   });
 
-  var rightLeg = new Zdog.Shape({
+  // ----- legs ----- //
+
+  var leg = new Zdog.Shape({
     addTo: hips,
     path: [ { y: 0 }, { y: 12 } ],
     translate: { x: -hipX },
@@ -36,9 +27,10 @@ ZdogDocs.modelComplete = function( elem ) {
     color: eggplant,
     stroke: 4,
   });
+  
   // foot
   var foot = new Zdog.RoundedRect({
-    addTo: rightLeg,
+    addTo: leg,
     width: 2,
     height: 4,
     cornerRadius: 1,
@@ -49,30 +41,29 @@ ZdogDocs.modelComplete = function( elem ) {
     stroke: 4,
   });
 
-  var plantAngle = -TAU/8;
-  var leftLeg = rightLeg.copy({
+  var standLeg = leg.copy({
     translate: { x: hipX },
-    rotate: { x: plantAngle },
-    color: eggplant,
+    rotate: { x: -TAU/8 },
   });
 
   foot.copy({
-    addTo: leftLeg,
-    rotate: { x: TAU/4 - plantAngle }
+    addTo: standLeg,
+    rotate: { x: -TAU/8 },
   });
+
+  // ----- upper body ----- //
 
   var spine = new Zdog.Anchor({
     addTo: hips,
     rotate: { x: TAU/8 },
   });
 
-  // chest
   var chest = new Zdog.Shape({
-    addTo: spine,
-    path: [ { x: -1.5 }, { x:  1.5 } ],
+    addTo: step >= 2 ? spine : hips,
+    path: [ { x: -1.5 }, { x: 1.5 } ],
     translate: { y: -6.5 },
-    color: garnet,
     stroke: 9,
+    color: garnet,
   });
 
   var head = new Zdog.Shape({
@@ -109,14 +100,16 @@ ZdogDocs.modelComplete = function( elem ) {
     backface: false,
   });
 
+  // ----- arms ----- //
+
   var armSize = 6;
 
-  // right arm
+  // arm on left
   var upperArm = new Zdog.Shape({
     addTo: chest,
     path: [ { y: 0 }, { y: armSize } ],
     translate: { x: -5, y: -2 },
-    rotate: { x: -TAU/4 },
+    rotate: step >= 3 ? { x: -TAU/4 } : null,
     color: eggplant,
     stroke: 4,
   });
@@ -125,7 +118,7 @@ ZdogDocs.modelComplete = function( elem ) {
     addTo: upperArm,
     path: [ { y: 0 }, { y: armSize } ],
     translate: { y: armSize },
-    rotate: { x: TAU/8 },
+    rotate: step >= 4 ? { x: TAU/8 } : null,
     color: gold,
     stroke: 4,
   });
@@ -138,22 +131,10 @@ ZdogDocs.modelComplete = function( elem ) {
     color: gold,
   });
 
-  // left arm
+  // arm on right
   upperArm.copyGraph({
     translate: { x: 5, y: -2 },
-    rotate: { x: TAU/4 },
+    rotate: step >= 3 ? { x: TAU/4 } : null,
   });
 
-  // ----- animate ----- //
-
-  function animate() {
-    illo.updateGraph();
-    illo.renderGraph();
-    if ( isAnimating ) {
-      requestAnimationFrame( animate );
-    }
-  }
-
-  animate();
-
-};
+});

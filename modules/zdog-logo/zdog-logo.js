@@ -24,10 +24,6 @@ ZdogDocs.zdogLogo = function( elem ) {
     },
   });
 
-  var red = '#E62';
-  var gold = '#EA0';
-  var denim = '#636';
-
   var depth = 20;
   var lineWidth = 8;
 
@@ -52,7 +48,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     rotate: { x: TAU/4 },
     fill: true,
     stroke: lineWidth,
-    color: red,
+    color: orange,
   });
   topSide.copy({
     translate: { y: 20 },
@@ -66,7 +62,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     translate: { x: -20, y: -16 },
     rotate: { y: TAU/4 },
     fill: true,
-    color: red,
+    color: orange,
     stroke: lineWidth,
   });
   endCap.copy({
@@ -89,7 +85,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     rotate: { x: -TAU/4 },
     stroke: lineWidth,
     fill: true,
-    color: red,
+    color: orange,
   });
   underside.copy({
     translate: { x: 5, y: 12 },
@@ -108,7 +104,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     rotate: { x: TAU/4, y: slopeAngle },
     stroke: lineWidth,
     fill: true,
-    color: red,
+    color: orange,
   });
 
   slope.copy({
@@ -124,7 +120,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     closed: false,
     translate: { x: 22, y: -4 },
     rotate: { z: TAU/4 },
-    color: red,
+    color: orange,
     stroke: lineWidth,
   });
 
@@ -158,7 +154,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     rotate: { x: TAU/4 - Math.atan(16/22) },
     fill: true,
     stroke: 4,
-    color: denim,
+    color: eggplant,
 
   });
 
@@ -203,7 +199,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     rotate: { y: TAU/4, z: TAU/4 },
     fill: true,
     stroke: 5,
-    color: denim,
+    color: eggplant,
     closed: true,
     // backface: false,
   });
@@ -236,7 +232,6 @@ ZdogDocs.zdogLogo = function( elem ) {
 
   var t = 0;
   var tSpeed = 1/180;
-  // var canvasCenter = illoSize * zoom / 2;
 
   function animate() {
     // update
@@ -249,9 +244,7 @@ ZdogDocs.zdogLogo = function( elem ) {
       }
       t += tSpeed;
     }
-    illo.updateGraph();
-    // render
-    illo.renderGraph();
+    illo.updateRenderGraph();
     // animate next frame
     if ( isAnimating ) {
       requestAnimationFrame( animate );

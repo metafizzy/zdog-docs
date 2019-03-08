@@ -6,9 +6,7 @@ var gulp = require('gulp');
 var site = {
   // templating data
   data: {
-    productName: 'Flickity',
     description: 'Round, flat, designer-friendly pseudo-3D engine',
-    majorVersion: 2,
     dev: process.argv[2] == 'dev',
   },
 };

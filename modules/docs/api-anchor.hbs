@@ -24,6 +24,34 @@ const anchor = new Zdog.Anchor({
 addTo: illo
 ```
 
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // add anchor to illo
+    const anchor = new Zdog.Anchor({
+      addTo: illo,
+    });
+    // add triangle to anchor
+    const triangle = new Zdog.Shape({
+      addTo: anchor,
+      translate: { z: 40 },
+      // ..
+    });
+    // add circle to anchor
+    const circle = new Zdog.Ellipse({
+      addTo: anchor,
+      translate: { z: -40 },
+      // ..
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="anchorTransform"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+
 {{> child-shapes-add-to }}
 
 {{! --------------------------------------------- }}

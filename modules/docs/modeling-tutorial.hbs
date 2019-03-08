@@ -5,7 +5,8 @@
     <p>Modeling with Zdog is done by positioning and combining shapes to make more complex objects. This tutorial will walk through modeling this high-struttin' dude.</p>
   </div>
   <div class="example__demo">
-    <canvas data-js="modelComplete" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="modelRotateSpine" data-step="5"
+      class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
@@ -430,12 +431,226 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <h3>Rotating legs</h3>
 
+<p>Let's kick it. First let's adjust the position and rotation of the figure for better viewing.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const TAU = Zdog.TAU; // easier to read constant
+
+    const illo = new Zdog.Illustration({
+      // rotate for three-quarters view
+      rotate: { y: -TAU/8 },
+      // ...
+    });
+
+    const hips = new Zdog.Shape({
+      // move down a little
+      translate: { y: 2 },
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateLegs" data-step="1"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>The leg on the left needs to be rotated 90°. As a kick would be rotating the leg's horizontal axis, that means rotating around the <code>x</code> axis.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const leg = new Zdog.Shape({
+      addTo: hips,
+      path: [ { y: 0 }, { y: 12 } ],
+      translate: { x: -hipX },
+      // rotate leg
+      rotate: { x: TAU/4 },
+      color: eggplant,
+      stroke: 4,
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateLegs" data-step="2"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>I like to use <a href="api#utilities-tau"><code>TAU</code></a> in to set <code>rotate</code> values. <code>TAU</code> is a full rotation in radians, equal to <code>2 * Math.PI</code>. So <code>TAU/4</code> is a quarter-turn.</p>
+
+<p>Items rotate around their origin. The <code>leg</code>'s origin is its first point, which we set in its path, <code>[ { y: 0 }, { y: 12 } ]</code>.</p>
+
+<p>Both legs are rotated because the leg on the right copied the properties of the left. So let's rotate the right leg to its position.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // leg on left
+    const leg = new Zdog.Shape({
+      translate: { x: -hipX },
+      rotate: { x: TAU/4 },
+      // ...
+    });
+    // foot
+    new Zdog.RoundedRect({
+      addTo: leg,
+      // ...
+    });
+    // leg on right
+    leg.copyGraph({
+      translate: { x: -hipX },
+      rotate: { x: -TAU/8 },
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateLegs" data-step="3"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>The legs are in the place. But the bottom foot needs to look flat on the ground. Again, it's copied over its rotate value from the other foot. So we need to overwrite it.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // kick foot
+    const foot = new Zdog.RoundedRect({
+      addTo: leg,
+      rotate: { x: TAU/4 },
+      // ...
+    });
+    // leg on right
+    const standLeg = leg.copy({
+      translate: { x: -hipX },
+      rotate: { x: -TAU/8 },
+    });
+    // stand foot
+    foot.copy({
+      addTo: standLeg,
+      rotate: { x: -TAU/8 },
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateLegs" data-step="4"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>To separate the feet, we change <code>leg.copyGraph()</code> to <code>leg.copy()</code>. Now the kick <code>foot</code> can be copied, added to <code>standLeg</code>, and have its <code>rotate</code> value set.</p>
+
+<p>And a perfectly normal-looking gait is rendered. So realistic!</p>
+
 {{! --------------------------------------------- }}
 
-<h3>Rotating spine </h3>
+<h3>Rotating spine</h3>
+
+<p>Let's tilt the figure back upper body back by rotating the <code>hips</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const hips = new Zdog.Shape({
+      rotate: { x: TAU/8 },
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateSpine" data-step="1"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Uh oh. By rotating <code>hips</code> the entire figure was rotated — as all the shapes are descendents of <code>hips</code>.</p>
+
+<p>One way to resolve this is by <a href="#concepts-anchors">adding a separate <code>Anchor</code></a> to rotate just the upper body shapes.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // separate anchor just for rotating upper body
+    const spine = new Zdog.Anchor({
+      addTo: hips,
+      rotate: { x: TAU/8 },
+    });
+
+    const chest = new Zdog.Shape({
+      // add chest to spine instead of hips
+      addTo: spine,
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateSpine" data-step="2"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Last step: arms.</p>
 
 {{! --------------------------------------------- }}
 
 <h3>Rotating arms</h3>
 
 {{! --------------------------------------------- }}
+
+<p>The arms can be rotated just like the legs.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    // arm on left
+    const upperArm = new Zdog.Shape({
+      translate: { x: -5, y: -2 },
+      // rotate back 90°
+      rotate: { x: -TAU/4 },
+      // ...
+    });
+
+    // forearm & hand...
+
+    // arm on right
+    upperArm.copyGraph({
+      translate: { x: 5, y: -2 },
+      // rotate forward 90°
+      rotate: { x: TAU/4 },
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateSpine" data-step="3"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Both <code>forearm</code> and hand shapes continue to stick straight away from the <code>upperArm</code>. To bend the elbow, we can rotate <code>forearm</code>.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const forearm = new Zdog.Shape({
+      addTo: upperArm,
+      rotate: { x: TAU/8 },
+      // ...
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="modelRotateSpine" data-step="4"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>We only have to rotate the one forearm as the relative angle of rotation of the forearms compared to their parent upper-arm shapes is the same.</p>
+
+<p>It's done!</p>
+
+<p>Now that the model is complete, try going back and make some changes. How would you rotate the arms for a T-pose? How could you break up the legs into thigh and shin like we did for the arms? What shapes could be used to show an angry face?</p>
+
+<p>This tutorial covers the basic of shape composition with Zdog. Now you're ready to start making your own models. Take a look at <a href="api">API</a> for all of Zdog's functionality and <a href="shapes">Shapes</a> for all the shapes.</p>
