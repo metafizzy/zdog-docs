@@ -1,29 +1,7 @@
-/* globals IntersectionObserver */
-
 ZdogDocs.utilsEaseInOut = function( elem ) {
 
-  var supportIntObs = typeof IntersectionObserver == 'function';
-  var isAnimating = !supportIntObs;
-
-  // ----- IntersectionObserver ----- //
-
-  if ( supportIntObs ) {
-    var obsOptions = {
-      threshold: 0.2,
-    };
-
-    var onIntersect = function( entries ) {
-      var entry = entries[0];
-      isAnimating = entry.intersectionRatio > obsOptions.threshold;
-      if ( isAnimating ) {
-        animate();
-      }
-    };
-
-    var observer = new IntersectionObserver( onIntersect, obsOptions );
-    observer.observe( elem );
-    observer.takeRecords();
-  }
+  // start animation if IntObs not supported
+  var isAnimating = !ZdogDocs.supportsIntObs;
 
   // ----- Zdog ----- //
 
@@ -67,5 +45,17 @@ ZdogDocs.utilsEaseInOut = function( elem ) {
   }
 
   animate();
+
+  // ----- IntersectionObserver ----- //
+
+  ZdogDocs.observeIntersect({
+    element: elem,
+    onIntersect: function( isIntersect ) {
+      isAnimating = isIntersect;
+      if ( isAnimating ) {
+        animate();
+      }
+    }
+  });
 
 };

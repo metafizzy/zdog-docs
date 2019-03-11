@@ -1,4 +1,7 @@
 // boilerplate
+
+/* globals IntersectionObserver */
+
 ( function() {
 
 // global namespace
@@ -44,6 +47,33 @@ ZdogDocs.shapeDemo = function( callback ) {
     animate();
 
   };
+};
+
+// ----- IntersectionObserver ----- //
+
+ZdogDocs.supportsIntObs = typeof IntersectionObserver == 'function';
+
+// ----- IntersectionObserver ----- //
+
+ZdogDocs.observeIntersect = function( options ) {
+  if ( !ZdogDocs.supportsIntObs ) {
+    return;
+  }
+
+  var obsOptions = {
+    threshold: options.threshold || 0.2,
+  };
+
+  var onIntersect = function( entries ) {
+    var entry = entries[0];
+    var isIntersect = entry.intersectionRatio > obsOptions.threshold;
+    options.onIntersect( isIntersect );
+  };
+
+  var observer = new IntersectionObserver( onIntersect, obsOptions );
+  observer.observe( options.element );
+  observer.takeRecords();
+
 };
 
 })();

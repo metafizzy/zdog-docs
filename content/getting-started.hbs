@@ -10,7 +10,7 @@ title: Getting started
 
 {{! --------------------------------------------- }}
 
-<p>Zdog is rendered on a <code>&lt;canvas></code> or <code>&lt;svg></code> element. Set the <code>width</code> and <code>height</code> sizes.</p>
+<p>Zdog is rendered on a <code>&lt;canvas></code> or <code>&lt;svg></code> element. Set <code>width</code> and <code>height</code> attributes to set the size.</p>
 
 ``` html
 <canvas class="zdog-canvas" width="240" height="240"></canvas>
@@ -53,17 +53,18 @@ title: Getting started
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="firstStaticDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+    <canvas data-js="starterInitial"
+      class="illo illo--no-drag" width="240" height="240"></canvas>
   </div>
 </div>
 
-<p>Let&rsquo;s break it down. The Zdog API mostly consists by creating instances of Zdog&rsquo;s classes.</p>
+<p>Let&rsquo;s break it down. The Zdog API mostly consists by creating instances of <a href="api">Zdog&rsquo;s classes</a>.</p>
 
-<p><code>Illustration</code> is the top-level class that handles dealing with the <code>&lt;canvas></code> or <code>&lt;svg></code> element, holding all the shapes in the scene, and displaying those shapes in the element. We hooked up the element by setting the <code>element</code> option to its matching selector <code>'.zdog-canvas'</code>. The <code>Illustration</code> instance is then set as a variable <code>illo</code>.</p>
+<p><a href="api#illustration"><code>Illustration</code></a> is the top-level class that handles dealing with the <code>&lt;canvas></code> or <code>&lt;svg></code> element, holding all the shapes in the scene, and displaying those shapes in the element. We set the rendering HTML element by setting <a href="api#illustration-element"><code>element</code></a> to its matching selector <code>'.zdog-canvas'</code>. The <code>Illustration</code> instance is then set as a variable <code>illo</code>.</p>
 
-<p><code>Ellipse</code> is a shape class. We added it to the scene with <code>addTo: illo</code>. So the circle shape is a child of <code>illo</code> — part of it&rsquo;s <em>graph</em>. We set other options for the circle to set its size, shape, and color: <code>diameter: 80, stroke: 20, color: '#636'.</code></p>
+<p><a href="shapes#ellipse"><code>Ellipse</code></a> is a shape class. We added it to the scene with <a href="api#anchor-addto"><code>addTo: illo</code></a>. So the circle shape is a child of <code>illo</code> — part of it&rsquo;s descendant <em>graph</em>. We set other properties for the circle to set its size, shape, and color: <code>diameter: 80, stroke: 20, color: '#636'.</code></p>
 
-<p>Finally, to display the scene, we call <code>illo.updateRenderGraph()</code>.</p>
+<p>Finally, to display the scene, we call <a href="api#illustration-updaterendergraph"><code>illo.updateRenderGraph()</code></a> to update all the display properties, then render shapes on to the element.</p>
 
 <p>And we get ... a 80px wide purple circle. Exciting!</p>
 
@@ -77,8 +78,8 @@ title: Getting started
   <div class="example__code">
     ``` js
     function animate() {
-      // rotate illo
-      illo.rotate.y += 0.04;
+      // rotate illo each frame
+      illo.rotate.y += 0.03;
       illo.updateRenderGraph();
       // animate next frame
       requestAnimationFrame( animate );
@@ -88,13 +89,14 @@ title: Getting started
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="animatingDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+    <canvas data-js="starterInitial" data-spin="true"
+      class="illo illo--no-drag" width="240" height="240"></canvas>
   </div>
 </div>
 
 <p>So we wrap <code>illo.updateRenderGraph()</code> within a <code>requestAnimationFrame</code> loop. Now we can manipulate the scene and see its changes animated. We change the rotation of the scene by incrementally increasing <code>illo.rotate.y</code>.</p>
 
-<p>And now the animated circle is ... kind of lame. It <em>is</em> rotating, but being all alone and sitting in direct center, the visual effect is weak. Let's add another shape, a <code>Rect</code>, and position the shapes in 3D space.</p>
+<p>And now the animated circle is ... kind of lame. It <em>is</em> rotating, but being all alone and sitting in direct center, the visual effect is weak. Let's add another shape, a <a href="shapes#rect"><code>Rect</code></a>, and position the shapes in 3D space.</p>
 
 <div class="example">
   <div class="example__code">
@@ -123,17 +125,18 @@ title: Getting started
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="positioningDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+    <canvas data-js="starterRect"
+      class="illo illo--no-drag" width="240" height="240"></canvas>
   </div>
 </div>
 
-<p>Now we're cooking. The shapes are positioned by setting <code>translate</code>. The circle has <code>translate: { z: 40 }</code>, so its original position is moved 40 pixels closer up front. The square is 40 pixels further back. The shapes are separated from another so, when rotating, they orbit around the center. More on positioning with <code>translate</code> later.</p>
+<p>Now we're cooking. The shapes are positioned by setting <a href="api#anchor-translate"><code>translate</code></a>. The circle has <code>translate: { z: 40 }</code>, so its original position is moved 40 pixels closer up front. The square is 40 pixels further back. The shapes are separated from another so, when rotating, they orbit around the center.</p>
 
 {{! --------------------------------------------- }}
 
 <h2>Zoom</h2>
 
-<p>Zdog requires setting lots of numbers. I like to keep my numbers smaller. Setting <code>zoom</code> will scale the whole scene proportionally.</p>
+<p>Zdog requires setting lots of numbers. I like to keep my numbers smaller. Setting <a href="api#illustration-zoom"><code>zoom</code></a> will scale the whole scene proportionally.</p>
 
 <div class="example">
   <div class="example__code">
@@ -161,7 +164,8 @@ title: Getting started
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="zoomDemo" class="illo illo--no-drag" width="240" height="240"></canvas>
+    <canvas data-js="starterZoom"
+      class="illo illo--no-drag" width="240" height="240"></canvas>
   </div>
 </div>
 
@@ -183,7 +187,8 @@ title: Getting started
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="dragRotateTut1" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="starterDragRotate"
+      class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
@@ -219,7 +224,8 @@ title: Getting started
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="dragRotateTut2" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="starterDragRotate" data-spin="true"
+      class="illo" width="240" height="240"></canvas>
   </div>
 </div>
 
