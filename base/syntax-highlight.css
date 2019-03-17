@@ -10,6 +10,7 @@ code .attribute, /* HTML attribute */
 code .attr { color: #818; } /* JS Object key */
 code .title  { color: #39A; }
 code .params  { color: #98D; }
+code .subst { color: #081; } /* JS substring `${substr}` */
 
 /* comment */
 code .comment { color: #999; font-style: italic; }

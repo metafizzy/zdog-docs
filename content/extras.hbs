@@ -164,6 +164,185 @@ title: Extras
 
 {{! --------------------------------------------- }}
 
+<h3>Rendering with canvas without Illustration</h3>
+
+
+``` js
+// ----- setup ----- //
+
+// get canvas element and its context
+const canvas = document.querySelector('.zdog-canvas');
+const ctx = canvas.getContext('2d');
+// get canvas size
+let canvasWidth = canvas.width;
+let canvasHeight = canvas.height;
+// illustration variables
+let zoom = 4;
+let isSpinning = true;
+
+// create an scene Anchor to hold all items
+const scene = new Zdog.Anchor();
+
+// ----- model ----- //
+
+// add shapes to scene
+new Zdog.Shape({
+  addTo: scene,
+  //...
+});
+
+new Zdog.Ellipse({
+  addTo: scene,
+  //...
+});
+
+// ----- animate ----- //
+
+function animate() {
+  // make changes to model, like rotating scene
+  scene.rotate.y += isSpinning ? 0.03 : 0;
+  scene.updateGraph();
+  render();
+  requestAnimationFrame( animate );
+}
+
+function render() {
+  // clear canvas
+  ctx.clearRect( 0, 0, canvasWidth, canvasHeight );
+  ctx.save();
+  // center canvas & zoom
+  ctx.translate( canvasWidth/2, canvasHeight/2 );
+  ctx.scale( zoom, zoom );
+  // set lineJoin and lineCap to round
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  // render scene graph
+  scene.renderGraphCanvas( ctx );
+  ctx.restore();
+}
+
+animate();
+
+// ----- drag ----- //
+
+let dragStartRX, dragStartRY;
+let minSize = Math.min( canvasWidth, canvasHeight );
+
+// add drag-rotatation with Dragger
+new Zdog.Dragger({
+  startElement: canvas,
+  onDragStart: function() {
+    isSpinning = false;
+    dragStartRX = scene.rotate.x;
+    dragStartRY = scene.rotate.y;
+  },
+  onDragMove: function( pointer, moveX, moveY ) {
+    scene.rotate.x = dragStartRX - ( moveY / minSize * Zdog.TAU );
+    scene.rotate.y = dragStartRY - ( moveX / minSize * Zdog.TAU );
+  },
+});
+```
+
+{{! --------------------------------------------- }}
+
+<h3>Rendering with SVG without Illustration</h3>
+
+``` js
+// ----- setup ----- //
+
+// get svg element
+const svg = document.querySelector('svg');
+// rendering sizes
+const zoom = 8;
+const viewWidth = 48 * zoom;
+const viewHeight = 48 * zoom;
+// set viewBox using zoom
+svg.setAttribute( 'viewBox', `${-viewWidth/2}  ${-viewHeight/2} ` +
+  `${viewWidth} ${viewHeight}` );
+// rendering variable
+let isSpinning = true;
+
+// create an scene Anchor to hold all items
+const scene = new Zdog.Anchor();
+
+// ----- model ----- //
+
+// add shapes to scene
+new Zdog.Shape({
+  addTo: scene,
+  //...
+});
+
+new Zdog.Ellipse({
+  addTo: scene,
+  //...
+});
+
+// ----- animate ----- //
+
+function animate() {
+  scene.rotate.y += isSpinning ? +TAU/150 : 0;
+  scene.updateGraph();
+  render();
+  requestAnimationFrame( animate );
+}
+
+function render() {
+  empty( svg );
+  scene.renderGraphSvg( svg );
+}
+
+animate();
+
+function empty( element ) {
+  while ( element.firstChild ) {
+    element.removeChild( element.firstChild );
+  }
+}
+
+// ----- drag ----- //
+
+// click drag to rotate
+let dragStartRX, dragStartRY;
+let minSize = Math.min( viewWidth, viewHeight );
+
+// add drag-rotatation with Dragger
+new Zdog.Dragger({
+  startElement: svg,
+  onDragStart: function() {
+    isSpinning = false;
+    dragStartRX = scene.rotate.x;
+    dragStartRY = scene.rotate.y;
+  },
+  onDragMove: function( pointer, moveX, moveY ) {
+    scene.rotate.x = dragStartRX - ( moveY / minSize * Zdog.TAU );
+    scene.rotate.y = dragStartRY - ( moveX / minSize * Zdog.TAU );
+  },
+});
+```
+
+{{! --------------------------------------------- }}
+
 <h2>Canvas or SVG</h2>
+
+<p>Should you use <code>&lt;canvas&gt;</code> or <code>&lt;svg&gt;</code>? Visually, canvas and SVG output the same exact image with Zdog. But in practice, they each have their benefits.</p>
+
+<p><strong>Canvas</strong> is better for lots of shapes and smaller image sizes. Canvas renders on a flat image, so it doesn't have to manage a DOM. But its rendered with pixels, so it can be slower with larger sizes — particularly with high-resolution screens.</p>
+
+<p><strong>SVG</strong> is better for fewer shapes and larger image images. SVG is a vector format, so its resolution independent, perfect for large image sizes. However, all shapes have to be rendered and sorted with individual DOM elements, which can negatively impact performance and get your fan spinning.</p>
+
+{{! --------------------------------------------- }}
+
+<h2>Requesed features</h2>
+
+<p>Help me select new features by adding your 👍 reaction to <a href="https://github.com/metafizzy/zdog/labels/feature%20request">GitHub issues for features</a> you would like to see added. Hotly requested features include:</p>
+
+<ul>
+  <li>Perspective</li>
+  <li><code>quarters</code> option for <code>Hemisphere</code>, <code>Cylinder</code>, and <code>Cone</code> wedge shapes.</li>
+  <li><code>backface</code> for <code>Group</code></li>
+  <li><code>addTo</code> option to add items to named <code>path</code> points, for easier bone-to-bone modeling.</li>
+  <li><code>name</code> option for items so items can be accessed via parent, useful with <a href="api#anchor-copygraph"><code>copyGraph</code></a>.</li>
+</ul>
 
 {{! --------------------------------------------- }}
