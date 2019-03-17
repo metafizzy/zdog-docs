@@ -8,17 +8,80 @@ title: Extras
 
 <h2>Z-fighting</h2>
 
-{{! --------------------------------------------- }}
+<div class="example">
+  <div class="example__code">
+    <p><a href="https://en.wikipedia.org/wiki/Z-fighting">Z-fighting</a> is when two shapes pop-over one another as they appear to fight for position. In polygonal 3D engines, z-fighting happens when two polygons are coplanar. In Zdog, z-fighting happens when any shapes occupy the same space.</p>
+  </div>
+  <div class="example__demo">
+    <canvas data-js="zFightIntro" data-step="1"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
-<h3>Intentional z-fighting</h3>
+<p>Z-fighting in Zdog is the natural result of its pseudo-3D engine. Zdog's 3D shapes are actually 2D projections, rendered without any accounting for collisions with other shapes.</p>
 
-{{! --------------------------------------------- }}
+<p>Rather than fighting against this effect, the best course is to accept it. Z-fighting is one of Zdog's <em>charms</em>. <strong>Embrace it.</strong></p>
 
-<h3>Unintentional z-fighting</h3>
+<p>That said, there are some techniques to address z-fighting.</p>
 
-{{! --------------------------------------------- }}
+<div class="example">
+  <div class="example__code">
+    <p>A simple solution is to use the same color for multiple shapes.</p>
+  </div>
+  <div class="example__demo">
+    <canvas data-js="zFightIntro" data-step="3"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
-<h3>Using Group</h3>
+<div class="example">
+  <div class="example__code">
+    <p>For shapes of similar size, move the shapes away from one another so their <a href="modeling#concepts-stroke-volume">stroke volume</a> do not overlap.</p>
+  </div>
+  <div class="example__demo">
+    <canvas data-js="zFightIntro" data-step="2"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<div class="example">
+  <div class="example__code">
+    <p>Use a <a href="api#group"><code>Group</code></a> for groups of shapes that collectively cover the same area as a larger shape. In this demo, the gold dots are in a <code>Group</code>, whereas the purple dots are individual shapes.</p>
+  </div>
+  <div class="example__demo">
+    <canvas data-js="zFightDotSandwich"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>Use a <code>Shape</code> with <code>visible: false</code> in a <code>Group</code> to balance out its z-index.  <code>Shape</code> z-index is calculated as the average of all the shape's path points. <code>Group</code> z-index is calcuated as the average of all the grouped shapes' z-indexes. So you can affect the z-index of a <code>Group</code> by adding or moving invisible shapes.</p>
+
+<p>In the demo below, the gold dot has a counter-balanced invisible shape in its group.</p>
+
+<div class="example">
+  <div class="example__code">
+    ``` js
+    const group = new Zdog.Group({...});
+    // dot
+    new Zdog.Shape({
+      addTo: group,
+      stroke: 20,
+      translate: { x: 45, y: -45 },
+      color: '#EA0',
+    });
+    // invisible Shape to counter-balance group z-index
+    new Zdog.Shape({
+      addTo: group,
+      visible: false,
+      translate: { x: -45, y: 45 },
+    });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="zFightDotCracker"
+      class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
 
 {{! --------------------------------------------- }}
 
