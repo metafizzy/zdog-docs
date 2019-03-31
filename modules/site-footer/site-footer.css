@@ -1,0 +1,27 @@
+/* site-footer
+------------------------- */
+
+.site-footer {
+  margin: 4rem 0 3rem;
+  display: block;
+}
+
+.site-footer__mfzy-link {
+  display: inline-block;
+}
+
+.site-footer__brought  {
+  display: inline-block;
+  font-size: 1.2rem;
+  vertical-align: middle;
+  padding-bottom: 1.2rem;
+  padding-right: 0.5rem;
+}
+
+.mfzy-wordmark {
+  stroke: #C25;
+}
+
+.site-footer__mfzy-link:hover .mfzy-wordmark {
+  stroke: #333;
+}
