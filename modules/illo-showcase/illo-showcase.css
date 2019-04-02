@@ -6,5 +6,8 @@
   margin: 20px 0;
 }
 
-.illo-showcase__illo { margin-right: 10px; }
+.illo-showcase__illo {
+  width: calc((100% - 30px) / 4);
+  margin-right: 10px;
+}
 .illo-showcase__illo:last-child { margin-right: 0; }
