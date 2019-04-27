@@ -9,7 +9,7 @@
 }
 
 .container__sidebar {
-  flex-basis: 170px;
+  flex-basis: 180px;
   flex-shrink: 0;
   margin-right: 30px;
 }

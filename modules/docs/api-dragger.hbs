@@ -26,8 +26,8 @@
       },
       onDragMove: function( pointer, moveX, moveY ) {
         // move rotation
-        var moveRX = moveY / illo.width * Zdog.TAU * -1;
-        var moveRY = moveX / illo.width * Zdog.TAU * -1;
+        const moveRX = moveY / illo.width * Zdog.TAU * -1;
+        const moveRY = moveX / illo.width * Zdog.TAU * -1;
         viewRotation.x = dragStartRX + moveRX;
         viewRotation.y = dragStartRY + moveRY;
       },

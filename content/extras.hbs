@@ -162,10 +162,15 @@ title: Extras
 
 <h2>Rendering without Illustration</h2>
 
+<p>You can render Zdog models without using <a href="api#illustration"><code>Illustration</code></a>, in the case you are directly using a <code>&lt;canvas&gt;</code> or <code>&lt;svg&gt;</code> and prefer to handle managing the element yourself.</p>
+
+<p>The demos below work by using a generic <a href="api#anchor"><code>Anchor</code></a> as the <code>scene</code> object. The <code>scene</code>'s graph is then updated with <a href="api#anchor-updategraph"><code>updateGraph</code></a> and rotated by dragging with a <a href="api#dragger"><code>Dragger</code></a>.</p>
+
 {{! --------------------------------------------- }}
 
 <h3>Rendering with canvas without Illustration</h3>
 
+<p>Render the <code>scene</code>'s graph on a <code>&lt;canvas&gt;</code> with <a href="api#anchor-rendergraphcanvas"><code>renderGraphCanvas</code></a>. Additional code is required to prepare the canvas for rendering.</p>
 
 ``` js
 // ----- setup ----- //
@@ -247,6 +252,8 @@ new Zdog.Dragger({
 
 <h3>Rendering with SVG without Illustration</h3>
 
+<p>Render the scene's graph on a <code>&lt;svg&gt;</code> with <a href="api#anchor-rendergraphsvg"><code>renderGraphSvg</code></a>. Additional code is required to prepare the SVG for rendering.</p>
+
 ``` js
 // ----- setup ----- //
 
@@ -281,7 +288,7 @@ new Zdog.Ellipse({
 // ----- animate ----- //
 
 function animate() {
-  scene.rotate.y += isSpinning ? +TAU/150 : 0;
+  scene.rotate.y += isSpinning ? 0.03 : 0;
   scene.updateGraph();
   render();
   requestAnimationFrame( animate );
@@ -325,11 +332,11 @@ new Zdog.Dragger({
 
 <h2>Canvas or SVG</h2>
 
-<p>Should you use <code>&lt;canvas&gt;</code> or <code>&lt;svg&gt;</code>? Visually, canvas and SVG output the same exact image with Zdog. But in practice, they each have their benefits.</p>
+<p>Should you use <code>&lt;canvas&gt;</code> or <code>&lt;svg&gt;</code>? Visually, canvas and SVG output the same exact image with Zdog. In practice, they each have their benefits.</p>
 
-<p><strong>Canvas</strong> is better for lots of shapes and smaller image sizes. Canvas renders on a flat image, so it doesn't have to manage a DOM. But its rendered with pixels, so it can be slower with larger sizes — particularly with high-resolution screens.</p>
+<p><strong>Canvas is better for lots of shapes and smaller image sizes</strong>. Canvas renders on a flat image, so it doesn't have to manage a DOM. But its rendered with pixels, so it can be slower with larger sizes — particularly with high-resolution screens.</p>
 
-<p><strong>SVG</strong> is better for fewer shapes and larger image images. SVG is a vector format, so its resolution independent, perfect for large image sizes. However, all shapes have to be rendered and sorted with individual DOM elements, which can negatively impact performance and get your fan spinning.</p>
+<p><strong>SVG is better for fewer shapes and larger image sizes.</strong> SVG is a vector format, so its resolution independent, perfect for large image sizes. However, all shapes have to be rendered and sorted with individual DOM elements, which can negatively impact performance and get your fan spinning.</p>
 
 {{! --------------------------------------------- }}
 

@@ -1,15 +1,9 @@
 ZdogDocs.illoShowcase = function( elem ) {
 
-  var TAU = Zdog.TAU;
   var isSpinning = true;
   var canvasSize = 180;
   // colors
   var white = 'white';
-  var yellow = '#ED0';
-  var gold = '#EA0';
-  var orange = '#E62';
-  var garnet = '#C25';
-  var eggplant = '#636';
   var midnight = '#424';
 
   var illos = [];
@@ -42,8 +36,12 @@ ZdogDocs.illoShowcase = function( elem ) {
     var illo = new Zdog.Illustration({
       element: canvas,
       zoom: zoom,
+      resize: true,
       rotate: { y: -TAU/8 },
       translate: { y: 4 },
+      onResize: function( width ) {
+        this.zoom = width / 180 * zoom;
+      },
     });
 
     illos.push( illo );
@@ -201,11 +199,16 @@ ZdogDocs.illoShowcase = function( elem ) {
 
     var canvas = elem.querySelector('.illo-showcase__illo--2');
     // var illoSize = 9;
+    var zoom = 26;
 
     var illo = new Zdog.Illustration({
       element: canvas,
-      zoom: 26,
+      zoom: zoom,
+      resize: true,
       rotate: { x: (35/360) * TAU, y: TAU/8 },
+      onResize: function( width ) {
+        this.zoom = width / 180 * zoom;
+      },
     });
     illos.push( illo );
 
@@ -309,7 +312,11 @@ ZdogDocs.illoShowcase = function( elem ) {
     var illo = new Zdog.Illustration({
       element: canvas,
       zoom: zoom,
+      resize: true,
       rotate: { x: -TAU/8 },
+      onResize: function( width ) {
+        this.zoom = width / 180 * zoom;
+      },
     });
     illos.push( illo );
 
@@ -405,15 +412,17 @@ ZdogDocs.illoShowcase = function( elem ) {
     
     var canvas = elem.querySelector('.illo-showcase__illo--4');
     // var illoSize = 96;
+    var zoom = 2;
 
     var illo = new Zdog.Illustration({
       element: canvas,
-      zoom: 2,
+      zoom: zoom,
       rotate: { y: -TAU/8 },
       dragRotate: true,
-      onDragStart: function() {
-        isSpinning = false;
-      }
+      resize: true,
+      onResize: function( width ) {
+        this.zoom = width / 180 * zoom;
+      },
     });
     illos.push( illo );
 

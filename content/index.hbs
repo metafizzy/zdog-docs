@@ -49,7 +49,6 @@ homepage: true
 
     const illo = new Zdog.Illustration({
       element: '.zdog-canvas',
-      zoom: 4,
       dragRotate: true,
       // stop spinning when drag starts
       onDragStart: function() {
@@ -60,19 +59,19 @@ homepage: true
     // circle
     new Zdog.Ellipse({
       addTo: illo,
-      diameter: 20,
-      translate: { z: 10 },
-      stroke: 5,
+      diameter: 80,
+      translate: { z: 40 },
+      stroke: 20,
       color: '#636',
     });
 
     // square
     new Zdog.Rect({
       addTo: illo,
-      width: 20,
-      height: 20,
-      translate: { z: -10 },
-      stroke: 3,
+      width: 80,
+      height: 80,
+      translate: { z: -40 },
+      stroke: 12,
       color: '#E62',
       fill: true,
     });

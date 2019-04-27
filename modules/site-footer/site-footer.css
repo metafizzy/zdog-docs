@@ -8,13 +8,14 @@
 
 .site-footer__mfzy-link {
   display: inline-block;
+  border-radius: 8px;
 }
 
 .site-footer__brought  {
   display: inline-block;
   font-size: 1.2rem;
-  vertical-align: middle;
-  padding-bottom: 1.2rem;
+  vertical-align: top;
+  padding-top: 0.4rem;
   padding-right: 0.5rem;
 }
 
