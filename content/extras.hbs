@@ -89,7 +89,51 @@ title: Extras
 
 {{! --------------------------------------------- }}
 
-<h3>Hemisphere, Cone, &amp; Cone scale bug</h3>
+<h3>Hemisphere, Cylinder, &amp; Cone scale bug</h3>
+
+<p>Due to Zdog&rsquo;s underlying math, <code>Hemisphere</code>, <code>Cylinder</code>, and <code>Cone</code> shapes cannot be scaled with a 1- or 2-dimensional <code>Vector</code>.</p>
+
+<div class="example" data-js="evalShapeDemo">
+  <div class="example__code">
+    ``` js
+    const anchor = new Zdog.Anchor({
+      // 1-dimensional scale
+      // will break Hemisphere, Cone, & Cylinder
+      scale: { x: 2 },
+    });
+
+    new Zdog.Hemisphere({ addTo: anchor, /*...*/ });
+    new Zdog.Cylinder({ addTo: anchor, /*...*/ });
+    new Zdog.Cone({ addTo: anchor, /*...*/ });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="compositeScaleBug" data-scale='{ "x": 2 }'
+        class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
+<p>However, uniform <code>Vector</code> options will still work.</p>
+
+<div class="example" data-js="evalShapeDemo">
+  <div class="example__code">
+    ``` js
+    const anchor = new Zdog.Anchor({
+      // uniform scale, will be okay
+      scale: 2,
+    });
+
+    new Zdog.Hemisphere({ addTo: anchor, /*...*/ });
+    new Zdog.Cylinder({ addTo: anchor, /*...*/ });
+    new Zdog.Cone({ addTo: anchor, /*...*/ });
+    ```
+  </div>
+  <div class="example__demo">
+    <canvas data-js="compositeScaleBug" data-scale='2'
+        class="illo" width="240" height="240"></canvas>
+  </div>
+</div>
+
 
 {{! --------------------------------------------- }}
 
