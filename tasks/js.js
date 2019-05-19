@@ -37,7 +37,7 @@ gulp.task( 'js', function() {
   return gulp.src( jsSrc )
     .pipe( uglify() )
     .pipe( concat('zdog-docs.min.js') )
-    .pipe( gulp.dest('build/assets') );
+    .pipe( gulp.dest('build') );
 });
 
 module.exports = function( site ) {
