@@ -1,23 +1,6 @@
-ZdogDocs.zFightDotSandwich = function( elem ) {
+ZdogDocs.zFightDotSandwich = ZdogDocs.spinDemo( function( canvas, data, illo ) {
 
-  var isSpinning = true;
-  var isDragging = false;
-  var didDrag = false;
-
-  var illo = new Zdog.Illustration({
-    element: elem,
-    rotate: { x: -TAU/16 },
-    dragRotate: true,
-    onDragStart: function() {
-      isSpinning = false;
-      isDragging = true;
-      didDrag = true;
-      animate();
-    },
-    onDragEnd: function() {
-      isDragging = false;
-    },
-  });
+  illo.rotate.x = -TAU/16;
 
   new Zdog.Rect({
     addTo: illo,
@@ -55,34 +38,4 @@ ZdogDocs.zFightDotSandwich = function( elem ) {
 
   });
 
-  function animate() {
-    if ( isSpinning ) {
-      illo.rotate.y += 0.03;
-    }
-    illo.updateRenderGraph();
-    if ( isSpinning || isDragging ) {
-      requestAnimationFrame( animate );
-    }
-  }
-
-  // ----- IntersectionObserver ----- //
-
-  // start animation if no IntObs
-  if ( !ZdogDocs.supportsIntObs ) {
-    animate();
-  }
-
-  ZdogDocs.observeIntersect({
-    element: elem,
-    onIntersect: function( isIntersect ) {
-      if ( didDrag ) {
-        return;
-      }
-      isSpinning = isIntersect;
-      if ( isSpinning ) {
-        animate();
-      }
-    }
-  });
-
-};
+});

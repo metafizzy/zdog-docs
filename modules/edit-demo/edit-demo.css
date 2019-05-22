@@ -1,0 +1,27 @@
+/* edit-demo
+------------------------- */
+
+.edit-demo {
+  margin: 8px 0;
+}
+
+.edit-demo a {
+  display: block;
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: none !important;
+  font-size: 0.9rem;
+}
+
+.edit-demo .codepen-icon {
+  vertical-align: top;
+  stroke: #E62;
+}
+
+.edit-demo a:visited .codepen-icon {
+  stroke: #C25;
+}
+
+.edit-demo a:hover .codepen-icon {
+  stroke: #636;
+}

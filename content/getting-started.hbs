@@ -19,7 +19,7 @@ title: Getting started
 <p>Add the Zdog JavaScript file to your page. For quick demos, add the CDN URL. Finally add a <code>&lt;script></code> for your demo&rsquo;s JS file.</p>
 
 ``` html
-<script src="https://unpkg.com/zdog@1/dist/zdog.pkgd.min.js"></script>
+<script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
 <script src="zdog-demo.js"></script>
 ```
 
@@ -54,7 +54,8 @@ title: Getting started
   </div>
   <div class="example__demo">
     <canvas data-js="starterInitial"
-      class="illo illo--no-drag" width="240" height="240"></canvas>
+        class="illo illo--no-drag" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="RmLyyq"}}
   </div>
 </div>
 
@@ -90,7 +91,8 @@ title: Getting started
   </div>
   <div class="example__demo">
     <canvas data-js="starterInitial" data-spin="true"
-      class="illo illo--no-drag" width="240" height="240"></canvas>
+        class="illo illo--no-drag" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="YbrLvO"}}
   </div>
 </div>
 
@@ -126,7 +128,8 @@ title: Getting started
   </div>
   <div class="example__demo">
     <canvas data-js="starterRect"
-      class="illo illo--no-drag" width="240" height="240"></canvas>
+        class="illo illo--no-drag" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="vwejaQ"}}
   </div>
 </div>
 
@@ -157,7 +160,7 @@ title: Getting started
     new Zdog.Rect({
       width: 20,
       height: 20,
-      translate: { z: 10 },
+      translate: { z: -10 },
       stroke: 3,
       ...
     });
@@ -165,7 +168,8 @@ title: Getting started
   </div>
   <div class="example__demo">
     <canvas data-js="starterZoom"
-      class="illo illo--no-drag" width="240" height="240"></canvas>
+        class="illo illo--no-drag" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="qGPYMo"}}
   </div>
 </div>
 
@@ -188,7 +192,8 @@ title: Getting started
   </div>
   <div class="example__demo">
     <canvas data-js="starterDragRotate"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="EzwLdw"}}
   </div>
 </div>
 
@@ -225,7 +230,8 @@ title: Getting started
   </div>
   <div class="example__demo">
     <canvas data-js="starterDragRotate" data-spin="true"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="YbrLaO"}}
   </div>
 </div>
 

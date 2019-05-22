@@ -1,24 +1,8 @@
-ZdogDocs.zFightIntro = function( elem, data ) {
+ZdogDocs.zFightIntro = ZdogDocs.spinDemo( function( canvas, data, illo ) {
   
   var step = parseInt( data.step );
-  var isSpinning = true;
-  var isDragging = false;
-  var didDrag = false;
 
-  var illo = new Zdog.Illustration({
-    element: elem,
-    rotate: { x: -TAU/16 },
-    dragRotate: true,
-    onDragStart: function() {
-      isSpinning = false;
-      isDragging = true;
-      didDrag = true;
-      animate();
-    },
-    onDragEnd: function() {
-      isDragging = false;
-    },
-  });
+  illo.rotate.x = -TAU/16;
 
   var distance = step == 2 ? 80 / Math.sqrt(2) : 40;
 
@@ -30,53 +14,22 @@ ZdogDocs.zFightIntro = function( elem, data ) {
   });
   dot.copy({
     translate: { x: -distance },
-    color: step == 3 ? eggplant : gold,
+    color: step == 3 ? null : gold,
   });
   dot.copy({
     translate: { z: distance },
-    color: step == 3 ? eggplant : garnet,
+    color: step == 3 ? null : garnet,
   });
   dot.copy({
     translate: { x: distance },
-    color: step == 3 ? eggplant : orange,
+    color: step == 3 ? null : orange,
   });
   dot.copy({
     translate: { z: -distance },
-    color: step == 3 ? eggplant : garnet,
+    color: step == 3 ? null : garnet,
   });
   dot.copy({
     translate: { y: distance },
-    color: eggplant,
   });
 
-  function animate() {
-    if ( isSpinning ) {
-      illo.rotate.y += 0.03;
-    }
-    illo.updateRenderGraph();
-    if ( isSpinning || isDragging ) {
-      requestAnimationFrame( animate );
-    }
-  }
-
-  // ----- IntersectionObserver ----- //
-
-  // start animation if no IntObs
-  if ( !ZdogDocs.supportsIntObs ) {
-    animate();
-  }
-
-  ZdogDocs.observeIntersect({
-    element: elem,
-    onIntersect: function( isIntersect ) {
-      if ( didDrag ) {
-        return;
-      }
-      isSpinning = isIntersect;
-      if ( isSpinning ) {
-        animate();
-      }
-    }
-  });
-
-};
+});

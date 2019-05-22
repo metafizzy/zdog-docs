@@ -1,4 +1,4 @@
-ZdogDocs.compositeScaleBug = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
+ZdogDocs.compositeScaleBug = ZdogDocs.spinDemo( function( canvas, data, illo ) {
 
   var anchor = new Zdog.Anchor({
     addTo: illo,
@@ -8,7 +8,7 @@ ZdogDocs.compositeScaleBug = ZdogDocs.shapeDemo( function( canvas, data, illo ) 
   new Zdog.Hemisphere({
     addTo: anchor,
     diameter: 30,
-    translate: { x: -35 },
+    translate: { y: -35 },
     color: garnet,
     backface: gold,
     stroke: false,
@@ -27,7 +27,7 @@ ZdogDocs.compositeScaleBug = ZdogDocs.shapeDemo( function( canvas, data, illo ) 
     addTo: anchor,
     diameter: 30,
     length: 30,
-    translate: { x: 35 },
+    translate: { y: 35 },
     color: eggplant,
     backface: garnet,
     stroke: false,

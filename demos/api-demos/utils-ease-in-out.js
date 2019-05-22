@@ -32,12 +32,15 @@ ZdogDocs.utilsEaseInOut = function( elem ) {
     color: eggplant,
   });
 
-  var timer = 0;
+  var ticker = 0;
+  var cycleCount = 150;
 
   function animate() {
-    var alpha = Zdog.easeInOut( timer % 1, 3 );
-    illo.rotate.y = alpha * TAU;
-    timer += 1/150; // complete cycle every 150 frames
+    var progress = ticker / cycleCount;
+    // apply easing to rotation
+    var tween = Zdog.easeInOut( progress % 1, 3 );
+    illo.rotate.y = tween * Zdog.TAU;
+    ticker++;
     illo.updateRenderGraph();
     if ( isAnimating ) {
       requestAnimationFrame( animate );

@@ -76,4 +76,62 @@ ZdogDocs.observeIntersect = function( options ) {
 
 };
 
+// ----- spinDemo ----- //
+
+ZdogDocs.spinDemo = function( callback ) {
+  return function( canvas, data ) {
+
+    var isSpinning = true;
+    var isDragging = false;
+    var didDrag = false;
+
+    var illo = new Zdog.Illustration({
+      element: canvas,
+      dragRotate: true,
+      onDragStart: function() {
+        isSpinning = false;
+        isDragging = true;
+        didDrag = true;
+        animate();
+      },
+      onDragEnd: function() {
+        isDragging = false;
+      },
+    });
+
+    callback( canvas, data, illo );
+
+    function animate() {
+      if ( isSpinning ) {
+        illo.rotate.y += 0.03;
+      }
+      illo.updateRenderGraph();
+      if ( isSpinning || isDragging ) {
+        requestAnimationFrame( animate );
+      }
+    }
+
+    // ----- IntersectionObserver ----- //
+
+    // start animation if no IntObs
+    if ( !ZdogDocs.supportsIntObs ) {
+      animate();
+    }
+
+    ZdogDocs.observeIntersect({
+      element: canvas,
+      onIntersect: function( isIntersect ) {
+        if ( didDrag ) {
+          return;
+        }
+        isSpinning = isIntersect;
+        if ( isSpinning ) {
+          animate();
+        }
+      }
+    });
+
+  };
+};
+
 })();

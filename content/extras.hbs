@@ -14,7 +14,8 @@ title: Extras
   </div>
   <div class="example__demo">
     <canvas data-js="zFightIntro" data-step="1"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="QRmWgd"}}
   </div>
 </div>
 
@@ -30,7 +31,8 @@ title: Extras
   </div>
   <div class="example__demo">
     <canvas data-js="zFightIntro" data-step="3"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="GaxRMg"}}
   </div>
 </div>
 
@@ -40,7 +42,8 @@ title: Extras
   </div>
   <div class="example__demo">
     <canvas data-js="zFightIntro" data-step="2"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="mYxdqd"}}
   </div>
 </div>
 
@@ -50,7 +53,8 @@ title: Extras
   </div>
   <div class="example__demo">
     <canvas data-js="zFightDotSandwich"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="wbmvpW"}}
   </div>
 </div>
 
@@ -79,7 +83,8 @@ title: Extras
   </div>
   <div class="example__demo">
     <canvas data-js="zFightDotCracker"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="OYvJQN"}}
   </div>
 </div>
 
@@ -99,7 +104,7 @@ title: Extras
     const anchor = new Zdog.Anchor({
       // 1-dimensional scale
       // will break Hemisphere, Cone, & Cylinder
-      scale: { x: 2 },
+      scale: { y: 2 },
     });
 
     new Zdog.Hemisphere({ addTo: anchor, /*...*/ });
@@ -108,8 +113,9 @@ title: Extras
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="compositeScaleBug" data-scale='{ "x": 2 }'
+    <canvas data-js="compositeScaleBug" data-scale='{ "y": 2 }'
         class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="oRqNqO"}}
   </div>
 </div>
 
@@ -131,6 +137,7 @@ title: Extras
   <div class="example__demo">
     <canvas data-js="compositeScaleBug" data-scale='2'
         class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="RmMwJN"}}
   </div>
 </div>
 
@@ -160,6 +167,7 @@ title: Extras
   </div>
   <div class="example__demo">
     <canvas class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="qGoByv"}}
   </div>
 </div>
 
@@ -171,13 +179,15 @@ title: Extras
     // with an Illustration without zoom set
 
     new Zdog.Box({
-      stroke: 1, // 1px stroke
+      // 1px stroke to cover edge-to-edge gaps
+      stroke: 1,
       // ...
     });
     ```
   </div>
   <div class="example__demo">
     <canvas data-js="onePixelGapFix" class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="OYvJoX"}}
   </div>
 </div>
 
@@ -198,7 +208,9 @@ title: Extras
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="onePixelGapFixZoom" class="illo" width="240" height="240"></canvas>
+    <canvas data-js="onePixelGapFixZoom"
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="qGoBMw"}}
   </div>
 </div>
 
@@ -214,7 +226,7 @@ title: Extras
 
 <h3>Rendering with canvas without Illustration</h3>
 
-<p>Render the <code>scene</code>'s graph on a <code>&lt;canvas&gt;</code> with <a href="api#anchor-rendergraphcanvas"><code>renderGraphCanvas</code></a>. Additional code is required to prepare the canvas for rendering.</p>
+<p>Render the <code>scene</code>'s graph on a <code>&lt;canvas&gt;</code> with <a href="api#anchor-rendergraphcanvas"><code>renderGraphCanvas</code></a>. Additional code is required to prepare the canvas for rendering. <a href="https://codepen.io/desandro/pen/MdVWzV">View this demo on CodePen.</a></p>
 
 ``` js
 // ----- setup ----- //
@@ -291,12 +303,13 @@ new Zdog.Dragger({
   },
 });
 ```
+{{> edit-demo penSlug="MdVWzV"}}
 
 {{! --------------------------------------------- }}
 
 <h3>Rendering with SVG without Illustration</h3>
 
-<p>Render the scene's graph on a <code>&lt;svg&gt;</code> with <a href="api#anchor-rendergraphsvg"><code>renderGraphSvg</code></a>. Additional code is required to prepare the SVG for rendering.</p>
+<p>Render the scene's graph on a <code>&lt;svg&gt;</code> with <a href="api#anchor-rendergraphsvg"><code>renderGraphSvg</code></a>. Additional code is required to prepare the SVG for rendering. <a href="https://codepen.io/desandro/pen/OYvJqb">View this demo on CodePen.</a></p>
 
 ``` js
 // ----- setup ----- //
@@ -304,9 +317,13 @@ new Zdog.Dragger({
 // get svg element
 const svg = document.querySelector('svg');
 // rendering sizes
-const zoom = 8;
-const viewWidth = 48 * zoom;
-const viewHeight = 48 * zoom;
+const zoom = 4;
+const sceneWidth = 16;
+const sceneHeight = 16;
+let viewWidth = sceneWidth * zoom;
+let viewHeight = sceneHeight * zoom;
+let svgWidth = svg.getAttribute('width');
+let svgHeight = svg.getAttribute('height');
 // set viewBox using zoom
 svg.setAttribute( 'viewBox', `${-viewWidth/2}  ${-viewHeight/2} ` +
   `${viewWidth} ${viewHeight}` );
@@ -355,7 +372,7 @@ function empty( element ) {
 
 // click drag to rotate
 let dragStartRX, dragStartRY;
-let minSize = Math.min( viewWidth, viewHeight );
+let minSize = Math.min( svgWidth, svgHeight );
 
 // add drag-rotatation with Dragger
 new Zdog.Dragger({
@@ -371,6 +388,7 @@ new Zdog.Dragger({
   },
 });
 ```
+{{> edit-demo penSlug="OYvJqb"}}
 
 {{! --------------------------------------------- }}
 
@@ -384,7 +402,7 @@ new Zdog.Dragger({
 
 {{! --------------------------------------------- }}
 
-<h2>Requesed features</h2>
+<h2>Feature requests</h2>
 
 <p>Help me select new features by adding your 👍 reaction to <a href="https://github.com/metafizzy/zdog/labels/feature%20request">GitHub issues for features</a> you would like to see added. Hotly requested features include:</p>
 

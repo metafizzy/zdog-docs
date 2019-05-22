@@ -30,7 +30,6 @@ ZdogDocs.anchorTransform = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
       { x: -32, y:  32 },
     ],
     translate: { z: 40 },
-    // rotate: { y: TAU/4 },
     color: orange,
     stroke: 12,
     fill: true,

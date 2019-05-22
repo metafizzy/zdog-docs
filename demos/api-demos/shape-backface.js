@@ -1,4 +1,6 @@
-ZdogDocs.shapeBackface = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
+ZdogDocs.shapeBackface = ZdogDocs.spinDemo( function( canvas, data, illo ) {
+
+  illo.rotate.x = -TAU/16;
 
   var rotor = new Zdog.Anchor({
     addTo: illo,

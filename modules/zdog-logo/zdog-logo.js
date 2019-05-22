@@ -27,7 +27,7 @@ ZdogDocs.zdogLogo = function( elem ) {
   var depth = 20;
   var lineWidth = 8;
 
-  // -- illustration shapes --- //
+  // ----- model ----- //
 
   var bigGroup = new Zdog.Group({
     addTo: illo,
@@ -64,16 +64,19 @@ ZdogDocs.zdogLogo = function( elem ) {
     fill: true,
     color: orange,
     stroke: lineWidth,
-  });
-  endCap.copy({
-    translate: { x: -20,  y: 16 },
-  });
-  endCap.copy({
-    translate: { x: 20,  y: -16 },
-    rotate: { y: -TAU/4 },
+    backface: false,
   });
   endCap.copy({
     translate: { x: 20,  y: 16 },
+    rotate: { y: -TAU/4 },
+  });
+
+  var cornerCap = endCap.copy({
+    height: 10,
+    translate: { x: -20, y: 15 },
+  });
+  cornerCap.copy({
+    translate: { x: 20, y: -15 },
     rotate: { y: -TAU/4 },
   });
 
@@ -100,15 +103,16 @@ ZdogDocs.zdogLogo = function( elem ) {
     addTo: backGroup,
     width: Math.sqrt( slopeH*slopeH + slopeW*slopeW ),
     height: depth,
-    translate: { x: -5 },
+    translate: { x: -5, y: -1 },
     rotate: { x: TAU/4, y: slopeAngle },
     stroke: lineWidth,
     fill: true,
     color: orange,
+    backface: false,
   });
 
   slope.copy({
-    translate: { x: 5, y: 0 },
+    translate: { x: 5, y: 1 },
     rotate: { x: -TAU/4, y: -slopeAngle },
   });
 
@@ -130,6 +134,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     addTo: backGroup,
     translate: { x: -6, y: -7 },
     rotate: {  y: TAU/4  },
+
   });
 
   var tongueH = 12;
@@ -228,7 +233,7 @@ ZdogDocs.zdogLogo = function( elem ) {
     scale: { z: -1 },
   });
 
-  // -- animate --- //
+  // ----- animate ----- //
 
   var t = 0;
   var tSpeed = 1/180;

@@ -18,8 +18,8 @@
       startElement: illo.element,
       onDragStart: function() {
         // highlight on drag start
-        circle.color = garnet;
-        triangle.color = gold;
+        circle.color = '#C25';
+        triangle.color = '#EA0';
         // keep track of rotation
         dragStartRX = viewRotation.x;
         dragStartRY = viewRotation.y;
@@ -33,8 +33,8 @@
       },
       onDragEnd: function() {
         // remove highlight colors on drag end
-        circle.color = eggplant;
-        triangle.color = orange;
+        circle.color = '#636';
+        triangle.color = '#E62';
       },
     });
 
@@ -50,7 +50,8 @@
   </div>
   <div class="example__demo">
     <canvas data-js="draggerRotateSync"
-      class="illo" width="240" height="240"></canvas>
+        class="illo" width="240" height="240"></canvas>
+    {{> edit-demo penSlug="zQPyZq"}}
   </div>
 </div>
 

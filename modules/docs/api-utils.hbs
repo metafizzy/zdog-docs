@@ -13,9 +13,11 @@ Zdog.TAU // => 6.28318
 <p>A full rotation in radians. <code>Math.PI * 2</code>. <code>TAU</code> is more user-friendly than <code>PI</code> as <code>TAU</code> maps directly to a full rotation.</p>
 
 ``` js
-rotate: { y: Zdog.TAU/4 } // /4 = quarter turn
-rotate: { y: Zdog.TAU/2 } // /2 = half turn
-rotate: { y: Zdog.TAU*3 } // *3 = 3 full turns
+const TAU = Zdog.TAU;
+
+rotate: { y: TAU/4 } // /4 = quarter turn
+rotate: { y: TAU/2 } // /2 = half turn
+rotate: { y: TAU*3 } // *3 = 3 full turns
 ```
 
 {{! --------------------------------------------- }}
@@ -36,13 +38,15 @@ let easeAlpha = Zdog.easeInOut( alpha, power );
 <div class="example">
   <div class="example__code">
     ``` js
-    var timer = 0;
+    let ticker = 0;
+    const cycleCount = 150;
 
     function animate() {
+      let progress = ticker / cycleCount;
       // apply easing to rotation
-      var alpha = Zdog.easeInOut( timer % 1, 3 );
-      illo.rotate.y = alpha * Zdog.TAU;
-      timer += 1/150; // complete cycle every 150 frames
+      let tween = Zdog.easeInOut( progress % 1, 3 );
+      illo.rotate.y = tween * Zdog.TAU;
+      ticker++;
 
       illo.updateRenderGraph();
       requestAnimationFrame( animate );
@@ -52,7 +56,8 @@ let easeAlpha = Zdog.easeInOut( alpha, power );
   </div>
   <div class="example__demo">
     <canvas class="illo illo--no-drag" data-js="utilsEaseInOut"
-      width="240" height="240"></canvas>
+        width="240" height="240"></canvas>
+    {{> edit-demo penSlug="arVXdE"}}
   </div>
 </div>
 

@@ -48,14 +48,10 @@ ZdogDocs.tastyBurger = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
     color: topBun.color,
   });
 
-  // var seedAnchor = new Zdog.Anchor({
-  //   addTo: burger,
-  //   translate: topBun.translate,
-  // });
   var seedAnchor = new Zdog.Anchor({
     addTo: topBun,
   });
-  
+
   var seedZ = ( topBun.diameter + topBun.stroke ) / 2 + 1;
   // seed
   new Zdog.Shape({
