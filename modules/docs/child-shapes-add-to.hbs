@@ -3,19 +3,19 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const zCircle = new Zdog.Ellipse({
+    let zCircle = new Zdog.Ellipse({
       addTo: illo,
       translate: { z: 40 }, // z +40 from illo
       // ...
     });
 
-    const xRect = new Zdog.Rect({
+    let xRect = new Zdog.Rect({
       addTo: zCircle,
       translate: { x: 40 }, // x +40 from zCircle
       // ...
     });
 
-    const yTri = new Zdog.Polygon({
+    let yTri = new Zdog.Polygon({
       addTo: xRect,
       translate: { y: -60 }, // y -60 from xRect
       // ...

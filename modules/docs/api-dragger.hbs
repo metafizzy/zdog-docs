@@ -8,10 +8,10 @@
   <div class="example__code">
     ``` js
     // use Dragger to rotate shapes separately
-    const circle = new Zdog.Ellipse({...});
-    const triangle = new Zdog.Shape({...});
+    let circle = new Zdog.Ellipse({...});
+    let triangle = new Zdog.Shape({...});
     // variables for rotation dragging
-    const viewRotation = new Zdog.Vector();
+    let viewRotation = new Zdog.Vector();
     let dragStartRX, dragStartRY;
 
     new Zdog.Dragger({
@@ -26,8 +26,8 @@
       },
       onDragMove: function( pointer, moveX, moveY ) {
         // move rotation
-        const moveRX = moveY / illo.width * Zdog.TAU * -1;
-        const moveRY = moveX / illo.width * Zdog.TAU * -1;
+        let moveRX = moveY / illo.width * Zdog.TAU * -1;
+        let moveRY = moveX / illo.width * Zdog.TAU * -1;
         viewRotation.x = dragStartRX + moveRX;
         viewRotation.y = dragStartRY + moveRY;
       },

@@ -9,16 +9,16 @@ title: API
 <p>Zdog's API consists mostly of creating and using instances of its classes.</p>
 
 ``` js
-const illo = new Zdog.Illustration({
+let illo = new Zdog.Illustration({
   element: '.zdog-canvas',
 });
 
-const anchor = new Zdog.Anchor({
+let anchor = new Zdog.Anchor({
   addTo: illo,
   translate: { y: 10 },
 });
 
-const rect = new Zdog.Rect({
+let rect = new Zdog.Rect({
   addTo: anchor,
 });
 
@@ -32,7 +32,7 @@ illo.updateRenderGraph();
 <p>Set initial properties with an object.</p>
 
 ``` js
-const rect = new Zdog.Rect({
+let rect = new Zdog.Rect({
   addTo: illo,
   width: 80,
   height: 60,

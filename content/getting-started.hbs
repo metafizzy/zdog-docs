@@ -35,7 +35,7 @@ title: Getting started
     // zdog-demo.js
 
     // create illo
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       // set canvas with selector
       element: '.zdog-canvas',
     });
@@ -144,7 +144,7 @@ title: Getting started
 <div class="example">
   <div class="example__code">
     ``` js
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       element: '.zdog-canvas',
       // zoom up 4x
       zoom: 4,
@@ -182,7 +182,7 @@ title: Getting started
 <div class="example">
   <div class="example__code">
     ``` js
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       element: '.zdog-canvas',
       zoom: 4,
       // enable rotating scene with dragging
@@ -205,7 +205,7 @@ title: Getting started
     // rotating flag variable
     let isSpinning = true;
 
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       element: '.zdog-canvas',
       zoom: 4,
       dragRotate: true,

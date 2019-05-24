@@ -11,19 +11,19 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const zCircle = new Zdog.Ellipse({
+    let zCircle = new Zdog.Ellipse({
       addTo: illo,
       translate: { z: 40 }, // z +40 from illo
       // ...
     });
 
-    const xRect = new Zdog.Rect({
+    let xRect = new Zdog.Rect({
       addTo: illo,
       translate: { x: 40 }, // x +40 from illo
       // ...
     });
 
-    const yTri = new Zdog.Polygon({
+    let yTri = new Zdog.Polygon({
       addTo: illo,
       translate: { y: -60 }, // y -60 from illo
       // ...
@@ -44,7 +44,7 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const zCircle = new Zdog.Ellipse({
+    let zCircle = new Zdog.Ellipse({
       addTo: illo,
       scale: 1.5, // scale 150%
       translate: { z: 40 },
@@ -52,14 +52,14 @@
       // ...
     });
 
-    const xRect = new Zdog.Rect({
+    let xRect = new Zdog.Rect({
       addTo: zCircle,
       translate: { x: 40 },
       rotate: { x: Zdog.TAU/8 }, // rotate back
       // ...
     });
 
-    const yTri = new Zdog.Polygon({
+    let yTri = new Zdog.Polygon({
       addTo: xRect,
       translate: { y: -60 },
       // ...
@@ -84,20 +84,20 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const zAnchor = new Zdog.Anchor({
+    let zAnchor = new Zdog.Anchor({
       addTo: illo,
       scale: 1.5,
       translate: { z: 40 },
       rotate: { z: -Zdog.TAU/8 },
     });
 
-    const xAnchor = new Zdog.Anchor({
+    let xAnchor = new Zdog.Anchor({
       addTo: zAnchor,
       translate: { x: 40 },
       rotate: { x: Zdog.TAU/8 },
     });
 
-    const yTri = new Zdog.Polygon({
+    let yTri = new Zdog.Polygon({
       addTo: xAnchor,
       translate: { y: -60 },
       // ...

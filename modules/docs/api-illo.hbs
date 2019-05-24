@@ -11,7 +11,7 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       element: '.zdog-canvas',
       dragRotate: true,
     });
@@ -182,16 +182,16 @@ element: document.querySelector('.zdog-canvas')
 <div class="example">
   <div class="example__code">
     ``` js
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       dragRotate: true,
       // ...
     });
 
-    const circle = new Zdog.Ellipse({
+    let circle = new Zdog.Ellipse({
       addTo: illo,
       // ...
     });
-    const triangle = new Zdog.Shape({
+    let triangle = new Zdog.Shape({
       addTo: illo,
       // ...
     });
@@ -209,15 +209,15 @@ element: document.querySelector('.zdog-canvas')
 <div class="example">
   <div class="example__code">
     ``` js
-    const triangle = new Zdog.Shape({...});
+    let triangle = new Zdog.Shape({...});
 
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       dragRotate: triangle,
       // ...
     });
     illo.addChild( triangle );
 
-    const circle = new Zdog.Ellipse({
+    let circle = new Zdog.Ellipse({
       addTo: illo,
       // ...
     });

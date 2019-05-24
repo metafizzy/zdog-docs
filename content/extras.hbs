@@ -65,7 +65,7 @@ title: Extras
 <div class="example">
   <div class="example__code">
     ``` js
-    const group = new Zdog.Group({...});
+    let group = new Zdog.Group({...});
     // dot
     new Zdog.Shape({
       addTo: group,
@@ -101,7 +101,7 @@ title: Extras
 <div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
-    const anchor = new Zdog.Anchor({
+    let anchor = new Zdog.Anchor({
       // 1-dimensional scale
       // will break Hemisphere, Cone, & Cylinder
       scale: { y: 2 },
@@ -124,7 +124,7 @@ title: Extras
 <div class="example" data-js="evalShapeDemo">
   <div class="example__code">
     ``` js
-    const anchor = new Zdog.Anchor({
+    let anchor = new Zdog.Anchor({
       // uniform scale, will be okay
       scale: 2,
     });
@@ -195,7 +195,7 @@ title: Extras
   <div class="example__code">
     ``` js
     // with an Illustration with zoom set
-    const illo = new Illustration({
+    let illo = new Illustration({
       zoom: 4,
       // ...
     });
@@ -232,17 +232,18 @@ title: Extras
 // ----- setup ----- //
 
 // get canvas element and its context
-const canvas = document.querySelector('.zdog-canvas');
-const ctx = canvas.getContext('2d');
+let canvas = document.querySelector('.zdog-canvas');
+let ctx = canvas.getContext('2d');
 // get canvas size
 let canvasWidth = canvas.width;
 let canvasHeight = canvas.height;
 // illustration variables
-let zoom = 4;
+const TAU = Zdog.TAU;
+const zoom = 4;
 let isSpinning = true;
 
 // create an scene Anchor to hold all items
-const scene = new Zdog.Anchor();
+let scene = new Zdog.Anchor();
 
 // ----- model ----- //
 
@@ -298,8 +299,8 @@ new Zdog.Dragger({
     dragStartRY = scene.rotate.y;
   },
   onDragMove: function( pointer, moveX, moveY ) {
-    scene.rotate.x = dragStartRX - ( moveY / minSize * Zdog.TAU );
-    scene.rotate.y = dragStartRY - ( moveX / minSize * Zdog.TAU );
+    scene.rotate.x = dragStartRX - ( moveY / minSize * TAU );
+    scene.rotate.y = dragStartRY - ( moveX / minSize * TAU );
   },
 });
 ```
@@ -315,11 +316,11 @@ new Zdog.Dragger({
 // ----- setup ----- //
 
 // get svg element
-const svg = document.querySelector('svg');
+let svg = document.querySelector('svg');
 // rendering sizes
 const zoom = 4;
-const sceneWidth = 16;
-const sceneHeight = 16;
+let sceneWidth = 16;
+let sceneHeight = 16;
 let viewWidth = sceneWidth * zoom;
 let viewHeight = sceneHeight * zoom;
 let svgWidth = svg.getAttribute('width');
@@ -328,10 +329,11 @@ let svgHeight = svg.getAttribute('height');
 svg.setAttribute( 'viewBox', `${-viewWidth/2}  ${-viewHeight/2} ` +
   `${viewWidth} ${viewHeight}` );
 // rendering variable
+const TAU = Zdog.TAU;
 let isSpinning = true;
 
 // create an scene Anchor to hold all items
-const scene = new Zdog.Anchor();
+let scene = new Zdog.Anchor();
 
 // ----- model ----- //
 
@@ -383,8 +385,8 @@ new Zdog.Dragger({
     dragStartRY = scene.rotate.y;
   },
   onDragMove: function( pointer, moveX, moveY ) {
-    scene.rotate.x = dragStartRX - ( moveY / minSize * Zdog.TAU );
-    scene.rotate.y = dragStartRY - ( moveX / minSize * Zdog.TAU );
+    scene.rotate.x = dragStartRX - ( moveY / minSize * TAU );
+    scene.rotate.y = dragStartRY - ( moveX / minSize * TAU );
   },
 });
 ```

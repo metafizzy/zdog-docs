@@ -20,7 +20,7 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       element: elem,
       zoom: 10,
       dragRotate: true,
@@ -28,7 +28,7 @@
 
     // ---- model ---- //
 
-    const head = new Zdog.Shape({
+    let head = new Zdog.Shape({
       addTo: illo,
       stroke: 12,
       color: gold,
@@ -55,7 +55,7 @@
 <div class="example">
   <div class="example__code">
     ``` js
-    const eye = new Zdog.Ellipse({
+    let eye = new Zdog.Ellipse({
       addTo: head,
       diameter: 2,
       quarters: 2, // semi-circle
@@ -80,7 +80,7 @@
   <div class="example__code">
     ``` js
     // eye on left
-    const eye = new Zdog.Ellipse({
+    let eye = new Zdog.Ellipse({
       addTo: head,
       diameter: 2,
       quarters: 2,
@@ -148,7 +148,7 @@ translate: { x: 2, y: 1, z: 4.5 }
     // illo zoom: 5
     // remove head for now
 
-    const hips = new Zdog.Shape({
+    let hips = new Zdog.Shape({
       addTo: illo,
       path: [ { x: -3 }, { x: 3 } ],
       stroke: 4,
@@ -171,7 +171,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const chest = new Zdog.Shape({
+    let chest = new Zdog.Shape({
       addTo: hips,
       path: [ { x: -1.5 }, { x: 1.5 } ],
       // position right above hips
@@ -195,7 +195,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const head = new Zdog.Shape({
+    let head = new Zdog.Shape({
       addTo: chest,
       stroke: 12,
       // position above chest
@@ -217,14 +217,14 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       zoom: 5,
       // rotate for three-quarters view
       rotate: { y: -Zdog.TAU/8 },
       // ...
     });
 
-    const hips = new Zdog.Shape({
+    let hips = new Zdog.Shape({
       addTo: illo,
       // tilt back 45°
       rotate: { x: Zdog.TAU/8 },
@@ -250,14 +250,14 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const hipX = 3;
+    let hipX = 3;
 
-    const hips = new Zdog.Shape({
+    let hips = new Zdog.Shape({
       path: [ { x: -hipX }, { x: hipX } ],
       // ...
     });
 
-    const leg = new Zdog.Shape({
+    let leg = new Zdog.Shape({
       addTo: hips,
       path: [ { y: 0 }, { y: 12 } ],
       translate: { x: -hipX },
@@ -354,7 +354,7 @@ translate: { x: 2, y: 1, z: 4.5 }
     var armSize = 6;
 
     // left arm
-    const upperArm = new Zdog.Shape({
+    let upperArm = new Zdog.Shape({
       addTo: chest,
       path: [ { y: 0 }, { y: armSize } ],
       translate: { x: -5, y: -2 },
@@ -374,7 +374,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const forearm = new Zdog.Shape({
+    let forearm = new Zdog.Shape({
       addTo: upperArm,
       path: [ { y: 0 }, { y: armSize } ],
       translate: { y: armSize },
@@ -444,13 +444,13 @@ translate: { x: 2, y: 1, z: 4.5 }
     ``` js
     const TAU = Zdog.TAU; // easier to read constant
 
-    const illo = new Zdog.Illustration({
+    let illo = new Zdog.Illustration({
       // rotate for three-quarters view
       rotate: { y: -TAU/8 },
       // ...
     });
 
-    const hips = new Zdog.Shape({
+    let hips = new Zdog.Shape({
       // move down a little
       translate: { y: 2 },
       // ...
@@ -468,7 +468,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const leg = new Zdog.Shape({
+    let leg = new Zdog.Shape({
       addTo: hips,
       path: [ { y: 0 }, { y: 12 } ],
       translate: { x: -hipX },
@@ -495,7 +495,7 @@ translate: { x: 2, y: 1, z: 4.5 }
   <div class="example__code">
     ``` js
     // leg on left
-    const leg = new Zdog.Shape({
+    let leg = new Zdog.Shape({
       translate: { x: -hipX },
       rotate: { x: TAU/4 },
       // ...
@@ -524,13 +524,13 @@ translate: { x: 2, y: 1, z: 4.5 }
   <div class="example__code">
     ``` js
     // kick foot
-    const foot = new Zdog.RoundedRect({
+    let foot = new Zdog.RoundedRect({
       addTo: leg,
       rotate: { x: TAU/4 },
       // ...
     });
     // leg on right
-    const standLeg = leg.copy({
+    let standLeg = leg.copy({
       translate: { x: -hipX },
       rotate: { x: -TAU/8 },
     });
@@ -561,7 +561,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const hips = new Zdog.Shape({
+    let hips = new Zdog.Shape({
       rotate: { x: TAU/8 },
       // ...
     });
@@ -581,12 +581,12 @@ translate: { x: 2, y: 1, z: 4.5 }
   <div class="example__code">
     ``` js
     // separate anchor just for rotating upper body
-    const spine = new Zdog.Anchor({
+    let spine = new Zdog.Anchor({
       addTo: hips,
       rotate: { x: TAU/8 },
     });
 
-    const chest = new Zdog.Shape({
+    let chest = new Zdog.Shape({
       // add chest to spine instead of hips
       addTo: spine,
       // ...
@@ -614,7 +614,7 @@ translate: { x: 2, y: 1, z: 4.5 }
   <div class="example__code">
     ``` js
     // arm on left
-    const upperArm = new Zdog.Shape({
+    let upperArm = new Zdog.Shape({
       translate: { x: -5, y: -2 },
       // rotate back 90°
       rotate: { x: -TAU/4 },
@@ -642,7 +642,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 <div class="example">
   <div class="example__code">
     ``` js
-    const forearm = new Zdog.Shape({
+    let forearm = new Zdog.Shape({
       addTo: upperArm,
       rotate: { x: TAU/8 },
       // ...

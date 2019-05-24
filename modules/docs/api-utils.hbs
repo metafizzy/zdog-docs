@@ -13,7 +13,7 @@ Zdog.TAU // => 6.28318
 <p>A full rotation in radians. <code>Math.PI * 2</code>. <code>TAU</code> is more user-friendly than <code>PI</code> as <code>TAU</code> maps directly to a full rotation.</p>
 
 ``` js
-const TAU = Zdog.TAU;
+const TAU = Zdog.TAU; // easier to read constant
 
 rotate: { y: TAU/4 } // /4 = quarter turn
 rotate: { y: TAU/2 } // /2 = half turn
@@ -39,7 +39,7 @@ let easeAlpha = Zdog.easeInOut( alpha, power );
   <div class="example__code">
     ``` js
     let ticker = 0;
-    const cycleCount = 150;
+    let cycleCount = 150;
 
     function animate() {
       let progress = ticker / cycleCount;
@@ -72,8 +72,8 @@ Zdog.extend( a, b )
 <p>Sets the properties of <i>Object</i> <code>b</code> on to <i>Object</i> <code>a</code>.</p>
 
 ``` js
-const optionsA = { stroke: 4, fill: true };
-const optionsB = { color: '#EA0', fill: false };
+let optionsA = { stroke: 4, fill: true };
+let optionsB = { color: '#EA0', fill: false };
 
 Zdog.extend( optionsA, optionsB );
 // optionsA = { stroke: 4, color: '#EA0', fill: false }

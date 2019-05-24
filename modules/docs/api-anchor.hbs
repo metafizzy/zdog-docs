@@ -9,7 +9,7 @@
 <p>The <code>Anchor</code> class itself is an invisible item. <a href="modeling#concepts-anchors">Anchors are useful for collecting related shapes and transforming them together.</a></p>
 
 ``` js
-const anchor = new Zdog.Anchor({
+let anchor = new Zdog.Anchor({
   // options
 });
 ```
@@ -28,17 +28,17 @@ addTo: illo
   <div class="example__code">
     ``` js
     // add anchor to illo
-    const anchor = new Zdog.Anchor({
+    let anchor = new Zdog.Anchor({
       addTo: illo,
     });
     // add triangle to anchor
-    const triangle = new Zdog.Shape({
+    let triangle = new Zdog.Shape({
       addTo: anchor,
       translate: { z: 40 },
       // ..
     });
     // add circle to anchor
-    const circle = new Zdog.Ellipse({
+    let circle = new Zdog.Ellipse({
       addTo: anchor,
       translate: { z: -40 },
       // ..
@@ -184,11 +184,11 @@ addTo: illo
 <p>Adds child item. <code>addChild()</code> is useful for moving a child item to a new parent, or  creating an item without <a href="#anchor-addto"><code>addTo</code></a>.</p>
 
 ``` js
-const anchor = new Zdog.Anchor({
+let anchor = new Zdog.Anchor({
   // ...
 });
 
-const shape = new Zdog.Shape({
+let shape = new Zdog.Shape({
   // no addTo
 });
 // add shape to anchor
@@ -202,7 +202,7 @@ anchor.addChild( shape );
 <p>Removes child item</p>
 
 ``` js
-const shape = new Zdog.Shape({
+let shape = new Zdog.Shape({
   addTo: anchor,
 });
 
@@ -216,7 +216,7 @@ anchor.removeChild( shape );
 <p>Removes item from parent.</p>
 
 ``` js
-const shape = new Zdog.Shape({
+let shape = new Zdog.Shape({
   addTo: anchor,
 });
 
@@ -248,10 +248,10 @@ anchor.renderGraphCanvas( ctx );
 </ul>
 
 ``` js
-const canvas = document.querySelector('.zdog-canvas');
-const ctx = canvas.getContext('2d');
+let canvas = document.querySelector('.zdog-canvas');
+let ctx = canvas.getContext('2d');
 
-const scene = new Anchor();
+let scene = new Anchor();
 // add some shapes...
 
 scene.updateGraph();
@@ -274,9 +274,9 @@ anchor.renderGraphSvg( element );
 </ul>
 
 ``` js
-const svg = document.querySelector('.zdog-svg');
+let svg = document.querySelector('.zdog-svg');
 
-const scene = new Anchor({...});
+let scene = new Anchor({...});
 // add some shapes...
 
 scene.updateGraph();
