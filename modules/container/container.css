@@ -5,20 +5,9 @@
   margin: 0 auto;
   padding: 0 10px;
   max-width: 1000px;
-  display: flex;
-}
-
-.container__sidebar {
-  flex-basis: 180px;
-  flex-shrink: 0;
-  margin-right: 30px;
 }
 
 /* ---- .container__main ---- */
-
-.container__main {
-  flex-grow: 1;
-}
 
 .container__main > h1 {
   font-size: 4.0rem;
@@ -76,4 +65,21 @@
 .container__main p a,
 .container__main ul a {
   border-bottom: 1px solid;
+}
+
+@media screen and ( min-width: 768px ) {
+   .container {
+     display: flex;
+   }
+
+  .container__sidebar {
+    flex-basis: 180px;
+    flex-shrink: 0;
+    margin-right: 30px;
+  }
+
+  .container__main {
+    flex-grow: 1;
+  }
+
 }

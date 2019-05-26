@@ -2,9 +2,6 @@
 ------------------------- */
 
 .page-nav {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 20px;
   list-style: none;
   margin: 20px 0 0;
   padding: 0;

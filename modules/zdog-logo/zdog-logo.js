@@ -1,9 +1,5 @@
 ZdogDocs.zdogLogo = function( elem ) {
 
-  // resize for zoom
-  var illoSize = elem.parentNode.clientWidth;
-  var zoom = illoSize / elem.width;
-  elem.width = elem.height = illoSize;
   // variables
   var initRotate = { x: 20/360 * TAU, y: -50/360 * TAU };
   var isSpinning = false;
@@ -11,7 +7,7 @@ ZdogDocs.zdogLogo = function( elem ) {
 
   var illo = new Zdog.Illustration({
     element: elem,
-    zoom: zoom,
+    zoom: 1.75,
     rotate: initRotate,
     dragRotate: true,
     onDragStart: function() {

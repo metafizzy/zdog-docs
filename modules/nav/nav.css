@@ -1,0 +1,10 @@
+/* nav
+------------------------- */
+
+@media screen and ( min-width: 768px ) and ( min-height: 550px ) {
+  .nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+  }
+}

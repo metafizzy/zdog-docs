@@ -2,23 +2,11 @@
 ------------------------- */
 
 .example {
-  display: flex;
   margin: 1.0rem 0;
 }
 
-/* disable flex */
-.example--stacked {
-  display: block;
-}
-
 .example__code {
-  flex-grow: 1;
-  margin-right: 1.0rem;
-}
-
-.example--stacked .example__code {
-  margin-right: 0;
-  margin-bottom: 1.0rem;
+  margin: 0 0 1.0rem 0;
 }
 
 .example__code pre {
@@ -27,4 +15,26 @@
 
 .example__code pre + pre {
   margin-top: 1.0rem;
+}
+
+@media screen and ( min-width: 640px ) {
+
+  .example {
+    display: flex;
+  }
+
+  /* disable flex */
+  .example--stacked {
+    display: block;
+  }
+
+  .example__code {
+    flex-grow: 1;
+    margin: 0 1.0rem 0 0;
+  }
+
+  .example--stacked .example__code {
+    margin: 0 0 1.0rem 0;
+  }
+
 }
