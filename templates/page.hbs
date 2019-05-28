@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../{{this}}" />
     {{/each}}
   {{else}}
-    <link rel="stylesheet" href="{{@file.rootpath}}zdog-docs.css?1" />
+    <link rel="stylesheet" href="{{@file.rootpath}}zdog-docs.css?v{{version}}" />
   {{/if}}
 
   {{! Twitter Cards }}
@@ -21,15 +21,18 @@
   <meta name="twitter:url" content="https://zzz.dog/{{@file.basename}}" />
   <meta name="twitter:title" content="Zdog{{#unless page.homepage}} {{page.title}}{{/unless}}" />
   <meta name="twitter:description" content="{{description}}" />
+  <meta name="twitter:image" content="https://zzz.dog/img/zdog-thumbnail.png" />
 
 </head>
 <body data-basename="{{@file.basename}}">
 
 <div class="container">
 
-  <div class="container__sidebar">
-    {{> zdog-logo }}
-    <nav class="nav">
+  <div class="container__sidebar masthead">
+    <div class="masthead__logo">
+      {{> zdog-logo }}
+    </div>
+    <nav class="nav masthead__nav">
       {{> site-nav }}
       <ul class="page-nav"></ul>
     </nav>
@@ -55,13 +58,13 @@
     <script src="../{{this}}"></script>
   {{/each}}
 {{else}}
-  <script src="{{@file.rootpath}}zdog-docs.min.js?1"></script>
+  <script src="{{@file.rootpath}}zdog-docs.min.js?v{{version}}"></script>
 {{/if}}
 
 {{#unless dev}}
   <script>
-    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-    ga('create','UA-58739927-1','auto');ga('send','pageview')
+    window.ga = function() { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create','UA-58739927-9','auto'); ga('send','pageview');
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 {{/unless}}

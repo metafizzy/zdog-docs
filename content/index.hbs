@@ -12,6 +12,20 @@ homepage: true
 
 {{! --------------------------------------------------- }}
 
+<h2>What is Zdog?</h2>
+
+<p>Zdog is a 3D JavaScript engine for <code>&lt;canvas></code> and SVG. With Zdog, you can design and render simple 3D models on the Web. Zdog is a <em>pseudo</em>-3D engine. Its geometries exist in 3D space, but are rendered as flat shapes. This makes Zdog special.</p>
+
+<ul>
+  <li><strong>Zdog is small.</strong> 2,100 lines of code for the entire library. 28KB un-minified.</li>
+  <li><strong>Zdog is round.</strong> All circular shapes are rendered as proper circles with rounded edges. No polygonal jaggies.</li>
+  <li><strong>Zdog is friendly.</strong> Modeling is done with a straight-forward declarative API.</li>
+</ul>
+
+<p>Zdog was designed to bring the simplicity of vector illustration into 3D. Drawing circles and squares is easy and fun. Zdog just adds another dimension.</p>
+
+{{! --------------------------------------------------- }}
+
 <h2>Install</h2>
 
 <h3>Download</h3>
@@ -85,7 +99,7 @@ homepage: true
     ```
   </div>
   <div class="example__demo">
-    <canvas data-js="starterDragRotate" data-spin="true"
+    <canvas data-js="starterDragRotateSpin"
         class="illo" width="240" height="240"></canvas>
     {{> edit-demo penSlug="YbrLaO"}}
   </div>
@@ -99,9 +113,9 @@ homepage: true
 
 <p>Zdog is directly inspired by <a href="https://en.wikipedia.org/wiki/Petz">Dogz</a>, a virtual pet game by P.F. Magic released in 1995. It used flat 2D circle sprites to render the Dogz&rsquo; models, but in a 3D scene. <a href="https://www.youtube.com/watch?v=6lKSn_cHw5k">See Dogz playthrough video here.</a> Dogz were fully animated in real time, running, flopping, scratching (on Windows 3.1!). It was remarkable.</p>
 
-<p>Zdog uses the same principal. It renders all shapes using 2D drawing API in  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial"><code>&lt;canvas></code> </a> or <code>&lt;svg></code>. Spheres are actually dots. Toruses are actually circles . Capsules are actually thick lines. It&rsquo;s a simple, but effective trick.</p>
+<p>Zdog uses the same principal. It renders all shapes using 2D drawing API in  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial"><code>&lt;canvas></code> </a> or <code>&lt;svg></code>. Spheres are actually dots. Toruses are actually circles . Capsules are actually thick lines. It&rsquo;s a simple, but effective trick. The underlying 3D math comes from <a href="https://www.khanacademy.org/computing/computer-programming/programming-games-visualizations/programming-3d-shapes/a/rotating-3d-shapes">Rotating 3D Shapes</a> by <a href="https://petercollingridge.appspot.com/3D-tutorial/rotating-objects">Peter Collingridge</a>.</p>
 
-<p>Zdog is pronounced "Zee-dog" in American parlance or "Zed-dog" in British.</p>
+<p>Zdog is pronounced &ldquo;Zee-dog&rdquo; in American parlance or &ldquo;Zed-dog&rdquo; in British.</p>
 
 <h3>Beta!</h3>
 

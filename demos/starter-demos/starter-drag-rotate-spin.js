@@ -1,4 +1,4 @@
-ZdogDocs.starterDragRotate = ZdogDocs.shapeDemo( function( canvas, data, illo ) {
+ZdogDocs.starterDragRotateSpin = ZdogDocs.spinDemo( function( canvas, data, illo ) {
 
   illo.zoom = 4;
 

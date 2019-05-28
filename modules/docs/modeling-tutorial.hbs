@@ -140,7 +140,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <h3>Body core</h3>
 
-<p>Let's give this floating head a body starting with the hips.</p>
+<p>Let&rsquo;s give this floating head a body starting with the hips.</p>
 
 <div class="example">
   <div class="example__code">
@@ -163,9 +163,9 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <p><code>hips</code> is just a <a href="shapes#shape-line">horizontal line <code>Shape</code></a>. Unlike <code>head</code>, <code>hips</code> has its <a href="shapes#shape-path"><code>path</code></a> set. The <code>path</code> is set to an <i>Array</i> with two <a href="#concepts-vector-objects">vector <i>Object</i>s</a>. So this path reads: start at <code>x: -3</code>, draw a line to <code>x: 3</code>.</p>
 
-<p>We start with the hips because the model's upper body pivots around the hips. By adding the upper body shapes to hips, we can rotate the hips and shapes will rotate with it.</p>
+<p>We start with the hips because the model&rsquo;s upper body pivots around the hips. By adding the upper body shapes to hips, we can rotate the hips and shapes will rotate with it.</p>
 
-<p>Let's work our way up and add the chest next.</p>
+<p>Let&rsquo;s work our way up and add the chest next.</p>
 
 
 <div class="example">
@@ -245,7 +245,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <h3>Legs</h3>
 
-<p>Let's get back upright and now work on the lower half.</p>
+<p>Let&rsquo;s get back upright and now work on the lower half.</p>
 
 <div class="example">
   <div class="example__code">
@@ -303,7 +303,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <p>This simple foot is rendered with a <a href="shapes#roundedrect"><code>RoundedRect</code></a>. The corners are completely rounded with <code>cornerRadius: 1</code>, forming a flattened pill shape. The foot is added to <code>leg</code> and positioned vertically a little past the end of the leg, and along <code>z</code> toward the front so the toe sticks out farther than the heel.</p>
 
-<p>Now let's rotate that foot.</p>
+<p>Now let&rsquo;s rotate that foot.</p>
 
 <div class="example">
   <div class="example__code">
@@ -389,7 +389,7 @@ translate: { x: 2, y: 1, z: 4.5 }
   </div>
 </div>
 
-<p>The <code>forearm</code> connects to the <code>upperArm</code>. It starts at the end of the <code>upperArm</code> by setting <code>translate: { y: armSize }</code>, which matches  <code>upperArm</code>'s end <code>path</code> point.</p>
+<p>The <code>forearm</code> connects to the <code>upperArm</code>. It starts at the end of the <code>upperArm</code> by setting <code>translate: { y: armSize }</code>, which matches  <code>upperArm</code>&rsquo;s end <code>path</code> point.</p>
 
 <div class="example">
   <div class="example__code">
@@ -431,13 +431,13 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <p>Whoa! All the body parts are in place.</p>
 
-<p>Rotating the model around, you'll notice how the shapes pop-over one another — like where the <code>upperArm</code> and <code>forearm</code> overlap on the elbow. This is called <a href="extras#z-fighting">z-fighting</a>. We'll clean this up a bit as we rotate shapes away from one another. But these z-fights are innevitable with pseudo-3D engine like Zdog. Rather than fighting this effect, accept it for what it is. It's not a bug, it's what makes Zdog <em>charming</em>.</p>
+<p>Rotating the model around, you'll notice how the shapes pop-over one another — like where the <code>upperArm</code> and <code>forearm</code> overlap on the elbow. This is called <a href="extras#z-fighting">z-fighting</a>. We'll clean this up a bit as we rotate shapes away from one another. But these z-fights are innevitable with pseudo-3D engine like Zdog. Rather than fighting this effect, accept it for what it is. It&rsquo;s not a bug, it&rsquo;s what makes Zdog <em>charming</em>.</p>
 
 {{! --------------------------------------------- }}
 
 <h3>Rotating legs</h3>
 
-<p>Let's kick it. First let's adjust the position and rotation of the figure for better viewing.</p>
+<p>Let&rsquo;s kick it. First let&rsquo;s adjust the position and rotation of the figure for better viewing.</p>
 
 <div class="example">
   <div class="example__code">
@@ -463,7 +463,7 @@ translate: { x: 2, y: 1, z: 4.5 }
   </div>
 </div>
 
-<p>The leg on the left needs to be rotated 90°. As a kick would be rotating the leg's horizontal axis, that means rotating around the <code>x</code> axis.</p>
+<p>The leg on the left needs to be rotated 90°. As a kick would be rotating the leg&rsquo;s horizontal axis, that means rotating around the <code>x</code> axis.</p>
 
 <div class="example">
   <div class="example__code">
@@ -487,9 +487,9 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <p>I like to use <a href="api#utilities-tau"><code>TAU</code></a> in to set <code>rotate</code> values. <code>TAU</code> is a full rotation in radians, equal to <code>2 * Math.PI</code>. So <code>TAU/4</code> is a quarter-turn.</p>
 
-<p>Items rotate around their origin. The <code>leg</code>'s origin is its first point, which we set in its path, <code>[ { y: 0 }, { y: 12 } ]</code>.</p>
+<p>Items rotate around their origin. The <code>leg</code>&rsquo;s origin is its first point, which we set in its path, <code>[ { y: 0 }, { y: 12 } ]</code>.</p>
 
-<p>Both legs are rotated because the leg on the right copied the properties of the left. So let's rotate the right leg to its position.</p>
+<p>Both legs are rotated because the leg on the right copied the properties of the left. So let&rsquo;s rotate the right leg to its position.</p>
 
 <div class="example">
   <div class="example__code">
@@ -518,7 +518,7 @@ translate: { x: 2, y: 1, z: 4.5 }
   </div>
 </div>
 
-<p>The legs are in the place. But the bottom foot needs to look flat on the ground. Again, it's copied over its rotate value from the other foot. So we need to overwrite it.</p>
+<p>The legs are in the place. But the bottom foot needs to look flat on the ground. Again, it&rsquo;s copied over its rotate value from the other foot. So we need to overwrite it.</p>
 
 <div class="example">
   <div class="example__code">
@@ -556,7 +556,7 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <h3>Rotating spine</h3>
 
-<p>Let's tilt the figure back upper body back by rotating the <code>hips</code>.</p>
+<p>Let&rsquo;s tilt the figure back upper body back by rotating the <code>hips</code>.</p>
 
 <div class="example">
   <div class="example__code">
@@ -658,8 +658,8 @@ translate: { x: 2, y: 1, z: 4.5 }
 
 <p>We only have to rotate the one forearm as the relative angle of rotation of the forearms compared to their parent upper-arm shapes is the same.</p>
 
-<p>It's done!</p>
+<p>It&rsquo;s done!</p>
 
 <p>Now that the model is complete, try going back and make some changes. How would you rotate the arms for a T-pose? How could you break up the legs into thigh and shin like we did for the arms? What shapes could be used to show an angry face?</p>
 
-<p>This tutorial covers the basic of shape composition with Zdog. Now you're ready to start making your own models. Take a look at <a href="api">API</a> for all of Zdog's functionality and <a href="shapes">Shapes</a> for all the shapes.</p>
+<p>This tutorial covers the basic of shape composition with Zdog. Now you're ready to start making your own models. Take a look at <a href="api">API</a> for all of Zdog&rsquo;s functionality and <a href="shapes">Shapes</a> for all the shapes.</p>

@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 
 gulp.task( 'hint-js', function() {
-  return gulp.src([ 'js/*.js', 'modules/**/*/*.js' ])
+  return gulp.src([ 'base/*.js', 'modules/**/*/*.js', 'demos/**/*/*.js' ])
     .pipe( jshint() )
     .pipe( jshint.reporter('default') );
 });

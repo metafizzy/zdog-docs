@@ -2,12 +2,9 @@
 ------------------------- */
 
 .illo-showcase {
-  display: flex;
   margin: 20px 0;
 }
 
 .illo-showcase__illo {
-  width: calc((100% - 30px) / 4);
-  margin-right: 10px;
+  width: 100%;
 }
-.illo-showcase__illo:last-child { margin-right: 0; }

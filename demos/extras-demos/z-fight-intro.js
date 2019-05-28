@@ -14,19 +14,19 @@ ZdogDocs.zFightIntro = ZdogDocs.spinDemo( function( canvas, data, illo ) {
   });
   dot.copy({
     translate: { x: -distance },
-    color: step == 3 ? null : gold,
+    color: step == 3 ? eggplant : gold,
   });
   dot.copy({
     translate: { z: distance },
-    color: step == 3 ? null : garnet,
+    color: step == 3 ? eggplant : garnet,
   });
   dot.copy({
     translate: { x: distance },
-    color: step == 3 ? null : orange,
+    color: step == 3 ? eggplant : orange,
   });
   dot.copy({
     translate: { z: -distance },
-    color: step == 3 ? null : garnet,
+    color: step == 3 ? eggplant : garnet,
   });
   dot.copy({
     translate: { y: distance },

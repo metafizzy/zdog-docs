@@ -33,9 +33,18 @@
   padding-top: 2px;
   padding-bottom: 2px;
 }
-.site-nav__item--index.is-selected a {
-  color: white;
-  background: transparent;
+
+@media screen and ( min-width: 768px ) {
+
+  .site-nav {
+    margin: 10px 0 0;
+  }
+
+  .site-nav__item--index.is-selected a {
+    color: white;
+    background: transparent;
+  }
+
 }
 
 .site-nav__item a:hover {

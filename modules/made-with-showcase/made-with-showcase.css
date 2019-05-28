@@ -1,16 +1,6 @@
 /* made-with-showcase
 ------------------------- */
 
-.made-with-showcase {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.made-with-showcase__item {
-  width: 23%;
-  margin: 10px 1%;
-}
-
 .made-with-showcase__item__image {
   display: block;
   max-width: 100%;
