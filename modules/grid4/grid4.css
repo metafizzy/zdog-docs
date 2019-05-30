@@ -3,8 +3,7 @@
 
 .grid4 {
   display: grid;
-  grid-template-columns: calc((100% - 3.0rem) / 4) calc((100% - 3.0rem) / 4)
-    calc((100% - 3.0rem) / 4) calc((100% - 3.0rem) / 4);
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 1.0rem;
   grid-row-gap: 1.0rem;
 }

@@ -1,0 +1,19 @@
+/* socks-promo
+------------------------- */
+
+.socks-promo {
+  margin: 40px 0;
+}
+
+.socks-promo__link {
+  display: flex;
+  border-radius: 8px;
+}
+
+.socks-promo__image {
+  display: block;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.socks-promo__cell:last-child { padding-left: 1.0rem; }
