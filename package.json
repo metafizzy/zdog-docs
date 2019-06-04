@@ -1,6 +1,6 @@
 {
   "name": "zdog-docs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Documentation site for Zdog",
   "main": "gulpfile.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "highlight.js": "^9.15.6",
     "jshint": "^2.10.2",
     "transfob": "^1.0.0",
-    "zdog": "^1.0.1"
+    "zdog": "^1.0.2"
   },
   "devDependencies": {},
   "repository": {
