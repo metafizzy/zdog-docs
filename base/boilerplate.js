@@ -4,6 +4,17 @@
 
 ( function() {
 
+// v1.0.2 hotfix
+Zdog.Anchor.prototype.renderGraphSvg = function( svg ) {
+  if ( !svg ) {
+    throw new Error( 'svg is ' + svg + '. ' +
+      'SVG required for render. Check .renderGraphSvg( svg ).' );
+  }
+  this.flatGraph.forEach( function( item ) {
+    item.render( svg, Zdog.SvgRenderer );
+  });
+};
+
 // global namespace
 window.ZdogDocs = {};
 
