@@ -283,6 +283,22 @@ element: document.querySelector('.zdog-canvas')
 
 <p>Set <code>resize: <span class=&rsquo;string'>'fullscreen'</span></code> to resize the element to the size of the browser window. <a href="https://codepen.io/desandro/pen/dEJxaV">View fullscreen demo on CodePen.</a></p>
 
+<div class="example example--stacked">
+  <div class="example__code">
+    ``` js
+    resize: 'fullscreen'
+    ```
+    ``` css
+    .zdog-canvas {
+      width: 100%;
+      height: 100%;
+    }
+    ```
+  </div>
+</div>
+
+<p>For <code>&lt;canvas&gt;</code>, set <code>100%</code> width and height CSS on the canvas. Zdog will scale up the canvas to match device pixel ratio. <code>100%</code> width and height then scales the element back down, thus providing higher pixel density.</p>
+
 {{! --------------------------------------------- }}
 
 <h3>onResize</h3>
