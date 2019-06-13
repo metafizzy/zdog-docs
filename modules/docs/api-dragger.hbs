@@ -92,7 +92,7 @@ onDragStart: function( pointer ) {
 <p>Callback function triggered when dragging moves with <code>mousemove</code>, <code>pointermove</code>, or <code>touchmove</code> event.</p>
 
 ``` js
-onDragStart: function( pointer, moveX, moveY ) {
+onDragMove: function( pointer, moveX, moveY ) {
   console.log(`Drag moved ${moveX}, ${moveY}`);
 }
 ```
@@ -111,7 +111,7 @@ onDragStart: function( pointer, moveX, moveY ) {
 <p>Callback function triggered when dragging ends on the <code>mouseup</code>, <code>pointerup</code>, or <code>touchend</code> event.</p>
 
 ``` js
-onDragStart: function() {
+onDragEnd: function() {
   console.log('Drag ended');
 }
 ```
