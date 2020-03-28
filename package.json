@@ -21,7 +21,7 @@
     "highlight.js": "^9.15.6",
     "jshint": "^2.10.2",
     "transfob": "^1.0.0",
-    "zdog": "^1.1.0"
+    "zdog": "^1.1.2"
   },
   "devDependencies": {},
   "repository": {
